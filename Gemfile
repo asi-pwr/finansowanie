@@ -13,6 +13,7 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "hamlit-rails"
 gem "decent_exposure"
+gem "devise"
 
 group :development, :test do
   gem "pry"
