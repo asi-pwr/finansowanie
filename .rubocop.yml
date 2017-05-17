@@ -1,0 +1,31 @@
+inherit_from:
+  - http://relaxed.ruby.style/rubocop.yml
+
+Rails:
+  Enabled: true
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+  Exclude:
+    - db/schema.rb
+    - bin/spring
+    - config/deploy.rb
+    - vendor/**/*
+
+BlockLength:
+  Exclude:
+    - "**/config/**/*.rb"
+
+CollectionMethods:
+  PreferredMethods:
+    find: detect
+    reduce: inject
+    collect: map
+    find_all: select
+
+OrderedGems:
+  Enabled: false
+
+StringLiterals:
+  EnforcedStyle: double_quotes
