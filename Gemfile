@@ -23,6 +23,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rspec-rails"
   gem "shoulda-matchers"
+  gem "dotenv-rails"
 end
 
 group :development do
