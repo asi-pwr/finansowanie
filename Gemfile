@@ -25,6 +25,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "shoulda-matchers"
   gem "dotenv-rails"
+  gem "html2haml"
 end
 
 group :development do
