@@ -1,6 +1,6 @@
-class ExtendsApplicationColumns < ActiveRecord::Migration[5.1]
+class AddApplicationColumns < ActiveRecord::Migration[5.1]
   def change
-    add_column :applications do |t|
+    change_table :applications do |t|
       t.integer :amount_applied_for
       t.integer :amount_other_sources
       t.integer :amount_overall
