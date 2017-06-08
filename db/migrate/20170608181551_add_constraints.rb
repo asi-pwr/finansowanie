@@ -1,30 +1,30 @@
 class AddConstraints < ActiveRecord::Migration[5.1]
   def change
     change_table :coordinators_projects do |t|
-      t.string :name, null: false, default: ""
-      t.string :function, null: false, default: ""
-      t.date :date, null: false
-      t.integer :budget, null: false, default: 0
+      t.change :name, :string, null: false, default: ""
+      t.change :function, :string, null: false, default: ""
+      t.change :date, :date, null: false
+      t.change :budget, :integer, null: false, default: 0
     end
     change_table :schedule_items do |t|
-      t.string :todo, null: false, default: ""
-      t.date :start_date, null: false
-      t.date :due_date, null: false
-      t.string :finance_source, null: false, default: ""
-      t.integer :budget_amount, null: false, default: 0
+      t.change :todo, :string, null: false, default: ""
+      t.change :start_date, :date, null: false
+      t.change :due_date, :date, null: false
+      t.change :finance_source, :string, null: false, default: ""
+      t.change :budget_amount, :integer, null: false, default: 0
     end
     change_table :project_members do |t|
-      t.string :function, null: false, default: ""
-      t.string :first_name, null: false, default: ""
-      t.string :last_name, null: false, default: ""
+      t.change :function, :string, null: false, default: ""
+      t.change :first_name, :string, null: false, default: ""
+      t.change :last_name, :string, null: false, default: ""
     end
     change_table :organizations do |t|
-      t.string :name, null: false, default: ""
-      t.date :time_of_establishment, null: false
+      t.change :name, :string, null: false, default: ""
+      t.change :time_of_establishment, :date, null: false
     end
     change_table :applications do |t|
-      t.string :name, null: false, default: ""
-      t.string :coordinator, null: false, default: ""
+      t.change :name, :string, null: false, default: ""
+      t.change :coordinator, :string, null: false, default: ""
     end
   end
 end
