@@ -1,9 +1,9 @@
 class ExtendsApplicationColumns < ActiveRecord::Migration[5.1]
   def change
     add_column :applications do |t|
-      t.decimal :amount_applied_for
-      t.decimal :amount_other_sources
-      t.decimal :amount_overall
+      t.integer :amount_applied_for
+      t.integer :amount_other_sources
+      t.integer :amount_overall
       t.text :project_subject
       t.text :planned_date_and_location
       t.text :description_and_purpose
