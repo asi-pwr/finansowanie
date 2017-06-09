@@ -1,0 +1,49 @@
+%h1 Nowy wniosek
+= form_for :application do |f|
+  =f.label :name
+  =f.text_field :name
+  %br/
+  =f.label :coordinator
+  =f.text_field :coordinator
+  %br/
+  =f.label :amount_applied_for
+  =f.number_field :amount_applied_for
+  %br/
+  =f.label :amount_other_sources
+  =f.number_field :amount_other_sources
+  %br/
+  =f.label :amount_overall
+  =f.number_field :amount_overall
+  %br/
+  =f.label :project_subject
+  =f.text_area :project_subject
+  %br/
+  =f.label :planned_date_and_location
+  =f.text_area :planned_date_and_location
+  %br/
+  =f.label :description_and_purpose
+  =f.text_area :description_and_purpose
+  %br/
+  =f.label :required_resources
+  =f.text_area :required_resources
+  %br/
+  =f.label :list_of_previous_occurrences
+  =f.text_area :list_of_previous_occurrences
+  %br/
+  =f.label :other_subjects_collaboraiton
+  =f.text_area :other_subjects_collaboraiton
+  %br/
+  =f.label :targets
+  =f.text_area :targets
+  %br/
+  =f.label :strategy_of_getting_sponsors
+  =f.text_area :strategy_of_getting_sponsors
+  %br/
+  =f.label :planned_advertisement
+  =f.text_area :planned_advertisement
+  %br/
+  =f.label :current_state
+  =f.text_area :current_state
+  %br/
+
+  =f.submit
