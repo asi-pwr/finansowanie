@@ -1,0 +1,16 @@
+%h2 Wnioski
+%table
+  %thead
+    %tr
+      %th
+        Nazwa wniosku
+      %th
+        Koordynator
+  %tbody
+    -@applications.each do |application|
+      %tr
+        %td
+          =application.name
+        %td
+          =application.coordinator
+=link_to 'new', new_application_path

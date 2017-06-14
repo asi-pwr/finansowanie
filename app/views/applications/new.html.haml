@@ -1,0 +1,76 @@
+%p{:id=>'notice'}=notice
+%h2 WNIOSEK O DOFINANSOWANIE PROJEKTU STUDENCKIEGO KATEGORIA K
+= form_for :application do |f|
+  Nazwa projektu
+  %br/
+  =f.text_field :name
+  %br/
+  Koordynator Projektu
+  %br/
+  =f.text_field :coordinator
+  %br/
+  Kwota wnioskowana
+  %br/
+  =f.number_field :amount_applied_for
+  %br/
+  Kwota z innych źródeł
+  %br/
+  =f.number_field :amount_other_sources
+  %br/
+  Kwota ogółem
+  %br/
+  =f.number_field :amount_overall
+  %br/
+  Tematyka projektu
+  %br/
+  =f.text_area :project_subject
+  %br/
+  Planowany termin i miejsce (jeżeli dotyczy) realizacji projektu
+  %br/
+  =f.text_area :planned_date_and_location
+  %br/
+  Opis i cel projektu
+  %br/
+  =f.text_area :description_and_purpose
+  %br/
+  Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania
+  %br/
+  =f.text_area :required_resources
+  %br/
+  Wykaz realizacji wnioskowanego projektu w latach poprzednich
+  %br/
+  =f.text_area :list_of_previous_occurrences
+  %br/
+  Współpraca organizacyjna z innymi podmiotami
+  %br/
+  =f.text_area :other_subjects_collaboraiton
+  %br/
+  Docelowa grupa odbiorców projektu
+  %br/
+  =f.text_area :targets
+  %br/
+  Opis strategii pozyskiwania sponsorów
+  %br/
+  =f.text_area :strategy_of_getting_sponsors
+  %br/
+  Planowane działania promocyjne projektu
+  %br/
+  =f.text_area :planned_advertisement
+  %br/
+
+  Doświadczenie Koordynatora Projektu w podobnych projektach
+  %br/
+
+  Harmonogram realizacji projektu
+  %br/
+
+  Aktualny stan zaawansowania projektu lub powiązania z innymi projektami
+  %br/
+  =f.text_area :current_state
+  %br/
+
+  Skład zespołu realizatorów projektu
+  %br/
+
+  =f.submit
+=link_to 'Back', controller: 'applications'
