@@ -1,49 +1,74 @@
-%h1 Nowy wniosek
+%h2 WNIOSEK O DOFINANSOWANIE PROJEKTU STUDENCKIEGO KATEGORIA K
 = form_for :application do |f|
-  =f.label :name
+  Nazwa projektu
+  %br/
   =f.text_field :name
   %br/
-  =f.label :coordinator
+  Koordynator Projektu
+  %br/
   =f.text_field :coordinator
   %br/
-  =f.label :amount_applied_for
+  Kwota wnioskowana
+  %br/
   =f.number_field :amount_applied_for
   %br/
-  =f.label :amount_other_sources
+  Kwota z innych źródeł
+  %br/
   =f.number_field :amount_other_sources
   %br/
-  =f.label :amount_overall
+  Kwota ogółem
+  %br/
   =f.number_field :amount_overall
   %br/
-  =f.label :project_subject
+  Tematyka projektu
+  %br/
   =f.text_area :project_subject
   %br/
-  =f.label :planned_date_and_location
+  Planowany termin i miejsce (jeżeli dotyczy) realizacji projektu
+  %br/
   =f.text_area :planned_date_and_location
   %br/
-  =f.label :description_and_purpose
+  Opis i cel projektu
+  %br/
   =f.text_area :description_and_purpose
   %br/
-  =f.label :required_resources
+  Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania
+  %br/
   =f.text_area :required_resources
   %br/
-  =f.label :list_of_previous_occurrences
+  Wykaz realizacji wnioskowanego projektu w latach poprzednich
+  %br/
   =f.text_area :list_of_previous_occurrences
   %br/
-  =f.label :other_subjects_collaboraiton
+  Współpraca organizacyjna z innymi podmiotami
+  %br/
   =f.text_area :other_subjects_collaboraiton
   %br/
-  =f.label :targets
+  Docelowa grupa odbiorców projektu
+  %br/
   =f.text_area :targets
   %br/
-  =f.label :strategy_of_getting_sponsors
+  Opis strategii pozyskiwania sponsorów
+  %br/
   =f.text_area :strategy_of_getting_sponsors
   %br/
-  =f.label :planned_advertisement
+  Planowane działania promocyjne projektu
+  %br/
   =f.text_area :planned_advertisement
   %br/
-  =f.label :current_state
+
+  Doświadczenie Koordynatora Projektu w podobnych projektach
+  %br/
+
+  Harmonogram realizacji projektu
+  %br/
+
+  Aktualny stan zaawansowania projektu lub powiązania z innymi projektami
+  %br/
   =f.text_area :current_state
+  %br/
+
+  Skład zespołu realizatorów projektu
   %br/
 
   =f.submit
