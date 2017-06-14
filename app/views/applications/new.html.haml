@@ -1,3 +1,4 @@
+%p{:id=>'notice'}=notice
 %h2 WNIOSEK O DOFINANSOWANIE PROJEKTU STUDENCKIEGO KATEGORIA K
 = form_for :application do |f|
   Nazwa projektu
@@ -72,3 +73,4 @@
   %br/
 
   =f.submit
+=link_to 'Back', controller: 'applications'
