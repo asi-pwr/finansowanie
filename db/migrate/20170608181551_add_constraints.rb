@@ -1,30 +1,32 @@
 class AddConstraints < ActiveRecord::Migration[5.1]
   def change
-    change_table :coordinators_projects do |t|
-      t.string :name, null: false, default: ""
-      t.string :function, null: false, default: ""
-      t.date :date, null: false
-      t.integer :budget, null: false, default: 0
+    %i(name function budget).each do |column|
+      change_column_null :coordinators_projects, column, false
+      change_column_default :coordinators_projects, column, from: nil, to: ""
     end
-    change_table :schedule_items do |t|
-      t.string :todo, null: false, default: ""
-      t.date :start_date, null: false
-      t.date :due_date, null: false
-      t.string :finance_source, null: false, default: ""
-      t.integer :budget_amount, null: false, default: 0
+    change_column_null :coordinators_projects, :date, false
+
+    %i(todo start_date due_date finance_source budget_amount).each do |column|
+      change_column_null :schedule_items, column, false
+      change_column_default :schedule_items, column, from: nil, to: ""
     end
-    change_table :project_members do |t|
-      t.string :function, null: false, default: ""
-      t.string :first_name, null: false, default: ""
-      t.string :last_name, null: false, default: ""
+    change_column_null :schedule_items, :start_date, false
+    change_column_null :schedule_items, :due_date, false
+
+    %i(function first_name last_name).each do |column|
+      change_column_null :project_members, column, false
+      change_column_default :project_members, column, from: nil, to: ""
     end
-    change_table :organizations do |t|
-      t.string :name, null: false, default: ""
-      t.date :time_of_establishment, null: false
+
+    %i(name).each do |column|
+      change_column_null :organizations, column, false
+      change_column_default :organizations, column, from: nil, to: ""
     end
-    change_table :applications do |t|
-      t.string :name, null: false, default: ""
-      t.string :coordinator, null: false, default: ""
+    change_column_null :organizations, :time_of_establishment, null: false
+
+    %i(name coordinator).each do |column|
+      change_column_null :applications, column, false
+      change_column_default :applications, column, from: nil, to: ""
     end
   end
 end
