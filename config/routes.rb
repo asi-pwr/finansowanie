@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'applications/new'
+
+  get 'applications/create'
+
   root 'pages#root'
   get "/root", to: "pages#root"
   devise_for :users
