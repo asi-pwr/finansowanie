@@ -4,7 +4,7 @@
 
 ### Fast mode
 
-0. Install [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/) and [Ruby 2.4.1](https://gorails.com/setup/ubuntu/16.04)
+0. Install [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/) (do not forget about [managing Docker as non-root user](https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user)) and [Ruby 2.4.1](https://gorails.com/setup/ubuntu/16.04)
 1. `git clone https://github.com/asi-pwr/finansowanie.git && cd finansowanie`
 2. `bundle install`
 3. `bash start_database.sh`
