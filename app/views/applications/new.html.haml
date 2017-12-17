@@ -1,2 +1,9 @@
-%h1 Applications#new
-%p Find me in app/views/applications/new.html.haml
+%h1.text-center Wniosek K
+
+= simple_form_for @application do |f|
+  .container
+    .panel.panel-primary
+      .panel-heading Część I - informacje o wnioskodawcy
+      .panel-body
+        .col-md-4
+          = f.input :organizations_id, collection: @organizations, label: "Organizacja wnioskująca"

@@ -1,9 +1,9 @@
 class CreateUsersApplications < ActiveRecord::Migration[5.1]
   def change
-    create_table :users_applications do |t|
-      t.references :user, foreign_key: true
-      t.references :application, foreign_key: true
-      t.references :role, foreign_key: true
+    create_table :users_applications, id: false do |t|
+      t.belongs_to :user, index: true
+      t.belongs_to :application, index: true
+      t.belongs_to :role, index: true
     end
   end
 end
