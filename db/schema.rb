@@ -81,6 +81,22 @@ ActiveRecord::Schema.define(version: 20171107233110) do
     t.index ["application_id"], name: "index_schedule_items_on_application_id"
   end
 
+  create_table "user_applications", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "application_id"
+    t.bigint "role_id"
+    t.index ["application_id"], name: "index_user_applications_on_application_id"
+    t.index ["role_id"], name: "index_user_applications_on_role_id"
+    t.index ["user_id"], name: "index_user_applications_on_user_id"
+  end
+
+  create_table "user_organizations", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_user_organizations_on_organization_id"
+    t.index ["user_id"], name: "index_user_organizations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -105,22 +121,6 @@ ActiveRecord::Schema.define(version: 20171107233110) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["faculty_id"], name: "index_users_on_faculty_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "users_applications", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "application_id"
-    t.bigint "role_id"
-    t.index ["application_id"], name: "index_users_applications_on_application_id"
-    t.index ["role_id"], name: "index_users_applications_on_role_id"
-    t.index ["user_id"], name: "index_users_applications_on_user_id"
-  end
-
-  create_table "users_organizations", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "organization_id"
-    t.index ["organization_id"], name: "index_users_organizations_on_organization_id"
-    t.index ["user_id"], name: "index_users_organizations_on_user_id"
   end
 
   add_foreign_key "applications", "organizations", column: "organizations_id"

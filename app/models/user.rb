@@ -4,6 +4,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :email, presence: true, uniqueness: true
   validates :full_name, presence: true
-  has_many :applications, through: :users_applications
-  has_many :organizations, through: :users_organizations
+  has_many :user_applications
+  has_many :user_organizations
+  has_many :applications, through: :user_applications
+  has_many :organizations, through: :user_organizations
 end
