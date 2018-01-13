@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :organizations
   root 'pages#root'
   get "/root", to: "pages#root"
   devise_for :users

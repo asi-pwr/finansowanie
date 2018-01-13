@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608181551) do
+ActiveRecord::Schema.define(version: 20171212200249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20170608181551) do
     t.text "planned_advertisement"
     t.text "current_state"
     t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "post_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
   create_table "coordinators_projects", force: :cascade do |t|
@@ -63,6 +71,13 @@ ActiveRecord::Schema.define(version: 20170608181551) do
     t.index ["faculty_id"], name: "index_organizations_on_faculty_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "project_members", force: :cascade do |t|
     t.string "function", default: "", null: false
     t.string "first_name", default: "", null: false
@@ -83,6 +98,12 @@ ActiveRecord::Schema.define(version: 20170608181551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_schedule_items_on_application_id"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,6 +131,7 @@ ActiveRecord::Schema.define(version: 20170608181551) do
   end
 
   add_foreign_key "applications", "users"
+  add_foreign_key "comments", "posts"
   add_foreign_key "coordinators_projects", "applications"
   add_foreign_key "organizations", "faculties"
   add_foreign_key "project_members", "applications"
