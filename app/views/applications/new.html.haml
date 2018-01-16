@@ -5,5 +5,21 @@
     .panel.panel-primary
       .panel-heading Część I - informacje o wnioskodawcy
       .panel-body
-        .col-md-4
-          = f.input :organizations_id, collection: @organizations, label: "Organizacja wnioskująca"
+        .row
+          .col-md-4
+            = f.input :organization_id, collection: @organizations, label: "Organizacja wnioskująca"
+          .col-md-4
+            = f.input :name, label: "Nazwa organizacji"
+          .col-md-4
+            = f.input :coordinator, label: "Koordynator"
+        .row
+          %h4.text-center Koszty projektu
+          .col-md-4
+            = f.input :amount_applied_for, label: "Kwota wnioskowana"
+          .col-md-4
+            = f.input :amount_other_sources, label: "Kwota z innych źródeł"
+          .col-md-4
+            = f.input :amount_overall, label: "Kwota ogółem"
+        .row
+          %button.btn.btn-default{type: "submit"}
+            Aplikuj

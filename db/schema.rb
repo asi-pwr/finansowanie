@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107233110) do
+ActiveRecord::Schema.define(version: 20180112155614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,13 @@ ActiveRecord::Schema.define(version: 20171107233110) do
     t.text "sponsor_enlistment"
     t.text "promotion_plans"
     t.text "current_state"
-    t.bigint "organizations_id"
+    t.bigint "requesting_organization_id"
+    t.bigint "organization_id"
     t.text "location"
     t.date "date"
     t.text "estimate"
-    t.index ["organizations_id"], name: "index_applications_on_organizations_id"
+    t.index ["organization_id"], name: "index_applications_on_organization_id"
+    t.index ["requesting_organization_id"], name: "index_applications_on_requesting_organization_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
@@ -79,6 +81,12 @@ ActiveRecord::Schema.define(version: 20171107233110) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_schedule_items_on_application_id"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_applications", id: false, force: :cascade do |t|
@@ -123,7 +131,7 @@ ActiveRecord::Schema.define(version: 20171107233110) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "applications", "organizations", column: "organizations_id"
+  add_foreign_key "applications", "organizations"
   add_foreign_key "applications", "users"
   add_foreign_key "experiences", "users"
   add_foreign_key "organizations", "faculties"
