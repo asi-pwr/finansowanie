@@ -8,7 +8,7 @@
   = @organization.time_of_establishment
 %p
   %b Faculty:
-  = @organization.faculty_id
+  = @organization.faculty.name
 
 = link_to 'Edit', edit_organization_path(@organization)
 \|
