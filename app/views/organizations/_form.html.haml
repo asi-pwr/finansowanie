@@ -13,7 +13,6 @@
     = f.label :time_of_establishment
     = f.date_select :time_of_establishment
   .field
-    = options_from_collection_for_select(Faculty.all, :id, :name)
     = f.collection_select(:faculty_id, Faculty.all, :id, :name)
   .actions
     = f.submit 'Save'
