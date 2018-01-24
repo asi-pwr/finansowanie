@@ -2,10 +2,10 @@
 
 Rails.application.routes.draw do
   resources :organizations
-  resources :applications, only: [:new, :create]
+  resources :applications, only: %i[new create]
   root 'pages#root'
   get "/root", to: "pages#root"
   devise_for :users
-  resources :faculties 
+  resources :faculties
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

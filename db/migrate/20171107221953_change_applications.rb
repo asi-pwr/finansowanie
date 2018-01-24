@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeApplications < ActiveRecord::Migration[5.1]
   def change
     change_table :applications do |t|

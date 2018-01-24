@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "organizations/show", type: :view do
   before(:each) do
     @organization = assign(:organization, Organization.create!(
-      :name => "MyText",
-      :time_of_establishment => 2,
-      :faculty_id => 3
+                                            name: "MyText",
+                                            time_of_establishment: 2,
+                                            faculty_id: 3
     ))
   end
 

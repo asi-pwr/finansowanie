@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Organization < ApplicationRecord
   belongs_to :faculty
   has_many :user_organizations

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddOrganizationIdAsIndexToRolesAndExperiences < ActiveRecord::Migration[5.1]
   def change
     add_column :roles, :application_id, :bigint

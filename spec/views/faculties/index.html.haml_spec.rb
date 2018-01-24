@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "faculties/index", type: :view do
   before(:each) do
     assign(:faculties, [
-      Faculty.create!(),
-      Faculty.create!()
-    ])
+             Faculty.create!,
+             Faculty.create!
+           ])
   end
 
   it "renders a list of faculties" do

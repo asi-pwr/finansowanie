@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Experience < ApplicationRecord
   belongs_to :application
   validates :project_name, presence: true

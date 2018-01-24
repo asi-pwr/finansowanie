@@ -7,9 +7,7 @@
       .panel-body
         .row
           .col-md-4
-            = f.input :organization_id, collection: @organizations, label: "Organizacja wnioskująca"
-          .col-md-4
-            = f.input :name, label: "Nazwa organizacji"
+            = f.association :organization, label: "Organizacja wnioskująca"
           .col-md-4
             = f.input :coordinator, label: "Koordynator"
         .row

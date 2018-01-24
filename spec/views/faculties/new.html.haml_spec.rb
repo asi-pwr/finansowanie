@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe "faculties/new", type: :view do
   before(:each) do
-    assign(:faculty, Faculty.new())
+    assign(:faculty, Faculty.new)
   end
 
   it "renders new faculty form" do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddConstraints < ActiveRecord::Migration[5.1]
   def change
     %i(name function budget).each do |column|

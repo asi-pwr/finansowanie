@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationsController < ApplicationController
   before_action :authenticate_user!
 
@@ -11,19 +13,18 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = current_user.organizations.find(organization_params).applications.create(application_params)
-    @organization  = current_user.organizations.find(organization_params)
+    @organization = current_user.organizations.find(organization_params)
+    @application = @organization.applications.create(application_params)
   end
 
-private
+  private
+
   def organization_params
     params.require(:application).require(:organization_id)
   end
 
   def application_params
-    params.require(:application).permit( :name, :coordinator, :amount_applied_for, 
+    params.require(:application).permit( :name, :coordinator, :amount_applied_for,
                                          :amount_other_sources, :amount_overall)
   end
-
-
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class FacultiesController < ApplicationController
-  before_action :set_faculty, only: [:show, :edit, :update, :destroy]
+  before_action :set_faculty, only: %i[show edit update destroy]
 
   # GET /faculties
   # GET /faculties.json
@@ -9,8 +11,7 @@ class FacultiesController < ApplicationController
 
   # GET /faculties/1
   # GET /faculties/1.json
-  def show
-  end
+  def show; end
 
   # GET /faculties/new
   def new
@@ -18,8 +19,7 @@ class FacultiesController < ApplicationController
   end
 
   # GET /faculties/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /faculties
   # POST /faculties.json
@@ -62,13 +62,14 @@ class FacultiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_faculty
-      @faculty = Faculty.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def faculty_params
-      params.require(:faculty).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_faculty
+    @faculty = Faculty.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def faculty_params
+    params.require(:faculty).permit(:name)
+  end
 end
