@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :organizations
   resources :applications, only: [:new, :create]
-
   root 'pages#root'
   get "/root", to: "pages#root"
   devise_for :users

@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20180124001215) do
 
   # These are extensions that must be enabled in order to support this database
@@ -41,6 +42,13 @@ ActiveRecord::Schema.define(version: 20180124001215) do
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
+  create_table "coordinators_projects", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "function", default: "", null: false
+    t.date "date", null: false
+    t.integer "budget", null: false
+  end
+
   create_table "experiences", force: :cascade do |t|
     t.string "project_name"
     t.string "role"
@@ -67,10 +75,17 @@ ActiveRecord::Schema.define(version: 20180124001215) do
     t.index ["faculty_id"], name: "index_organizations_on_faculty_id"
   end
 
+  create_table "project_members", force: :cascade do |t|
+    t.string "function", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "member_role"
     t.string "first_name"
     t.string "last_name"
+
     t.bigint "application_id"
     t.index ["application_id"], name: "index_roles_on_application_id"
   end
@@ -131,6 +146,7 @@ ActiveRecord::Schema.define(version: 20180124001215) do
 
   add_foreign_key "applications", "organizations"
   add_foreign_key "applications", "users"
+  add_foreign_key "coordinators_projects", "applications"
   add_foreign_key "experiences", "users"
   add_foreign_key "organizations", "faculties"
   add_foreign_key "schedule_items", "applications"
