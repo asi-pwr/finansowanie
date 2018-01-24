@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 20180124001215) do
 
   add_foreign_key "applications", "organizations"
   add_foreign_key "applications", "users"
-  add_foreign_key "comments", "posts"
   add_foreign_key "coordinators_projects", "applications"
   add_foreign_key "experiences", "users"
   add_foreign_key "organizations", "faculties"
