@@ -20,6 +20,63 @@
             = f.input :amount_other_sources, label: "Kwota z innych źródeł"
           .col-md-4
             = f.input :amount_overall, label: "Kwota ogółem"
+
+    .panel.panel-primary
+      .panel-heading Część II - informacje o projekcie
+      .panel-body
         .row
+          = f.input :description, label: "Tematyka i opis projektu"
+        .row
+          %h4.text-center Planowany termin i miejsce (jeżeli dotyczy) realizacji projektu
+          .col-md-6
+            = f.input :location, label: "Miejsce"
+          .col-md-6 
+            = f.input :date, label: "Data"
+        .row
+          = f.input :project_subject, label: "Cel projektu"
+          = f.input :required_resources, label: "Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania"
+          = f.input :past_schedule, label: "Wykaz realizacji wnioskowanego projektu w latach poprzednich"
+          = f.input :collaboration, label: "Współpraca organizacyjna z innymi podmiotami"
+          = f.input :target_group, label: "Docelowa grupa odbiorców projektu"
+          = f.input :sponsor_enlistment, label: "Opis strategii pozyskiwania sponsorów"
+          = f.input :promotion_plans, label: "Planowane działania promocyjne projektu"
+        .row
+          %h4.text-center Doświadczenie zespołu organizatorów w podobnych projektach:
+          = f.simple_fields_for :experiences do |ex|
+            .row
+              .col-md-4
+                = ex.input :project_name, label: "Nazwa Projektu"
+              .col-md-4
+                = ex.input :role, label: "Pełniona funkcja"
+              .col-md-4
+                = ex.input :budget, label: "Budżet"
+            .row
+              .col-md-6
+                = ex.input :project_date, label: "Data wydarzenia"
+              .col-md-6
+                = ex.input :user_id, label: "Imię i nazwisko członka zespołu"
+                -# note to self: jak wykonac powyzsze?
+        .row
+          %h4.text-center Harmonogram realizacji projektu
+          = f.simple_fields_for :schedule_items do |si|
+            .col-md-4
+              = si.input :todo, label: "Pozycja"
+            .col-md-4
+              = si.input :start_date, label: "Data rozpoczęcia"
+            .col-md-4
+              = si.input :due_date, label: "Data zakończenia"
+          = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
+        .row
+          %h4.text-center Skład zespołu realizatorów projektu
+          = f.simple_fields_for :roles do |rl|
+            .col-md-4
+              = rl.input :member_role, label: "Funkcja"
+            .col-md-4
+              = rl.input :first_name, label: "Imię"
+            .col-md-4
+              = rl.input :last_name, label: "Nazwisko"
+
+          .row
+            %h4 Załączniki
           %button.btn.btn-default{type: "submit"}
             Aplikuj

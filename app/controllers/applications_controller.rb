@@ -4,10 +4,14 @@ class ApplicationsController < ApplicationController
   def new
     @organizations = current_user.organizations
     @application = Application.new
+    5.times {@application.experiences.build}
+    5.times {@application.schedule_items.build}
+    5.times {@application.roles.build}
   end
 
   def create
     @application = current_user.organizations.find(organization_params).applications.create(application_params)
+    @organization  = current_user.organizations.find(organization_params)
   end
 
 private

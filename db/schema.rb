@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112155614) do
+ActiveRecord::Schema.define(version: 20180124001215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,13 +33,11 @@ ActiveRecord::Schema.define(version: 20180112155614) do
     t.text "sponsor_enlistment"
     t.text "promotion_plans"
     t.text "current_state"
-    t.bigint "requesting_organization_id"
     t.bigint "organization_id"
     t.text "location"
     t.date "date"
     t.text "estimate"
     t.index ["organization_id"], name: "index_applications_on_organization_id"
-    t.index ["requesting_organization_id"], name: "index_applications_on_requesting_organization_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
@@ -49,6 +47,8 @@ ActiveRecord::Schema.define(version: 20180112155614) do
     t.date "project_date"
     t.integer "budget"
     t.bigint "user_id"
+    t.bigint "application_id"
+    t.index ["application_id"], name: "index_experiences_on_application_id"
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
@@ -68,7 +68,11 @@ ActiveRecord::Schema.define(version: 20180112155614) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string "name"
+    t.string "member_role"
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "application_id"
+    t.index ["application_id"], name: "index_roles_on_application_id"
   end
 
   create_table "schedule_items", force: :cascade do |t|
@@ -81,12 +85,6 @@ ActiveRecord::Schema.define(version: 20180112155614) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_schedule_items_on_application_id"
-  end
-
-  create_table "tests", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "user_applications", id: false, force: :cascade do |t|
