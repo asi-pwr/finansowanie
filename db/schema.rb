@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20180124001215) do
     t.string "function", default: "", null: false
     t.date "date", null: false
     t.integer "budget", null: false
+  end
 
   create_table "experiences", force: :cascade do |t|
     t.string "project_name"
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180124001215) do
     t.string "function", default: "", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "member_role"
