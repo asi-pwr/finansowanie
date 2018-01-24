@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212200249) do
+
+ActiveRecord::Schema.define(version: 20180124001215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,24 +26,20 @@ ActiveRecord::Schema.define(version: 20171212200249) do
     t.integer "amount_other_sources"
     t.integer "amount_overall"
     t.text "project_subject"
-    t.text "planned_date_and_location"
-    t.text "description_and_purpose"
+    t.text "description"
     t.text "required_resources"
-    t.text "list_of_previous_occurrences"
-    t.text "other_subjects_collaboraiton"
-    t.text "targets"
-    t.text "strategy_of_getting_sponsors"
-    t.text "planned_advertisement"
+    t.text "past_schedule"
+    t.text "collaboration"
+    t.text "target_group"
+    t.text "sponsor_enlistment"
+    t.text "promotion_plans"
     t.text "current_state"
+    t.bigint "organization_id"
+    t.text "location"
+    t.date "date"
+    t.text "estimate"
+    t.index ["organization_id"], name: "index_applications_on_organization_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.bigint "post_id"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
   create_table "coordinators_projects", force: :cascade do |t|
@@ -50,10 +47,16 @@ ActiveRecord::Schema.define(version: 20171212200249) do
     t.string "function", default: "", null: false
     t.date "date", null: false
     t.integer "budget", null: false
+
+  create_table "experiences", force: :cascade do |t|
+    t.string "project_name"
+    t.string "role"
+    t.date "project_date"
+    t.integer "budget"
+    t.bigint "user_id"
     t.bigint "application_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["application_id"], name: "index_coordinators_projects_on_application_id"
+    t.index ["application_id"], name: "index_experiences_on_application_id"
+    t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -71,21 +74,18 @@ ActiveRecord::Schema.define(version: 20171212200249) do
     t.index ["faculty_id"], name: "index_organizations_on_faculty_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "project_members", force: :cascade do |t|
     t.string "function", default: "", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
+
+  create_table "roles", force: :cascade do |t|
+    t.string "member_role"
+    t.string "first_name"
+    t.string "last_name"
+
     t.bigint "application_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["application_id"], name: "index_project_members_on_application_id"
+    t.index ["application_id"], name: "index_roles_on_application_id"
   end
 
   create_table "schedule_items", force: :cascade do |t|
@@ -100,10 +100,20 @@ ActiveRecord::Schema.define(version: 20171212200249) do
     t.index ["application_id"], name: "index_schedule_items_on_application_id"
   end
 
-  create_table "tests", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "user_applications", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "application_id"
+    t.bigint "role_id"
+    t.index ["application_id"], name: "index_user_applications_on_application_id"
+    t.index ["role_id"], name: "index_user_applications_on_role_id"
+    t.index ["user_id"], name: "index_user_applications_on_user_id"
+  end
+
+  create_table "user_organizations", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_user_organizations_on_organization_id"
+    t.index ["user_id"], name: "index_user_organizations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -122,18 +132,22 @@ ActiveRecord::Schema.define(version: 20171212200249) do
     t.datetime "confirmation_sent_at"
     t.string "full_name", default: "", null: false
     t.string "student_id", default: "", null: false
-    t.boolean "has_training", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "faculty_id"
+    t.string "phone_number"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["faculty_id"], name: "index_users_on_faculty_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "applications", "organizations"
   add_foreign_key "applications", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "coordinators_projects", "applications"
+  add_foreign_key "experiences", "users"
   add_foreign_key "organizations", "faculties"
-  add_foreign_key "project_members", "applications"
   add_foreign_key "schedule_items", "applications"
+  add_foreign_key "users", "faculties"
 end

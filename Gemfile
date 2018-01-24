@@ -14,6 +14,9 @@ gem "jbuilder", "~> 2.5"
 gem "hamlit-rails"
 gem "decent_exposure"
 gem "devise"
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'jquery-rails'
+gem 'simple_form'
 
 group :development, :test do
   gem "pry"
