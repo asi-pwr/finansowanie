@@ -5,9 +5,9 @@ class ApplicationsController < ApplicationController
     @organizations = current_user.organizations
     @users = User.all
     @application = Application.new
-    5.times {@application.experiences.build}
-    5.times {@application.schedule_items.build}
-    5.times {@application.roles.build}
+    5.times { @application.experiences.build }
+    5.times { @application.schedule_items.build }
+    5.times { @application.roles.build }
   end
 
   def create
