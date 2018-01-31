@@ -8,6 +8,6 @@ class User < ApplicationRecord
   validates :full_name, presence: true
   has_many :user_applications, dependent: :destroy
   has_many :user_organizations, dependent: :destroy
-  has_many :applications, through: :user_applications, dependent: :destroy
-  has_many :organizations, through: :user_organizations, dependent: :destroy
+  has_many :applications, through: :user_applications, inverse_of: :users, dependent: :destroy
+  has_many :organizations, through: :user_organizations, inverse_of: :users, dependent: :destroy
 end
