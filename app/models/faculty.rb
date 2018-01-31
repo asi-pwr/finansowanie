@@ -3,5 +3,5 @@
 class Faculty < ApplicationRecord
   has_many :organizations, dependent: :destroy
   validates :name, presence: true, uniqueness: true
-  has_many :users
+  has_many :users, dependent: :destroy
 end
