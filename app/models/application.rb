@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Application < ApplicationRecord
-  has_many :experiences
-  has_many :roles
-  has_many :schedule_items
-  has_many :user_applications
-  has_many :users, through: :user_applications
+  has_many :experiences, dependent: :destroy
+  has_many :roles, dependent: :destroy
+  has_many :schedule_items, dependent: :destroy
+  has_many :user_applications, dependent: :destroy
+  has_many :users, through: :user_applications, inverse_of: :application
   belongs_to :organization
   accepts_nested_attributes_for :experiences
   accepts_nested_attributes_for :roles
