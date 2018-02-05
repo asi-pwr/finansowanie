@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :user_applications
   has_many :user_organizations
   has_many :applications, through: :user_applications
-  has_many :organizations, through: :user_organizations
+  has_many :organizations, -> { distinct }, through: :user_organizations
 end
