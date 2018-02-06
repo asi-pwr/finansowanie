@@ -8,6 +8,8 @@ class CreateExperiences < ActiveRecord::Migration[5.1]
       t.date :project_date
       t.integer :budget
       t.references :user, foreign_key: true
+
+      t.timestamps
     end
   end
 end
