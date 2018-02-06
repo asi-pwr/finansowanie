@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :user_applications, dependent: :destroy
   has_many :user_organizations, dependent: :destroy
   has_many :applications, through: :user_applications, inverse_of: :users, dependent: :destroy
-  has_many :organizations, through: :user_organizations, inverse_of: :users, dependent: :destroy
+  has_many :organizations, -> { distinct }, through: :user_organizations, inverse_of: :users, dependent: :destroy
 end
