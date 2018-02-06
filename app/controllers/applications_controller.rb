@@ -27,6 +27,7 @@ class ApplicationsController < ApplicationController
     params.require(:application).permit(
       :name,
       :coordinator,
+      :user_id,
       :amount_applied_for,
       :amount_other_sources,
       :amount_overall,
@@ -43,8 +44,7 @@ class ApplicationsController < ApplicationController
       :current_state,
       :project_subject,
       :collaboration,
-      :user_id,
-      experiences_attributes: %i[project_name role budget project_date user_id],
+      experiences_attributes: %i[project_name role budget project_date member_name],
       schedule_items_attributes: %i[todo start start_date due_date],
       roles_attributes: %i[member_role first_name last_name]
     )

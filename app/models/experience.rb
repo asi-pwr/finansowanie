@@ -6,5 +6,5 @@ class Experience < ApplicationRecord
   validates :role, presence: true
   validates :project_date, presence: true
   validates :budget, presence: true
-  validates :user_id, presence: true
+  validates :member_name, presence: true
 end
