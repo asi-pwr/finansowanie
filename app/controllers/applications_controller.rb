@@ -24,7 +24,29 @@ class ApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit( :name, :coordinator, :amount_applied_for,
-                                         :amount_other_sources, :amount_overall)
+    params.require(:application).permit(
+      :name,
+      :coordinator,
+      :amount_applied_for,
+      :amount_other_sources,
+      :amount_overall,
+      :organization_id,
+      :description,
+      :location,
+      :date,
+      :required_resources,
+      :past_schedule,
+      :collaborations,
+      :target_group,
+      :sponsor_enlistment,
+      :promotion_plans,
+      :current_state,
+      :project_subject,
+      :collaboration,
+      :user_id,
+      experiences_attributes: %i[project_name role budget project_date user_id],
+      schedule_items_attributes: %i[todo start start_date due_date],
+      roles_attributes: %i[member_role first_name last_name]
+    )
   end
 end

@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :email, presence: true, uniqueness: true
   validates :full_name, presence: true
-  has_many :user_applications
-  has_many :user_organizations
-  has_many :applications, through: :user_applications
-  has_many :organizations, -> { distinct }, through: :user_organizations
+  has_many :user_applications, dependent: :destroy
+  has_many :user_organizations, dependent: :destroy
+  has_many :applications, through: :user_applications, inverse_of: :users, dependent: :destroy
+  has_many :organizations, -> { distinct }, through: :user_organizations, inverse_of: :users, dependent: :destroy
 end

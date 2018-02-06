@@ -8,21 +8,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Creating faculty..."
+Rails.logger.debug "Creating faculty..."
 faculty = Faculty.new
 faculty.name = "W1 - Wydział Architektury"
 faculty.save!
-puts "Done!"
+Rails.logger.debug "Done!"
 
-puts "Creating organization..."
+Rails.logger.debug "Creating organization..."
 org = Organization.new
 org.name = "Random Org"
 org.time_of_establishment = Date.yesterday
 org.faculty_id = 1
 org.save!
-puts "Done!"
+Rails.logger.debug "Done!"
 
-puts "Creating user..."
+Rails.logger.debug "Creating user..."
 user = User.new
 user.password = "password"
 user.email = "user@example.com"
@@ -36,4 +36,4 @@ user_org = UserOrganization.new
 user_org.user_id = user.id
 user_org.organization_id = org.id
 user_org.save!
-puts "Done!"
+Rails.logger.debug "Done!"

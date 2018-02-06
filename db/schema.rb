@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20180129201711) do
     t.date "project_date"
     t.integer "budget"
     t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "application_id"
     t.index ["application_id"], name: "index_experiences_on_application_id"
     t.index ["user_id"], name: "index_experiences_on_user_id"
@@ -68,6 +70,8 @@ ActiveRecord::Schema.define(version: 20180129201711) do
   end
 
   create_table "roles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "member_role"
     t.string "first_name"
     t.string "last_name"
@@ -89,6 +93,8 @@ ActiveRecord::Schema.define(version: 20180129201711) do
     t.bigint "user_id"
     t.bigint "application_id"
     t.bigint "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_user_applications_on_application_id"
     t.index ["role_id"], name: "index_user_applications_on_role_id"
     t.index ["user_id"], name: "index_user_applications_on_user_id"
@@ -97,6 +103,8 @@ ActiveRecord::Schema.define(version: 20180129201711) do
   create_table "user_organizations", id: false, force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_user_organizations_on_organization_id"
     t.index ["user_id"], name: "index_user_organizations_on_user_id"
   end

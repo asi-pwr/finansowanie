@@ -12,6 +12,8 @@ AllCops:
     - bin/spring
     - config/deploy.rb
     - vendor/**/*
+    - bin/setup
+    - bin/update
 
 BlockLength:
   Exclude:
