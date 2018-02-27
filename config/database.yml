@@ -4,8 +4,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("DATABASE_HOST") %>
   port: <%= ENV.fetch("DATABASE_PORT") %>
-  username: postgres
-  password: TurdTart
+  username: <%= ENV.fetch("DATABASE_USER") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
 
 development:
   <<: *default
@@ -14,4 +14,3 @@ development:
 test:
   <<: *default
   database: finansowanie_test
-
