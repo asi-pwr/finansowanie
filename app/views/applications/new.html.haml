@@ -17,7 +17,7 @@
           .col-md-4
             = f.input :amount_other_sources, label: "Kwota z innych źródeł"
           .col-md-4
-            = f.input :amount_overall, label: "Kwota ogółem"
+            = f.input :amount_overall, input_html: { readonly: true }, label: "Kwota ogółem"
 
     .panel.panel-primary
       .panel-heading Część II - informacje o projekcie
@@ -28,7 +28,7 @@
           %h4.text-center Planowany termin i miejsce (jeżeli dotyczy) realizacji projektu
           .col-md-6
             = f.input :location, label: "Miejsce"
-          .col-md-6 
+          .col-md-6
             = f.input :date, label: "Data"
         .row
           = f.input :project_subject, label: "Cel projektu"
@@ -77,3 +77,5 @@
             %h4 Załączniki
           %button.btn.btn-default{type: "submit"}
             Aplikuj
+
+= javascript_include_tag 'application'
