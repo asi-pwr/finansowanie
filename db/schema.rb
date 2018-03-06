@@ -48,8 +48,6 @@ ActiveRecord::Schema.define(version: 20180206202354) do
     t.string "role"
     t.date "project_date"
     t.integer "budget"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "application_id"
     t.string "member_name"
     t.index ["application_id"], name: "index_experiences_on_application_id"
