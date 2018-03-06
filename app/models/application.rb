@@ -13,17 +13,5 @@ class Application < ApplicationRecord
   accepts_nested_attributes_for :users
   validates :name, presence: true
   validates :coordinator, presence: true
-<<<<<<< HEAD
-=======
-  validates :application_amount_overall, numericality: { equal_to: total_sum }
-  validates :application_amount_applied_for, numericality: { greater_than_or_equal_to: 0 }
-  validates :application_amount_other_sources, numericality: { greater_than_or_equal_to: 0}
-
-
-
-  def total_sum
-    self.amount_applied_for + self.amount_other_sources
-  end
->>>>>>> e5ea9f4f628d930252d9d2a1433e43316efc2f9c
 
 end
