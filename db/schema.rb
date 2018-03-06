@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129201711) do
+ActiveRecord::Schema.define(version: 20180206202354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(version: 20180129201711) do
     t.string "role"
     t.date "project_date"
     t.integer "budget"
-    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "application_id"
+    t.string "member_name"
     t.index ["application_id"], name: "index_experiences_on_application_id"
-    t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -137,7 +138,6 @@ ActiveRecord::Schema.define(version: 20180129201711) do
 
   add_foreign_key "applications", "organizations"
   add_foreign_key "applications", "users"
-  add_foreign_key "experiences", "users"
   add_foreign_key "organizations", "faculties"
   add_foreign_key "schedule_items", "applications"
   add_foreign_key "users", "faculties"
