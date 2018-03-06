@@ -33,11 +33,13 @@ ActiveRecord::Schema.define(version: 20180206202354) do
     t.text "sponsor_enlistment"
     t.text "promotion_plans"
     t.text "current_state"
+    t.bigint "requesting_organization_id"
     t.bigint "organization_id"
     t.text "location"
     t.date "date"
     t.text "estimate"
     t.index ["organization_id"], name: "index_applications_on_organization_id"
+    t.index ["requesting_organization_id"], name: "index_applications_on_requesting_organization_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
