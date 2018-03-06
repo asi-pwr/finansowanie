@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Application < ApplicationRecord
+  include ActiveModel::Validations
   has_many :experiences, dependent: :destroy
   has_many :roles, dependent: :destroy
   has_many :schedule_items, dependent: :destroy
@@ -13,4 +14,10 @@ class Application < ApplicationRecord
   accepts_nested_attributes_for :users
   validates :name, presence: true
   validates :coordinator, presence: true
+  validates_with TotalSumValidator
+  validates :amount_applied_for, numericality: {greater_or_equal_to: 0}
+  validates :amount_other_sources, numericality: {greater_or_equal_to: 0}
+
+
+
 end
