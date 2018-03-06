@@ -41,13 +41,19 @@ ActiveRecord::Schema.define(version: 20180206202354) do
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "post_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
   create_table "experiences", force: :cascade do |t|
     t.string "project_name"
     t.string "role"
     t.date "project_date"
     t.integer "budget"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "application_id"
     t.string "member_name"
     t.index ["application_id"], name: "index_experiences_on_application_id"
@@ -68,9 +74,12 @@ ActiveRecord::Schema.define(version: 20180206202354) do
     t.index ["faculty_id"], name: "index_organizations_on_faculty_id"
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
     t.string "member_role"
     t.string "first_name"
     t.string "last_name"
@@ -88,12 +97,16 @@ ActiveRecord::Schema.define(version: 20180206202354) do
     t.index ["application_id"], name: "index_schedule_items_on_application_id"
   end
 
+  create_table "tests", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_applications", id: false, force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "application_id"
     t.bigint "role_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_user_applications_on_application_id"
     t.index ["role_id"], name: "index_user_applications_on_role_id"
     t.index ["user_id"], name: "index_user_applications_on_user_id"
@@ -102,8 +115,6 @@ ActiveRecord::Schema.define(version: 20180206202354) do
   create_table "user_organizations", id: false, force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_user_organizations_on_organization_id"
     t.index ["user_id"], name: "index_user_organizations_on_user_id"
   end
@@ -136,6 +147,7 @@ ActiveRecord::Schema.define(version: 20180206202354) do
 
   add_foreign_key "applications", "organizations"
   add_foreign_key "applications", "users"
+  add_foreign_key "comments", "posts"
   add_foreign_key "organizations", "faculties"
   add_foreign_key "schedule_items", "applications"
   add_foreign_key "users", "faculties"

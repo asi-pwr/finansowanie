@@ -2,8 +2,10 @@
 
 FactoryGirl.define do
   factory :organization do
-    name "MyString"
+    sequence(:name) do |n|
+      "Organization #{n}"
+    end
     time_of_establishment "2017-06-08"
-    faculty nil
+    association :faculty
   end
 end
