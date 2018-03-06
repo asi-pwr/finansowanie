@@ -267,3 +267,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/vim,ruby,macos,linux,rails,windows,rubymine,sublimetext
 .env.development.local
+.env.test.local

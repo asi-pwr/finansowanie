@@ -4,9 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Application, type: :model do
   let!(:organization) { build :organization }
-  #TODO fails presence validation test
-  it { is_expected.to validate_presence_of(:name) }
-  #it { is_expected.to validate_presence_of(:coordinator) }
+
+  #it { is_expected.to validate_presence_of(:name) } 
 
   it "incorrect sum should get false" do
     application = build(:application,

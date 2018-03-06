@@ -16,13 +16,13 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # config.filter_gems_from_backtrace("gem name")
   # clean test database before and after each test
-  #config.before(:suite) do
-  #  DatabaseCleaner.clean_with(:truncation)
-  #end
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
-  #config.after(:each) do
-  #  DatabaseCleaner.clean
-  #end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
 Shoulda::Matchers.configure do |config|
