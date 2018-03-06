@@ -6,7 +6,7 @@ RSpec.describe Application, type: :model do
   let!(:organization) { build :organization }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:coordinator) }
-  it "eas" do
+  it "incorrect sum should get false" do
     application = build(:application,
                         organization: organization,
                         amount_applied_for: 1,
