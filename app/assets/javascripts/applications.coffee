@@ -7,9 +7,7 @@ sum_amounts = (applied, other) ->
   b = parseFloat other
   a + b
 
-
 $ ->
-
   $("#application_amount_applied_for").on 'change', ->
     sum = sum_amounts $("#application_amount_applied_for").val(),
       $("#application_amount_other_sources").val()

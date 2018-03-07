@@ -19,7 +19,6 @@
             = f.input :amount_other_sources, input_html: { min: '0', required: true, oninput: "this.value = Non_negative(this.value,0)"}, label: "Kwota z innych źródeł"
           .col-md-4
             = f.input :amount_overall, input_html: { readonly: true }, label: "Kwota ogółem"
-
     .panel.panel-primary
       .panel-heading Część II - informacje o projekcie
       .panel-body
