@@ -65,6 +65,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    database_cleaner (1.6.2)
     debug_inspector (0.0.3)
     decent_exposure (3.0.2)
       activesupport (>= 4.0)
@@ -278,6 +279,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3, >= 3.3.7)
   bullet
   coffee-rails (~> 4.2)
+  database_cleaner
   decent_exposure
   devise
   dotenv-rails

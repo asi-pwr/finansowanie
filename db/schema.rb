@@ -33,13 +33,11 @@ ActiveRecord::Schema.define(version: 20180206202354) do
     t.text "sponsor_enlistment"
     t.text "promotion_plans"
     t.text "current_state"
-    t.bigint "requesting_organization_id"
     t.bigint "organization_id"
     t.text "location"
     t.date "date"
     t.text "estimate"
     t.index ["organization_id"], name: "index_applications_on_organization_id"
-    t.index ["requesting_organization_id"], name: "index_applications_on_requesting_organization_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
@@ -71,6 +69,8 @@ ActiveRecord::Schema.define(version: 20180206202354) do
   end
 
   create_table "roles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "member_role"
     t.string "first_name"
     t.string "last_name"
@@ -88,16 +88,12 @@ ActiveRecord::Schema.define(version: 20180206202354) do
     t.index ["application_id"], name: "index_schedule_items_on_application_id"
   end
 
-  create_table "tests", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_applications", id: false, force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "application_id"
     t.bigint "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_user_applications_on_application_id"
     t.index ["role_id"], name: "index_user_applications_on_role_id"
     t.index ["user_id"], name: "index_user_applications_on_user_id"
@@ -106,6 +102,8 @@ ActiveRecord::Schema.define(version: 20180206202354) do
   create_table "user_organizations", id: false, force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_user_organizations_on_organization_id"
     t.index ["user_id"], name: "index_user_organizations_on_user_id"
   end
