@@ -72,10 +72,10 @@
             .col-md-4
               = si.input :due_date, label: "Data zakończenia"
           = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
-        .row#roles
+        .row
           %h4.text-center Skład zespołu realizatorów projektu
           = f.simple_fields_for :roles do |role|
-            .row
+            .row.role_row
               .col-md-4
                 = role.input :member_role, label: "Funkcja"
               .col-md-4
