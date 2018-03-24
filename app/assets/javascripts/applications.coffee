@@ -10,229 +10,109 @@ sum_amounts = (applied, other) ->
 set_attributes = (el, attrs) ->
   for key, val of attrs
     el.setAttribute(key, val)
-#TODO rename all *_member to *_role
-add_member = () ->
-  # create row
-  row = document.createElement('div')
-  row.setAttribute('class', 'row')
-  # individual name and id attributes for input fields
+# TODO REFACTORING: rewrite new_*_row functions to match new_experience_row_style
+#TODO REFACTORING: rename all *_member to *_role
+# takes simple form generated row as an argument and returns a new one with new id
+new_experiences_row = (row) ->
+  new_row = row.cloneNode(true)
   date = new Date()
   msec = date.getTime()
-  member_role_id = 'application_roles_attributes_0_member_role'.replace('0', msec)
-  member_role_name = 'application[roles_attributes][0][member_role]'.replace('0', msec)
-  first_name_id = 'application_roles_attributes_0_first_name'.replace('0', msec)
-  first_name_name = 'application[roles_attributes][0][first_name]'.replace('0', msec)
-  last_name_id = 'application_roles_attributes_0_last_name'.replace('0', msec)
-  last_name_name = 'application[roles_attributes][0][last_name]'.replace('0', msec)
-  #
-  #
-  # create input fields and set their attributes
-  #
-  #
-  member_role_field = document.createElement('input')
-  member_role_label = document.createElement('label')
-  # member role field setup
-  set_attributes(member_role_field, { 'type': 'text', 'id': member_role_id,\
-                                      'name': member_role_name,\
-                                      'class': 'form-control string required' })
-  # member role label setup
-  set_attributes(member_role_label, { 'class': 'control-label string required',\
-                                      'for': member_role_id })
-  # inside of label setup
-  abbr = document.createElement('abbr')
-  abbr.title = 'required'
-  abbr.innerHTML = '*'
-  member_role_label.appendChild(abbr)
-  member_role_label.innerHTML += ' Funkcja'
-  # grouping label and field
-  member_role_group = document.createElement('div')
-  member_role_group.className = 'form-group string required application_roles_member_role'
-  member_role_group.appendChild(member_role_label)
-  member_role_group.appendChild(member_role_field)
-  # packing member role into column
-  col_div = document.createElement('div')
-  col_div.className = 'col-md-4'
-  col_div.appendChild(member_role_group)
-  row.appendChild(col_div)
-  #
-  #
-  # create input fields and set their attributes
-  #
-  #
-  first_name_field = document.createElement('input')
-  first_name_label = document.createElement('label')
-  # first name field setup
-  set_attributes(first_name_field, { 'type': 'text', 'id': first_name_name,\
-                                      'name': first_name_name,\
-                                      'class': 'form-control string required' })
-  # first name label setup
-  set_attributes(first_name_label, { 'class': 'control-label string required',\
-                                      'for': first_name_id })
-  # inside of label setup
-  abbr = document.createElement('abbr')
-  abbr.title = 'required'
-  abbr.innerHTML = '*'
-  first_name_label.appendChild(abbr)
-  first_name_label.innerHTML += ' Imię'
-  # grouping label and field
-  first_name_group = document.createElement('div')
-  first_name_group.className = 'form-group string required application_roles_first_name'
-  first_name_group.appendChild(first_name_label)
-  first_name_group.appendChild(first_name_field)
-  # packing first name into column
-  col_div = document.createElement('div')
-  col_div.className = 'col-md-4'
-  col_div.appendChild(first_name_group)
-  row.appendChild(col_div)
-  #
-  #
-  # create input fields and set their attributes
-  #
-  #
-  last_name_field = document.createElement('input')
-  last_name_label = document.createElement('label')
-  # last name field setup
-  set_attributes(last_name_field, { 'type': 'text', 'id': last_name_id,\
-                                      'name': last_name_name,\
-                                      'class': 'form-control numeric integer required' })
-  # last name label setup
-  set_attributes(last_name_label, { 'class': 'control-label integer required',\
-                                      'for': last_name_id })
-  # inside of label setup
-  abbr = document.createElement('abbr')
-  abbr.title = 'required'
-  abbr.innerHTML = '*'
-  last_name_label.appendChild(abbr)
-  last_name_label.innerHTML += ' Nazwisko'
-  # grouping label and field
-  last_name_group = document.createElement('div')
-  last_name_group.className = 'form-group string required' +
-                              'application_roles_last_name'
-  last_name_group.appendChild(last_name_label)
-  last_name_group.appendChild(last_name_field)
-  # packing first name into column
-  col_div = document.createElement('div')
-  col_div.className = 'col-md-4'
-  col_div.appendChild(last_name_group)
-  row.appendChild(col_div)
+  # if form generator changes, balues below may also be subject to change
+  id_base = 'application_experiences_attributes_0_'
+  name_base = 'application[experiences_attributes][0][*]'
+  # setup project field
+  project_name_id = id_base.concat('project_name')
+  project_name_name = name_base.replace('0', msec).replace('*', 'project_name')
+  project_name_field = new_row.querySelector('#'.concat(project_name_id))
+  project_name_label = new_row.querySelector('[for="'.concat(project_name_id, '"]'))
+  project_name_id = project_name_id.replace('0', msec)
+  project_name_field.setAttribute('id', project_name_id)
+  project_name_field.setAttribute('name', project_name_name)
+  project_name_label.setAttribute('for', project_name_id)
+  # setup role field
+  role_id = id_base.concat('role')
+  role_name = name_base.replace('0', msec).replace('*', 'role')
+  role_field = new_row.querySelector('#'.concat(role_id))
+  role_label = new_row.querySelector('[for="'.concat(role_id, '"]'))
+  role_id = role_id.replace('0', msec)
+  role_field.setAttribute('id', role_id)
+  role_field.setAttribute('name', role_name)
+  role_label.setAttribute('for', role_id)
+  # setup budget field
+  budget_id = id_base.concat('budget')
+  budget_name = name_base.replace('0', msec).replace('*', 'budget')
+  budget_field = new_row.querySelector('#'.concat(budget_id))
+  budget_label = new_row.querySelector('[for="'.concat(budget_id, '"]'))
+  budget_id = budget_id.replace('0', msec)
+  budget_field.setAttribute('id', budget_id)
+  budget_field.setAttribute('name', budget_name)
+  budget_label.setAttribute('for', budget_id)
+  # setup project date field
+  date_fields = ['1i', '2i', '3i']
+  for sub in date_fields
+    project_date_id = id_base.concat('project_date_', sub)
+    project_date_field = new_row.querySelector('#'.concat(project_date_id))
+    project_date_id = project_date_id.replace('0', msec)
+    project_date_name = name_base.replace('0', msec).replace('*', 'project_date('.concat(sub, ')'))
+    project_date_field.setAttribute('id', project_date_id)
+    project_date_field.setAttribute('name', project_date_name)
+  project_date_label = new_row.querySelector('[for="'.concat(id_base, 'project_date_1i', '"]'))
+  project_date_label.setAttribute('for', id_base.concat('project_date').replace('0', msec))
+  # setup member name field
+  member_name_id = id_base.concat('member_name')
+  member_name_name = name_base.replace('0', msec).replace('*', 'member_name')
+  member_name_field = new_row.querySelector('#'.concat(member_name_id))
+  member_name_label = new_row.querySelector('[for="'.concat(member_name_id, '"]'))
+  member_name_id = member_name_id.replace('0', msec)
+  member_name_field.setAttribute('id', member_name_id)
+  member_name_field.setAttribute('name', member_name_name)
+  member_name_label.setAttribute('for', member_name_id)
 
-  # create button
-  remove_button = document.createElement('button')
-  set_attributes(remove_button, { 'type': 'button',\
-                                  'class': 'btn btn-default remove_row'})
-  remove_button.innerHTML = 'Usuń'
-  col_div = document.createElement('div')
-  col_div.className = 'col-md-4'
-  col_div.appendChild(remove_button)
-  row.appendChild(col_div)
+  return new_row
 
-  add_button = document.getElementById('add_member')
-  add_button.parentNode.insertBefore(row, add_button)
-
-add_experience = () ->
-  # create row
-  row_1 = document.createElement('div')
-  row_1.className = 'row'
-  # individual name and id attributes for fields
+# takes simple form generated row as an argument and returns a new one with new id
+new_schedule_item_row = (row) ->
+  new_row = row.cloneNode(true)
   date = new Date()
   msec = date.getTime()
-  project_name_id = 'application_experiences_attributes_0_project_name'.replace('0', msec)
-  project_name_name = 'application[experiences_attributes][0][project_name]'.replace('0', msec)
-  role_id = 'application_experiences_attributes_0_role'.replace('0', msec)
-  role_name = 'application[experiences_attributes][0][role]'.replace('0', msec)
-  budget_id = 'application_experiences_attributes_0_budget'.replace('0', msec)
-  budget_name = 'application[experiences_attributes][0][budget]'.replace('0', msec)
-  #
-  #
-  # create input fields and set their attributes
-  #
-  #
-  project_name_field = document.createElement('input')
-  project_name_label = document.createElement('label')
-  # project name field setup
-  set_attributes(project_name_field, {'type': 'text', 'id': project_name_id,\
-                                      'name': project_name_name,\
-                                      'class': 'form-control string required' })
-  # project name label setup
-  set_attributes(project_name_label, {'class': 'control-label string required',\
-                                      'for': project_name_id})
-  abbr = document.createElement('abbr')
-  abbr.title = 'required'
-  abbr.innerHTML = '*'
-  project_name_label.appendChild(abbr)
-  project_name_label.innerHTML += ' Nazwa Projektu'
-  # grouping label and field
-  project_name_group = document.createElement('div')
-  project_name_group.className = 'form-group string required application_experiences_project_name'
-  project_name_group.appendChild(project_name_label)
-  project_name_group.appendChild(project_name_field)
-  # packing project name into column
-  col_div = document.createElement('div')
-  col_div.className = 'col-md-4'
-  col_div.appendChild(project_name_group)
-  row_1.appendChild(col_div)
-  #
-  #
-  # create input fields and set their attributes
-  #
-  #
-  role_field = document.createElement('input')
-  role_label = document.createElement('label')
-  # role field setup
-  set_attributes(role_field, {'type': 'text', 'id': role_id,\
-                                      'name': role_name,\
-                                      'class': 'form-control string required' })
-  # role label setup
-  set_attributes(role_label, {'class': 'control-label string required',\
-                                      'for': role_id})
-  abbr = document.createElement('abbr')
-  abbr.title = 'required'
-  abbr.innerHTML = '*'
-  role_label.appendChild(abbr)
-  role_label.innerHTML += ' Pełniona funkcja'
-  # grouping label and field
-  role_group = document.createElement('div')
-  role_group.className = 'form-group string required application_experiences_role'
-  role_group.appendChild(role_label)
-  role_group.appendChild(role_field)
-  # packing project name into column
-  col_div = document.createElement('div')
-  col_div.className = 'col-md-4'
-  col_div.appendChild(role_group)
-  row_1.appendChild(col_div)
-  #
-  #
-  # create input fields and set their attributes
-  #
-  #
-  budget_field = document.createElement('input')
-  budget_label = document.createElement('label')
-  # project name field setup
-  set_attributes(budget_field, {'type': 'number', 'id': budget_id,\
-                                      'name': budget_name,\
-                                      'class': 'form-control string required' })
-  # project name label setup
-  set_attributes(project_name_label, {'class': 'control-label string required',\
-                                      'for': budget_id})
-  abbr = document.createElement('abbr')
-  abbr.title = 'required'
-  abbr.innerHTML = '*'
-  first_name_label.appendChild(abbr)
-  first_name_label.innerHTML += ' Nazwa Projektu'
-  # grouping label and field
-  project_name_group = document.createElement('div')
-  project_name_group.className = 'form-group string required application_experiences_project_name'
-  project_name_group.appendChild(project_name_label)
-  project_name_group.appendChild(project_name_field)
-  # packing project name into column
-  col_div = document.createElement('div')
-  col_div.className = 'col-md-4'
-  col_div.appendChild(project_name_group)
-  row_1.appendChild(col_div)
+  # if form generator changes, values below may also be subject to change
+  todo_id = 'application_schedule_items_attributes_0_todo'.replace('0', msec)
+  todo_name = 'application[schedule_items_attributes][0][todo]'.replace('0', msec)
+  start_date_id_base = 'application_schedule_items_attributes_0_start_date_*'
+  start_date_name_base = 'application[schedule_items_attributes][0][start_date(*)]'
+  due_date_id_base = 'application_schedule_items_attributes_0_due_date_*'
+  due_date_name_base = 'application[schedule_items_attributes][0][due_date(*)]'
+  date_fields = ['1i', '2i', '3i']
+  for sub in date_fields
+    # start date fields setup
+    start_date_id = start_date_id_base.replace('*', sub)
+    start_date_field = new_row.querySelector('#'.concat(start_date_id))
+    start_date_id = start_date_id.replace('0', msec)
+    start_date_name = start_date_name_base.replace('*', sub).replace('0', msec)
+    start_date_field.setAttribute('id', start_date_id)
+    start_date_field.setAttribute('name', start_date_name)
+    # due date fields setup
+    due_date_id = due_date_id_base.replace('*', sub)
+    due_date_field = new_row.querySelector('#'.concat(due_date_id))
+    due_date_id = due_date_id.replace('0', msec)
+    due_date_name = due_date_name_base.replace('*', sub).replace('0', msec)
+    due_date_field.setAttribute('id', due_date_id)
+    due_date_field.setAttribute('name', due_date_name)
+  # label setup
+  start_date_label = new_row.querySelector('[for="application_schedule_items_attributes_0_start_date_1i"]')
+  start_date_label.setAttribute('for', start_date_id_base.replace('0', msec).replace('*', '1i'))
+  due_date_label = new_row.querySelector('[for="application_schedule_items_attributes_0_due_date_1i"]')
+  due_date_label.setAttribute('for', due_date_id_base.replace('0', msec).replace('*', '1i'))
+  # replace todo field id's
+  todo_field = new_row.querySelector('#application_schedule_items_attributes_0_todo')
+  todo_field.setAttribute('id', todo_id)
+  todo_field.setAttribute('name', todo_name)
+  todo_label = new_row.querySelector('[for="application_schedule_items_attributes_0_todo"]')
+  todo_label.setAttribute('for', todo_id)
 
+  return new_row
 
-add_schedule_item = () ->
-
+# takes simple form generated row as an argument and returns a new one with new id
 new_role_row = (row) ->
   new_row = row.cloneNode(true)
   date = new Date()
@@ -286,12 +166,24 @@ $ ->
 
   # create copies of rows generated by simple forms
   role_row = document.querySelector('.role_row').cloneNode(true)
+  schedule_items_row = document.querySelector('.schedule_items_row').cloneNode(true)
+  experiences_row = document.querySelector('.experiences_row').cloneNode(true)
 
   $('#add_member').on 'click', ->
     #add_member()
-    new_row = replace_id role_row
+    new_row = new_role_row role_row
     btn = document.getElementById('add_member')
     btn.parentNode.insertBefore(new_row, btn)
 
+  $('#add_schedule_item').on 'click', ->
+    new_row = new_schedule_item_row schedule_items_row
+    btn = document.getElementById('add_schedule_item')
+    btn.parentNode.insertBefore(new_row, btn)
+
+  $('#add_experience').on 'click', ->
+    new_row = new_experiences_row experiences_row
+    btn = document.getElementById('add_experience')
+    btn.parentNode.insertBefore(new_row, btn)
+
   $(document).on 'click', '.remove_row', ->
-    this.parentNode.parentNode.remove()
+    this.parentNode.remove()

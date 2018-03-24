@@ -50,27 +50,34 @@
         .row
           %h4.text-center Doświadczenie zespołu organizatorów w podobnych projektach:
           = f.simple_fields_for :experiences do |ex|
-            .row
-              .col-md-4
-                = ex.input :project_name, label: "Nazwa Projektu"
-              .col-md-4
-                = ex.input :role, label: "Pełniona funkcja"
-              .col-md-4
-                = ex.input :budget, label: "Budżet"
-            .row
-              .col-md-6
-                = ex.input :project_date, label: "Data wydarzenia"
-              .col-md-6
-                = ex.input :member_name, label: "Imię i nazwisko członka zespołu"
+            / TODO can this div be a row? layout dillemas
+            .experiences_row
+              .row
+                .col-md-4
+                  = ex.input :project_name, label: "Nazwa Projektu"
+                .col-md-4
+                  = ex.input :role, label: "Pełniona funkcja"
+                .col-md-4
+                  = ex.input :budget, label: "Budżet"
+              .row
+                .col-md-6
+                  = ex.input :project_date, label: "Data wydarzenia"
+                .col-md-6
+                  = ex.input :member_name, label: "Imię i nazwisko członka zespołu"
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_experience{ type: "button" } Dodaj
         .row
           %h4.text-center Harmonogram realizacji projektu
           = f.simple_fields_for :schedule_items do |si|
-            .col-md-4
-              = si.input :todo, label: "Pozycja", input_html: { class: "disable_empty" }
-            .col-md-4
-              = si.input :start_date, label: "Data rozpoczęcia"
-            .col-md-4
-              = si.input :due_date, label: "Data zakończenia"
+            .row.schedule_items_row
+              .col-md-4
+                = si.input :todo, label: "Pozycja", input_html: { class: "disable_empty" }
+              .col-md-4
+                = si.input :start_date, label: "Data rozpoczęcia"
+              .col-md-4
+                = si.input :due_date, label: "Data zakończenia"
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_schedule_item{ type: "button" } Dodaj
           = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
         .row
           %h4.text-center Skład zespołu realizatorów projektu
@@ -83,7 +90,7 @@
               .col-md-4
                 = role.input :last_name, label: "Nazwisko"
               .col-md-4
-                %button.btn.btn-default.remove_row{type: "button"} Usuń
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
           %button.btn.btn-default#add_member{ type: "button" } Dodaj członka
           .row
             %h4 Załączniki
