@@ -14,11 +14,20 @@
         .row
           %h4.text-center Koszty projektu
           .col-md-4
-            = f.input :amount_applied_for, input_html: { min: '1', required: true,  oninput: "this.value = Non_negative(this.value)" }, label: "Kwota wnioskowana"
+            - @application.amount_applied_for = 0
+            = f.input :amount_applied_for, input_html: { min: '1',
+              required: true,  oninput: "this.value = Math.abs(this.value)",
+              placeholder: 0},
+              label: "Kwota wnioskowana"
           .col-md-4
-            = f.input :amount_other_sources, input_html: { min: '0', required: true, oninput: "this.value = Non_negative(this.value,0)"}, label: "Kwota z innych źródeł"
+            - @application.amount_other_sources = 0
+            = f.input :amount_other_sources, input_html: { min: '0',
+              required: true, oninput: "this.value = Math.abs(this.value)",
+              placeholder: 0},
+              label: "Kwota z innych źródeł"
           .col-md-4
-            = f.input :amount_overall, input_html: { readonly: true }, label: "Kwota ogółem"
+            = f.input :amount_overall, input_html: { readonly: true },
+              label: "Kwota ogółem"
     .panel.panel-primary
       .panel-heading Część II - informacje o projekcie
       .panel-body
@@ -41,38 +50,48 @@
         .row
           %h4.text-center Doświadczenie zespołu organizatorów w podobnych projektach:
           = f.simple_fields_for :experiences do |ex|
-            .row
-              .col-md-4
-                = ex.input :project_name, label: "Nazwa Projektu"
-              .col-md-4
-                = ex.input :role, label: "Pełniona funkcja"
-              .col-md-4
-                = ex.input :budget, label: "Budżet"
-            .row
-              .col-md-6
-                = ex.input :project_date, label: "Data wydarzenia"
-              .col-md-6
-                = ex.input :member_name, label: "Imię i nazwisko członka zespołu"
+            / TODO can this div be a row? layout dillemas
+            .experiences_row
+              .row
+                .col-md-4
+                  = ex.input :project_name, label: "Nazwa Projektu"
+                .col-md-4
+                  = ex.input :role, label: "Pełniona funkcja"
+                .col-md-4
+                  = ex.input :budget, label: "Budżet"
+              .row
+                .col-md-6
+                  = ex.input :project_date, label: "Data wydarzenia"
+                .col-md-6
+                  = ex.input :member_name, label: "Imię i nazwisko członka zespołu"
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_experience{ type: "button" } Dodaj
         .row
           %h4.text-center Harmonogram realizacji projektu
           = f.simple_fields_for :schedule_items do |si|
-            .col-md-4
-              = si.input :todo, label: "Pozycja"
-            .col-md-4
-              = si.input :start_date, label: "Data rozpoczęcia"
-            .col-md-4
-              = si.input :due_date, label: "Data zakończenia"
+            .row.schedule_items_row
+              .col-md-4
+                = si.input :todo, label: "Pozycja", input_html: { class: "disable_empty" }
+              .col-md-4
+                = si.input :start_date, label: "Data rozpoczęcia"
+              .col-md-4
+                = si.input :due_date, label: "Data zakończenia"
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_schedule_item{ type: "button" } Dodaj
           = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
         .row
           %h4.text-center Skład zespołu realizatorów projektu
-          = f.simple_fields_for :roles do |rl|
-            .col-md-4
-              = rl.input :member_role, label: "Funkcja"
-            .col-md-4
-              = rl.input :first_name, label: "Imię"
-            .col-md-4
-              = rl.input :last_name, label: "Nazwisko"
-
+          = f.simple_fields_for :roles do |role|
+            .row.role_row
+              .col-md-4
+                = role.input :member_role, label: "Funkcja"
+              .col-md-4
+                = role.input :first_name, label: "Imię"
+              .col-md-4
+                = role.input :last_name, label: "Nazwisko"
+              .col-md-4
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_member{ type: "button" } Dodaj członka
           .row
             %h4 Załączniki
           %button.btn.btn-default{type: "submit"}
