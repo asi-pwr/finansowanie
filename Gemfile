@@ -17,6 +17,7 @@ gem "devise"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'validates_timeliness'
 
 group :development, :test do
   gem "pry"

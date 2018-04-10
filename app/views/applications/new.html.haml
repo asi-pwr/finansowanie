@@ -16,14 +16,12 @@
           .col-md-4
             - @application.amount_applied_for = 0
             = f.input :amount_applied_for, input_html: { min: '1',
-              required: true,  oninput: "this.value = Math.abs(this.value)",
-              placeholder: 0},
+              required: true,  oninput: "this.value = Math.abs(this.value)"},
               label: "Kwota wnioskowana"
           .col-md-4
             - @application.amount_other_sources = 0
             = f.input :amount_other_sources, input_html: { min: '0',
-              required: true, oninput: "this.value = Math.abs(this.value)",
-              placeholder: 0},
+              required: true, oninput: "this.value = Math.abs(this.value)"},
               label: "Kwota z innych źródeł"
           .col-md-4
             = f.input :amount_overall, input_html: { readonly: true },
@@ -58,7 +56,10 @@
                 .col-md-4
                   = ex.input :role, label: "Pełniona funkcja"
                 .col-md-4
-                  = ex.input :budget, label: "Budżet"
+                  = ex.input :budget, input_html: { min: '0',
+                    required: true,  oninput: "this.value = Math.abs(this.value)",
+                    placeholder: 0},
+                    label: "Budżet"
               .row
                 .col-md-6
                   = ex.input :project_date, label: "Data wydarzenia"
