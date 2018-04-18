@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :schedule_item do
     todo "MyString"
     start_date "2017-06-08"

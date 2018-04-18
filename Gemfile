@@ -25,7 +25,7 @@ group :development, :test do
   gem "pry-rails"
   gem "binding_of_caller"
   gem "letter_opener"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "rspec-rails"
   gem "shoulda-matchers"
   gem "dotenv-rails"
