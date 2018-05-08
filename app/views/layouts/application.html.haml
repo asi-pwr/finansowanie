@@ -7,9 +7,16 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-  =render 'layouts/header'
-  - if notice
-    %p.alert.alert-success = notice
-  - if alert
-    %p.alert.alert-danger = alert
-  = yield
+    .container
+      .row
+        .col-md-12
+          = render 'layouts/header'
+      .row
+        .col-md-4
+          - flash.each do |key, value|
+            - binding.pry
+            %div{class: "#{flash_class(key)}"}
+              = value
+      .row
+        .col-md-12
+          = yield
