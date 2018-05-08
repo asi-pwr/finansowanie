@@ -14,7 +14,6 @@
       .row
         .col-md-4
           - flash.each do |key, value|
-            - binding.pry
             %div{class: "#{flash_class(key)}"}
               = value
       .row
