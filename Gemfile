@@ -15,6 +15,7 @@ gem "hamlit-rails"
 gem "decent_exposure"
 gem "devise"
 gem 'jquery-rails'
+gem 'bootstrap', '~> 4.1.1'
 gem 'simple_form'
 gem 'validates_timeliness'
 
