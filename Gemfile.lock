@@ -44,7 +44,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (8.4.1)
+    autoprefixer-rails (8.5.0)
       execjs
     bcrypt (3.1.11)
     bcrypt_pbkdf (1.0.0)
@@ -238,7 +238,7 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
-    rubocop (0.55.0)
+    rubocop (0.56.0)
       parallel (~> 1.10)
       parser (>= 2.5)
       powerpack (~> 0.1)
