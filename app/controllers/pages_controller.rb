@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  def root
-    render 'pages/root'
+  def home
+    render 'page/home_page'
   end
 end

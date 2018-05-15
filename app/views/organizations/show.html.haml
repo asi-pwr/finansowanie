@@ -1,15 +1,15 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b Nazwa organizacji:
   = @organization.name
 %p
-  %b Time of establishment:
+  %b Data utworzenia:
   = @organization.time_of_establishment
 %p
-  %b Faculty:
+  %b Wydział:
   = @organization.faculty.name
 
-= link_to 'Edit', edit_organization_path(@organization)
+= link_to 'Edytuj', edit_organization_path(@organization)
 \|
-= link_to 'Back', organizations_path
+= link_to 'Powrót', organizations_path
