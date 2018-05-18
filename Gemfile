@@ -15,8 +15,8 @@ gem "jbuilder", "~> 2.5"
 gem "hamlit-rails"
 gem "decent_exposure"
 gem "devise", ">= 4.4.0"
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'jquery-rails'
+gem 'bootstrap', '~> 4.1.1'
 gem 'simple_form'
 gem 'validates_timeliness'
 
