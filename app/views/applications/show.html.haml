@@ -1,14 +1,55 @@
 %p#notice= notice
 
 %p
+  %b Organization:
+  = @application.organization.name
+%p
   %b Name:
   = @application.name
 %p
-  %b Time of establishment:
-  = @application.date
+  %b Coordinator:
+  = @application.coordinator
 %p
   %b Amount requested:
+  = @application.amount_applied_for
+%p
+  %b Amount from other sources:
+  = @application.amount_other_sources
+%p
+  %b Overall amount:
   = @application.amount_overall
+%br
+%p
+  %b Location:
+  = @application.location
+%p
+  %b Date:
+  = @application.date
+%p
+  %b Project subject:
+  = @application.project_subject
+%p
+  %b Required resources:
+  = @application.required_resources
+%p
+  %b Past schedule:
+  = @application.past_schedule
+%p
+  %b Collaboration:
+  = @application.collaboration
+%p
+  %b Target group:
+  = @application.target_group
+%p
+  %b Sponsor enlistment:
+  = @application.sponsor_enlistment
+%p
+  %b
+  = @application
+%p
+  %b
+  = @application
+    
 
 = link_to 'Edit', edit_application_path(@application)
 \|

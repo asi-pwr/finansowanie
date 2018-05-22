@@ -1,18 +1,105 @@
-= form_for @organization do |f|
-  - if @organization.errors.any?
+= simple_form_for @application do |f|
+  - if @application.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
+      %h2= "#{pluralize(@application.errors.count, "error")} prohibited this application from being saved:"
       %ul
-        - @organization.errors.full_messages.each do |msg|
+        - @application.errors.full_messages.each do |msg|
           %li= msg
+  .container
+    .panel.panel-primary
+      .panel-heading Część I - informacje o wnioskodawcy
+      .panel-body
+        .row
+          .col-md-4
+            = f.association :organization, label: "Organizacja wnioskująca"
+          .col-md-4
+            = f.input :name, label: "Nazwa projektu"
+          .col-md-4
+            = f.input :coordinator, label: "Koordynator"
+        .row
+          %h4.text-center Koszty projektu
+          .col-md-4
+            - @application.amount_applied_for = 0
+            = f.input :amount_applied_for, input_html: { min: '1',
+              required: true,  oninput: "this.value = Math.abs(this.value)"},
+              label: "Kwota wnioskowana"
+          .col-md-4
+            - @application.amount_other_sources = 0
+            = f.input :amount_other_sources, input_html: { min: '0',
+              required: true, oninput: "this.value = Math.abs(this.value)"},
+              label: "Kwota z innych źródeł"
+          .col-md-4
+            = f.input :amount_overall, input_html: { readonly: true },
+              label: "Kwota ogółem"
+    .panel.panel-primary
+      .panel-heading Część II - informacje o projekcie
+      .panel-body
+        .row
+          = f.input :description, label: "Tematyka i opis projektu"
+        .row
+          %h4.text-center Planowany termin i miejsce (jeżeli dotyczy) realizacji projektu
+          .col-md-6
+            = f.input :location, label: "Miejsce"
+          .col-md-6
+            = f.input :date, label: "Data"
+        .row
+          = f.input :project_subject, label: "Cel projektu"
+          = f.input :required_resources, label: "Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania"
+          = f.input :past_schedule, label: "Wykaz realizacji wnioskowanego projektu w latach poprzednich"
+          = f.input :collaboration, label: "Współpraca organizacyjna z innymi podmiotami"
+          = f.input :target_group, label: "Docelowa grupa odbiorców projektu"
+          = f.input :sponsor_enlistment, label: "Opis strategii pozyskiwania sponsorów"
+          = f.input :promotion_plans, label: "Planowane działania promocyjne projektu"
+        .row
+          %h4.text-center Doświadczenie zespołu organizatorów w podobnych projektach:
+          = f.simple_fields_for :experiences do |ex|
+            / TODO can this div be a row? layout dillemas
+            .experiences_row
+              .row
+                .col-md-4
+                  = ex.input :project_name, label: "Nazwa Projektu"
+                .col-md-4
+                  = ex.input :role, label: "Pełniona funkcja"
+                .col-md-4
+                  = ex.input :budget, input_html: { min: '0',
+                    required: true,  oninput: "this.value = Math.abs(this.value)",
+                    placeholder: 0},
+                    label: "Budżet"
+              .row
+                .col-md-6
+                  = ex.input :project_date, label: "Data wydarzenia"
+                .col-md-6
+                  = ex.input :member_name, label: "Imię i nazwisko członka zespołu"
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_experience{ type: "button" } Dodaj
+        .row
+          %h4.text-center Harmonogram realizacji projektu
+          = f.simple_fields_for :schedule_items do |si|
+            .row.schedule_items_row
+              .col-md-4
+                = si.input :todo, label: "Pozycja", input_html: { class: "disable_empty" }
+              .col-md-4
+                = si.input :start_date, label: "Data rozpoczęcia"
+              .col-md-4
+                = si.input :due_date, label: "Data zakończenia"
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_schedule_item{ type: "button" } Dodaj
+          = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
+        .row
+          %h4.text-center Skład zespołu realizatorów projektu
+          = f.simple_fields_for :roles do |role|
+            .row.role_row
+              .col-md-4
+                = role.input :member_role, label: "Funkcja"
+              .col-md-4
+                = role.input :first_name, label: "Imię"
+              .col-md-4
+                = role.input :last_name, label: "Nazwisko"
+              .col-md-4
+              %button.btn.btn-default.remove_row{type: "button"} Usuń
+          %button.btn.btn-default#add_member{ type: "button" } Dodaj członka
+          .row
+            %h4 Załączniki
+          %button.btn.btn-default{type: "submit"}
+            Aplikuj
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :time_of_establishment
-    = f.date_select :time_of_establishment
-  .field
-    = f.collection_select(:faculty_id, Faculty.all, :id, :name)
-  .actions
-    = f.submit 'Save'

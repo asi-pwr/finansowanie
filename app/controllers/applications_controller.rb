@@ -20,6 +20,16 @@ class ApplicationsController < ApplicationController
   def create
     @organization = current_user.organizations.find(organization_params)
     @application = @organization.applications.create(application_params)
+
+    respond_to do |format|
+      if @organization.save
+        format.html { redirect_to @application, notice: 'Application was successfuly created.' }
+        format.json { render :show, status: :created, location: @application }
+      else
+        format.html { render :new }
+        format.json { render json: @application.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /applications/1
@@ -28,6 +38,26 @@ class ApplicationsController < ApplicationController
   def show; end
 
   def edit; end
+
+  def update
+    respond_to do |format|
+      if @application.update(application_params)
+        format.html { redirect_to @application, notice: 'Application was successfully updated.' }
+        format.json { render :show, status: :ok, location: @application }
+      else
+        format.html { render :edit }
+        format.json { render json: @application.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @application.destroy
+    respond_to do |format|
+      format.html { redirect_to applications_url, notice: 'Application was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
 
