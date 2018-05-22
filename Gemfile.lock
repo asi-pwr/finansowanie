@@ -335,9 +335,10 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   decent_exposure
-  devise
+  devise (>= 4.4.0)
   dotenv-rails
   factory_bot_rails
+  haml (>= 5.0.4)
   hamlit-rails
   html2haml
   jbuilder (~> 2.5)
