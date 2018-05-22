@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationsController < ApplicationController
-  before_action :authenticate_user!, :set_application, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+  before_action :set_application, only: %i[show edit update destroy]
 
   def index
     @applications = Application.all
