@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", "~> 5.1.0"
+gem "rails", "~> 5"
 gem "pg", "~> 0.18"
 gem "puma", "~> 3.7"
 gem "haml", ">= 5.0.4"
@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.1'
 gem 'simple_form'
 gem 'validates_timeliness'
+gem "dotenv-rails"
 
 group :development, :test do
   gem "pry"
@@ -29,7 +30,6 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "rspec-rails"
   gem "shoulda-matchers"
-  gem "dotenv-rails"
   gem "html2haml"
 end
 

@@ -67,6 +67,7 @@ config/initializers/secret_token.rb
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
 .env
+.env.production
 
 ## Environment normalization:
 /.bundle
@@ -82,6 +83,8 @@ config/initializers/secret_token.rb
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+
+public/assets/*
 
 # Ignore pow environment settings
 .powenv
@@ -272,3 +275,5 @@ $RECYCLE.BIN/
 .env.development.local
 .env.test.local
 TODO.txt
+
+inventory.yml
