@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @application.name
+%p
+  %b Time of establishment:
+  = @application.date
+%p
+  %b Amount requested:
+  = @application.amount_overall
+
+= link_to 'Edit', edit_application_path(@application)
+\|
+= link_to 'Back', applications_path

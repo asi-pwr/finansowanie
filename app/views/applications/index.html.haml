@@ -1,0 +1,25 @@
+%h1 Listing applications
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Date
+      %th Amount requested
+      %th
+      %th
+      %th
+
+  %tbody
+    - @applications.each do |application|
+      %tr
+        %td= application.name
+        %td= application.date
+        %td= application.amount_overall
+        %td= link_to 'Show', application
+        %td= link_to 'Edit', edit_application_path(application)
+        %td= link_to 'Destroy', application, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Application', new_application_path

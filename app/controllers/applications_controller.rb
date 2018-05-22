@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :set_application, only: %i[show edit update destroy]
+
+  def index
+    @applications = Application.all
+  end
 
   def new
     @organizations = current_user.organizations
@@ -17,7 +21,18 @@ class ApplicationsController < ApplicationController
     @application = @organization.applications.create(application_params)
   end
 
+  # GET /applications/1
+  # GET /applications/1.json
+
+  def show; end
+
+  def edit; end
+
   private
+
+  def set_application
+    @application = Application.find(params[:id])
+  end
 
   def organization_params
     params.require(:application).require(:organization_id)
