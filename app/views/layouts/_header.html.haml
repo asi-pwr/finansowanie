@@ -1,0 +1,23 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
+  .container-fluid
+    .navbar-header
+      .navbar-brand Finansowanie
+    %ul.navbar-nav
+      %li.nav-item
+        = link_to 'Strona główna', root_path, class: "nav-link"
+      %li.nav-item
+        = link_to 'Organizacje', organizations_path, class: "nav-link"
+      %li.nav-item
+        = link_to 'Aplikuj o wniosek K', new_application_path, class: "nav-link"
+      %li.nav-item
+        = link_to 'Wydziały', faculties_path, class: "nav-link"
+      -if current_user
+        %li.nav-item
+          = link_to 'Wyloguj', destroy_user_session_path, method: :delete, class: "nav-link"
+      -else
+        %li.nav-item
+          = link_to 'Logowanie', new_user_session_path, class: "nav-link"
+        %li.nav-item
+          = link_to 'Rejestracja', new_user_registration_path, class: "nav-link"
+        %li.nav-item
+          = link_to 'Zmiana_hasła', new_user_password_path, class: "nav-link"

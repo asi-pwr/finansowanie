@@ -1,12 +1,11 @@
-<<<<<<< Updated upstream
-%h1 Listing organizations
+%h1 Wszystkie organizacje
 
-%table
+%table.table.table-hover
   %thead
     %tr
-      %th Name
-      %th Time of establishment
-      %th Faculty
+      %th Nazwa organizacji
+      %th Data utworzenia
+      %th Wydział
       %th
       %th
       %th
@@ -17,12 +16,11 @@
         %td= organization.name
         %td= organization.time_of_establishment
         %td= organization.faculty.name
-        %td= link_to 'Show', organization
-        %td= link_to 'Edit', edit_organization_path(organization)
-        %td= link_to 'Destroy', organization, :method => :delete, :data => { :confirm => 'Are you sure?' }
-=======
 .container-fluid
   %h1 Wszystkie organizacje
+        %td= link_to 'Pokaż', organization
+        %td= link_to 'Edytuj', edit_organization_path(organization)
+        %td= link_to 'Usuń', organization, :method => :delete, :data => { :confirm => 'Czy na pewno chcesz usunąć organizację?' }
 
   .table-responsive
     %table.table.table-hover
@@ -44,8 +42,7 @@
             %td= link_to 'Pokaż', organization
             %td= link_to 'Edytuj', edit_organization_path(organization)
             %td= link_to 'Usuń', organization, :method => :delete, :data => { :confirm => 'Czy na pewno chcesz usunąć organizację?' }
->>>>>>> Stashed changes
 
     %br
 
-= link_to 'New Organization', new_organization_path
+= link_to 'Nowa organizacja', new_organization_path

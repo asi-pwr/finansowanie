@@ -1,14 +1,24 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ :content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type" }/
+    %meta{ name:"viewport",
+            content:"width=device-width, initial-scale=1, shrink-to-fit=no"}
     %title Finansowanie
-    = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   %body
-  - if notice
-    %p.alert.alert-success = notice
-  - if alert
-    %p.alert.alert-danger = alert
-  = yield
+    %header
+      = render 'layouts/header'
+    .container
+      .row
+        .col-md-12
+      .row
+        .col-md-4
+          - flash.each do |key, value|
+            %div{class: "#{flash_class(key)}"}
+              = value
+      .row
+        .col-md-12
+          = yield
+  = javascript_include_tag controller_name
