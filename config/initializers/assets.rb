@@ -15,4 +15,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 Rails.application.config.assets.precompile += %w(
   applications.js
+  cable.js
+  pages.js
 )
