@@ -21,4 +21,5 @@
       .row
         .col-md-12
           = yield
-  = javascript_include_tag controller_name
+  = if controller_name == 'applications'
+    = javascript_include_tag controller_name
