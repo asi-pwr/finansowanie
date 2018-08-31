@@ -1,0 +1,19 @@
+current directory: /home/imarobot/dev_env/finansowanie/path/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+/usr/bin/ruby2.5 -r ./siteconf20180726-30193-qkixl0.rb extconf.rb
+creating Makefile
+
+current directory: /home/imarobot/dev_env/finansowanie/path/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" clean
+
+current directory: /home/imarobot/dev_env/finansowanie/path/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+current directory: /home/imarobot/dev_env/finansowanie/path/ruby/2.5.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20180726-30193-wbxlzm
