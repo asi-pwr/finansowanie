@@ -7,6 +7,7 @@ class Application < ApplicationRecord
   has_many :schedule_items, dependent: :destroy
   has_many :user_applications, dependent: :destroy
   has_many :users, through: :user_applications, inverse_of: :application
+  has_many_attached :files
   belongs_to :organization
   accepts_nested_attributes_for :experiences
   accepts_nested_attributes_for :roles

@@ -118,5 +118,7 @@
               %button.btn.btn-default.remove_row{type: "button"} Usuń
           %button.btn.btn-default#add_member{ type: "button" } Dodaj członka
     %h4.mt-5 Załączniki
+    //%input{type: "file", name: "pic", accept: "image/*", multiple:"true"}  
+    = f.input :files, label: "Pliki", input_html:{ type: "file", multiple: "true", class: "form-control-file" }
     %button.btn.btn-default.mt-5{type: "submit"}
       Aplikuj
