@@ -15,6 +15,7 @@ class ApplicationsController < ApplicationController
   def create
     @organization = current_user.organizations.find(organization_params)
     @application = @organization.applications.create(application_params)
+    flash[:notice] = "Wniosek utworzony pomyslnie"
   end
 
   private
@@ -46,7 +47,8 @@ class ApplicationsController < ApplicationController
       :collaboration,
       experiences_attributes: %i[project_name role budget project_date member_name],
       schedule_items_attributes: %i[todo start start_date due_date],
-      roles_attributes: %i[member_role first_name last_name]
+      roles_attributes: %i[member_role first_name last_name], 
+      files: []
     )
   end
 end
