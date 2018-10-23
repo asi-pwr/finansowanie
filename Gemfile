@@ -34,6 +34,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'aasm', '>=5.0.1' 
   gem 'capistrano', '~> 3.8', require: false
   gem 'capistrano-rails', '~> 1.2', require: false
   gem 'capistrano-rbenv', '~> 2.1', require: false

@@ -10,6 +10,8 @@
       %li.nav-item
         = link_to 'Aplikuj o wniosek K', new_application_path, class: "nav-link"
       %li.nav-item
+        = link_to 'Wnioski', applications_path, class: "nav-link"
+      %li.nav-item
         = link_to 'Wydziały', faculties_path, class: "nav-link"
       -if current_user
         %li.nav-item
