@@ -1,11 +1,11 @@
-%h1 Listing applications
+%h1 Wszystkie podania
 
-%table
+%table.table.table-hover
   %thead
     %tr
-      %th Name
-      %th Date
-      %th Amount requested
+      %th Nazwa podania
+      %th Data utworzenia
+      %th Kwota ogółem
       %th
       %th
       %th
@@ -16,9 +16,9 @@
         %td= application.name
         %td= application.date
         %td= application.amount_overall
-        %td= link_to 'Show', applications_path
-        %td= link_to 'Edit', edit_application_path(application)
-        %td= link_to 'Destroy', applications_path, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Pokaż', application
+        %td= link_to 'Edytuj', edit_application_path(application)
+        %td= link_to 'Usuń', applications_path, :method => :delete, :data => { :confirm => 'Czy na pewno chcesz usunąć podanie?' }
 
 %br
 

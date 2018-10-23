@@ -1,56 +1,105 @@
 %p#notice= notice
 
 %p
-  %b Organization:
+  %b Organizacja wnioskująca: 
   = @application.organization.name
 %p
-  %b Name:
+  %b Nazwa projektu:
   = @application.name
 %p
-  %b Coordinator:
+  %b Koordynator:
   = @application.coordinator
 %p
-  %b Amount requested:
+  %b Kwota wnioskowana:
   = @application.amount_applied_for
 %p
-  %b Amount from other sources:
+  %b Kwota z innych źródeł:
   = @application.amount_other_sources
 %p
-  %b Overall amount:
+  %b Kwota ogółem:
   = @application.amount_overall
 %br
 %p
-  %b Location:
+  %b Tematyka i opis projektu:
+  = @application.description
+%p
+  %b Miejsce:
   = @application.location
 %p
-  %b Date:
+  %b Data:
   = @application.date
 %p
-  %b Project subject:
+  %b Cel projektu:
   = @application.project_subject
 %p
-  %b Required resources:
+  %b Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania:
   = @application.required_resources
 %p
-  %b Past schedule:
+  %b Wykaz realizacji wnioskowanego projektu w latach poprzednich:
   = @application.past_schedule
 %p
-  %b Collaboration:
+  %b Współpraca organizacyjna z innymi podmiotami:
   = @application.collaboration
 %p
-  %b Target group:
+  %b Docelowa grupa odbiorców projektu:
   = @application.target_group
 %p
-  %b Sponsor enlistment:
+  %b Opis strategii pozyskiwania sponsorów:
   = @application.sponsor_enlistment
 %p
-  %b
-  = @application
+  %b Planowane działania promocyjne projektu:
+  = @application.promotion_plans
+%br
 %p
-  %b
-  = @application
-    
-
+  %b Doświadczenie zespołu organizatorów w podobnych projektach:
+%table.table.table-hover
+  %thead
+    %tr
+      %th Nazwa Projektu
+      %th Pełniona funkcja
+      %th Budżet
+      %th Data wydarzenia
+      %th Imię i nazwisko członka zespołu
+  %tbody
+  - @application.experiences.all.each do |t|
+    %tr
+      %td= t[:project_name]
+      %td= t[:role]
+      %td= t[:budget]
+      %td= t[:project_date]
+      %td= t[:member_name]
+%p
+  %b Harmonogram realizacji projektu
+%table.table.table-hover
+  %thead
+    %tr
+      %th Pozycja 
+      %th Data rozpoczęcia
+      %th Data zakończenia
+  %tbody
+  - @application.schedule_items.all.each do |t|
+    %tr
+      %td= t[:todo]
+      %td= t[:start_date]
+      %td= t[:due_date]
+%br
+%p
+  %b Aktualny stan zaawansowania projektu lub powiązania z innymi projektami: 
+  = @application.current_state
+%p
+  %b Skład zespołu realizatorów projektu
+%table.table.table-hover
+  %thead
+    %tr
+      %th Funkcja 
+      %th Imię
+      %th Nazwisko
+  %tbody
+  - @application.roles.all.each do |t|
+    %tr
+      %td= t[:member_role]
+      %td= t[:first_name]
+      %td= t[:last_name]
 = link_to 'Edit', edit_application_path(@application)
-\|
+
 = link_to 'Back', applications_path
