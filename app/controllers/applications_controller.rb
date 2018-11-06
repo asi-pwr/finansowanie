@@ -12,6 +12,8 @@ class ApplicationsController < ApplicationController
     @organizations = current_user.organizations
     @users = User.all
     @application = Application.new
+    @application.amount_applied_for = 0
+    @application.amount_other_sources = 0
     3.times { @application.experiences.build }
     3.times { @application.schedule_items.build }
     3.times { @application.roles.build }

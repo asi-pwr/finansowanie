@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :organizations
-  resources :applications #, only: %i[index new create edit]
+  resources :applications 
   root 'pages#home'
   get "/", to: "pages#home"
 # Add basic UI for viewing applications

@@ -19,12 +19,9 @@
         .row
           %h4.text-center Koszty projektu
           .col-md-4
-            - @application.amount_applied_for = 0
-            = f.input :amount_applied_for, input_html: { min: '1',
-              required: true,  oninput: "this.value = Math.abs(this.value)"},
+            = f.input :amount_applied_for, input_html: { min: '1', required: true,  oninput: "this.value = Math.abs(this.value)"},
               label: "Kwota wnioskowana"
           .col-md-4
-            - @application.amount_other_sources = 0
             = f.input :amount_other_sources, input_html: { min: '0',
               required: true, oninput: "this.value = Math.abs(this.value)"},
               label: "Kwota z innych źródeł"

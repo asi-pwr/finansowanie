@@ -2,6 +2,7 @@
 
 class Application < ApplicationRecord
   include ActiveModel::Validations
+
   has_many :experiences, dependent: :destroy
   has_many :roles, dependent: :destroy
   has_many :schedule_items, dependent: :destroy

@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.1'
 gem 'simple_form'
 gem 'validates_timeliness'
+gem 'aasm', '>=5.0.1' 
 
 group :development, :test do
   gem "pry"
@@ -34,7 +35,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'aasm', '>=5.0.1' 
   gem 'capistrano', '~> 3.8', require: false
   gem 'capistrano-rails', '~> 1.2', require: false
   gem 'capistrano-rbenv', '~> 2.1', require: false
