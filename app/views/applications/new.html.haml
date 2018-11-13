@@ -103,7 +103,8 @@
                   = si.input :due_date, label: "Data zakończenia"
               %button.btn.btn-default.remove_row{type: "button"} Usuń
           %button.btn.btn-default#add_schedule_item{ type: "button" } Dodaj
-          = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami", input_html: { rows: '4', class: "w-100" }
+          .form-row
+            = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami", input_html: { rows: '4', class: "w-100" }
         .container
           %h4.text-center Skład zespołu realizatorów projektu
           = f.simple_fields_for :roles do |role|

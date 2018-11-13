@@ -7,96 +7,133 @@
           %li= msg
   .container
     .panel.panel-primary
-      .panel-heading Część I - informacje o wnioskodawcy
+      .panel-heading
+        %h2 
+          = t(".part_one_heading")
       .panel-body
         .row
           .col-md-4
-            = f.association :organization, label: "Organizacja wnioskująca"
+            = f.association :organization, label: t(".applying_organization")
           .col-md-4
-            = f.input :name, label: "Nazwa projektu"
+            = f.input :name, label: t(".project_name")
           .col-md-4
-            = f.input :coordinator, label: "Koordynator"
+            = f.input :coordinator, label: t(".coordinator")
         .row
-          %h4.text-center Koszty projektu
+          .col-md-12
+            %h4.text-left 
+              = t(".project_costs")
+        .row
           .col-md-4
             = f.input :amount_applied_for, input_html: { min: '1', required: true,  oninput: "this.value = Math.abs(this.value)"},
-              label: "Kwota wnioskowana"
+              label: t(".amount_applied_for") 
           .col-md-4
             = f.input :amount_other_sources, input_html: { min: '0',
               required: true, oninput: "this.value = Math.abs(this.value)"},
-              label: "Kwota z innych źródeł"
+              label: t(".amount_other_sources")
           .col-md-4
             = f.input :amount_overall, input_html: { readonly: true },
-              label: "Kwota ogółem"
+              label: t(".amount_overall")
     .panel.panel-primary
-      .panel-heading Część II - informacje o projekcie
+      .panel-heading 
+        %h2
+          = t(".part_two_heading")
       .panel-body
-        .row
-          = f.input :description, label: "Tematyka i opis projektu"
-        .row
-          %h4.text-center Planowany termin i miejsce (jeżeli dotyczy) realizacji projektu
-          .col-md-6
-            = f.input :location, label: "Miejsce"
-          .col-md-6
-            = f.input :date, label: "Data"
-        .row
-          = f.input :project_subject, label: "Cel projektu"
-          = f.input :required_resources, label: "Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania"
-          = f.input :past_schedule, label: "Wykaz realizacji wnioskowanego projektu w latach poprzednich"
-          = f.input :collaboration, label: "Współpraca organizacyjna z innymi podmiotami"
-          = f.input :target_group, label: "Docelowa grupa odbiorców projektu"
-          = f.input :sponsor_enlistment, label: "Opis strategii pozyskiwania sponsorów"
-          = f.input :promotion_plans, label: "Planowane działania promocyjne projektu"
-        .row
-          %h4.text-center Doświadczenie zespołu organizatorów w podobnych projektach:
-          = f.simple_fields_for :experiences do |ex|
-            / TODO can this div be a row? layout dillemas
-            .experiences_row
-              .row
-                .col-md-4
-                  = ex.input :project_name, label: "Nazwa Projektu"
-                .col-md-4
-                  = ex.input :role, label: "Pełniona funkcja"
-                .col-md-4
-                  = ex.input :budget, input_html: { min: '0',
-                    required: true,  oninput: "this.value = Math.abs(this.value)",
-                    placeholder: 0},
-                    label: "Budżet"
-              .row
-                .col-md-6
-                  = ex.input :project_date, label: "Data wydarzenia"
-                .col-md-6
-                  = ex.input :member_name, label: "Imię i nazwisko członka zespołu"
-              %button.btn.btn-default.remove_row{type: "button"} Usuń
-          %button.btn.btn-default#add_experience{ type: "button" } Dodaj
-        .row
-          %h4.text-center Harmonogram realizacji projektu
-          = f.simple_fields_for :schedule_items do |si|
-            .row.schedule_items_row
-              .col-md-4
-                = si.input :todo, label: "Pozycja", input_html: { class: "disable_empty" }
-              .col-md-4
-                = si.input :start_date, label: "Data rozpoczęcia"
-              .col-md-4
-                = si.input :due_date, label: "Data zakończenia"
-              %button.btn.btn-default.remove_row{type: "button"} Usuń
-          %button.btn.btn-default#add_schedule_item{ type: "button" } Dodaj
-          = f.input :current_state, label: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
-        .row
-          %h4.text-center Skład zespołu realizatorów projektu
+        .container
+          .form-row
+            .col-md-8
+              = f.input :description, label: t(".description"), input_html: {rows: '6'}
+          .form-row
+            .col-md-12
+              .container.p-0
+                %b
+                  = t(".planned_location_and_date")
+                .form-row
+                  .col-md-4
+                    = f.input :location, label: t(".location")
+                  .col-md-4
+                    = f.input :date, label: t(".event_date")
+          .form-row
+            .col-md-8
+              = f.input :project_subject, label: t(".project_subject")
+          .form-row
+            .col-md-8
+              = f.input :required_resources, label: t(".required_resources")
+          .form-row
+            .col-md-8
+              = f.input :past_schedule, label: t(".past_schedule")
+          .form-row
+            .col-md-8
+              = f.input :collaboration, label: t(".collaboration")
+          .form-row
+            .col-md-8
+              = f.input :target_group, label: t(".target_group")
+          .form-row
+            .col-md-8
+              = f.input :sponsor_enlistment, label: t(".sponsor_enlistment")
+          .form-row
+            .col-md-8
+              = f.input :promotion_plans, label: t(".promotion_plans")
+          .container
+            %h4.text-center 
+              = t(".experiences_heading")
+            = f.simple_fields_for :experiences do |ex|
+              / TODO can this div be a row? layout dillemas
+              .container.experiences_row.w-100.my-4.p-3.border.border-secondary
+                .row
+                  .col-md-4
+                    = ex.input :project_name, label: t(".project_name") 
+                  .col-md-4
+                    = ex.input :role, label: t(".role")
+                  .col-md-4
+                    = ex.input :budget, input_html: { min: '0',
+                      required: true,  oninput: "this.value = Math.abs(this.value)",
+                      placeholder: 0},
+                      label: t(".budget")
+                .row
+                  .col-md-6
+                    = ex.input :project_date, label: t(".project_date")
+                  .col-md-6
+                    = ex.input :member_name, label: t(".member_name")
+                %button.btn.btn-default.remove_row{type: "button"} 
+                  = t(".delete")
+            %button.btn.btn-default#add_experience{ type: "button" } 
+              = t(".add")
+          .container
+            %h4.text-center 
+              = t(".schedule_items_heading")
+            = f.simple_fields_for :schedule_items do |si|
+              .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
+                .row.schedule_items_row
+                  .col-md-4
+                    = si.input :todo, label: t(".todo"), input_html: { class: "disable_empty" }
+                  .col-md-4
+                    = si.input :start_date, label: t(".start_date") 
+                  .col-md-4
+                    = si.input :due_date, label: t(".due_date") 
+                  %button.btn.btn-default.remove_row{type: "button"} Usuń
+            %button.btn.btn-default#add_schedule_item{ type: "button" } Dodaj
+          
+            .form-row
+              = f.input :current_state, label: t(".current_state_heading") 
+        .container
+          %h4.text-center 
+            = t(".roles_heading") 
           = f.simple_fields_for :roles do |role|
-            .row.role_row
-              .col-md-4
-                = role.input :member_role, label: "Funkcja"
-              .col-md-4
-                = role.input :first_name, label: "Imię"
-              .col-md-4
-                = role.input :last_name, label: "Nazwisko"
-              .col-md-4
-              %button.btn.btn-default.remove_row{type: "button"} Usuń
-          %button.btn.btn-default#add_member{ type: "button" } Dodaj członka
+            .container.role_row.w-100.my-4.p-3.border.border-secondary
+              .row.role_row
+                .col-md-4
+                  = role.input :member_role, label: t(".member_role") 
+                .col-md-4
+                  = role.input :first_name, label: t(".first_name")
+                .col-md-4
+                  = role.input :last_name, label: t(".last_name") 
+                .col-md-4
+                  %button.btn.btn-default.remove_row{type: "button"} 
+                    = t(".delete")
+          %button.btn.btn-default#add_member{ type: "button" } 
+            = t(".add_member") 
           .row
-            %h4 Załączniki
+            %h4 
+              = t(".attachments")
           %button.btn.btn-default{type: "submit"}
-            Aplikuj
-
+            = t(".submit")

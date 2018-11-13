@@ -1,0 +1,59 @@
+pl:
+  hello: "Witaj świecie"
+  date: 
+    order:
+      - :day
+      - :month
+      - :year
+    month_names: [~, stycznia, lutego, marca, kwietnia, maja, czerwca, lipca, sierpnia, września, października, listopada, grudnia]
+
+  applications:
+    form:
+      part_one_heading: "Część I - informacje o wnioskodawcy"
+      applying_organization: "Organizacja wnioskująca"
+      project_name: "Nazwa projektu"
+      coordinator: "Koordynator"
+      project_costs: "Koszty projektu"
+      amount_applied_for: "Kwota wnioskowana"
+      amount_other_sources: "Kwota z innych źródeł"
+      amount_overall: "Kwota ogółem"
+
+      part_two_heading: "Część II - informacje o projekcie"
+      description: "Tematyka i opis projektu"
+      planned_location_and_date: "Planowany termin i miejsce (jeżeli dotyczy) realizacji projektu"
+      location: "Miejsce"
+      event_date: "Data"
+
+      project_subject: "Cel projektu"
+      required_resources: "Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania"
+      past_schedule: "Wykaz realizacji wnioskowanego projektu w latach poprzednich"
+      collaboration: "Współpraca organizacyjna z innymi podmiotami"
+      target_group: "Docelowa grupa odbiorców projektu"
+      sponsor_enlistment: "Opis strategii pozyskiwania sponsorów"
+      promotion_plans: "Planowane działania promocyjne projektu"
+
+      add: "Dodaj"
+      delete: "Usuń"
+
+      experiences_heading: "Doświadczenie zespołu organizatorów w podobnych projektach"
+      role: "Pełniona funkcja"
+      budget: "Budżet"
+      project_date: "Data wydarzenia"
+      member_name: "Imię i nazwisko członka zespołu"
+
+      schedule_items_heading: "Harmonogram realizacji projektu"
+      todo: "Pozycja"
+      start_date: "Data rozpoczęcia"
+      due_date: "Data zakończenia"
+
+      current_state_heading: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
+
+      roles_heading: "Skład zespołu realizatorów projektu"
+      member_role: "Funkcja"
+      first_name: "Imię"
+      last_name: "Nazwisko"
+
+      add_member: "Dodaj członka"
+      attachments: "Załączniki"
+      submit: "Aplikuj"
+
