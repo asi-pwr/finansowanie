@@ -22,4 +22,4 @@
       .row
         .col-md-12
           = yield
-  = javascript_include_tag params[:controller] if Rails.application.config.assets.find_asset("#{params[:controller]}.js")
+  = javascript_include_tag params[:controller]
