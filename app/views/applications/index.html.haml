@@ -1,0 +1,24 @@
+.container-fluid
+  %h1 Wnioski K 
+  .table-responsive
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Nazwa
+          %th Koordynator
+          %th Organizacja
+          %th Data utworzenia wniosku
+          %th
+          %th
+
+      %tbody
+        - @applications.each do |application|
+          %tr
+            %td= application.name
+            %td= application.coordinator
+            - organization = Organization.find(application.organization_id)
+            %td= organization.name
+            %td= application.created_at.to_formatted_s(:db)
+            %td
+            %td 
+

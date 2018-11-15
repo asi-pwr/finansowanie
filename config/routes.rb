@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :organizations
-  resources :applications, only: %i[new create]
+  resources :applications
   root 'pages#home'
   get "/", to: "pages#home"
   devise_for :users
