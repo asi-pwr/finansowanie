@@ -1,0 +1,174 @@
+%h1.text-center Wniosek K
+.container
+  .panel.panel-primary
+    .panel-heading
+      %h2 Część I - informacje o wnioskodawcy
+    .panel-body
+      .container
+        .row
+          .col-md-4
+            Organizacja Wnioskująca  
+          .col-md-4
+            Nazwa projektu         
+          .col-md-4
+            Koordynator 
+        .row
+          .col-md-4
+            -organization = Organization.find @application.organization_id
+            =organization.name
+        .row
+          .col-md-4
+            =@application.name
+          .col-md-4
+        .row
+          .col-md-12
+            %h4.text-left Koszty projektu
+        .row
+          .col-md-4
+            Kwota wnioskowana
+          .col-md-4
+            Kwota z innych źródeł
+          .col-md-4
+            Kwota ogółem
+        .row
+          .col-md-4
+            =@application.amount_applied_for        
+          .col-md-4
+            =@application.amount_other_sources
+          .col-md-4
+            =@application.amount_overall
+  .panel.panel-primary
+    .panel-heading
+      %h2 Część II - informacje o projekcie
+    .panel-body
+      .container
+        .form-row
+          .col-md-8
+            Tematyka i opis projektu
+          .col-md-8
+            %p= @application.description
+        - if !@application.location.nil? || !@application.date.nil? 
+          .form-row
+            .col-md-12
+              .container.p-0
+                .form-row
+                  - if !@application.location.nil?
+                    .col-md-4
+                      Miejsce
+                  - if !@application.date.nil?
+                    .col-md-4
+                      Data
+                .form-row
+                  - if !@application.location.nil?
+                    .col-md-4
+                      = @application.location
+                  - if !@application.date.nil?
+                    .col-md-4
+                      = @application.date.to_s
+        .form-row
+          .col-md-8
+            Cel projektu
+          .col-md-8
+            %p= @application.project_subject
+        .form-row
+          .col-md-8
+            Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania
+          .col-md-8
+            %p= @application.required_resources
+        .form-row
+          .col-md-8
+            Wykaz realizacji wnioskowanego projektu w latach poprzednich
+          .col-md-8
+            %p= @application.past_schedule
+        .form-row
+          .col-md-8
+            Współpraca organizacyjna z innymi podmiotami
+          .col-md-8
+            %p= @application.collaboration
+        .form-row
+          .col-md-8
+            Docelowa grupa odbiorców projektu
+          .col-md-8
+            %p= @application.target_group
+        .form-row
+          .col-md-8
+            Opis strategii pozyskiwania sponsorów
+          .col-md-8
+            %p= @application.sponsor_enlistment
+        .form-row
+          .col-md-8
+            Planowane działania promocyjne projektu
+          .col-md-8
+            %p= @application.promotion_plans
+      .container
+        %h4.text-center Doświadczenie zespołu organizatorów w podobnych projektach:
+        - @application.experiences.each do |experience|
+          / TODO can this div be a row? layout dillemas
+          .container.experiences_row.w-100.my-4.p-3.border.border-secondary
+            .row
+              .col-md-4
+                Nazwa Projektu
+              .col-md-4
+                Pełniona funkcja
+              .col-md-4
+                Budżet
+            .row
+              .col-md-4
+                = experience.project_name
+              .col-md-4
+                = experience.role
+              .col-md-4
+                = experience.budget
+            .row
+              .col-md-6
+                Data wydarzenia
+              .col-md-6
+                Imię i nazwisko członka zespołu
+            .row
+              .col-md-6
+                = experience.project_date.to_s
+              .col-md-6
+                = experience.member_name
+      .container
+        %h4.text-center Harmonogram realizacji projektu
+        - @application.schedule_items.each do |schedule_item|
+          .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
+            .row
+              .col-md-4
+                Pozycja
+              .col-md-4
+                Data rozpoczęcia
+              .col-md-4
+                Data zakończenia
+            .row
+              .col-md-4
+                = schedule_item.todo
+              .col-md-4
+                = schedule_item.start_date.to_s
+              .col-md-4
+                = schedule_item.due_date.to_s
+          .container
+            .row
+              .col-md-12
+                Aktualny stan zaawansowania projektu lub powiązania z innymi projektami
+              .col-md-12
+                %p= @application.current_state
+      .container
+        %h4.text-center Skład zespołu realizatorów projektu
+        - @application.roles.each do |role|
+          .container.role_row.w-100.my-4.p-3.border.border-secondary
+            .row
+              .col-md-4
+                Funkcja
+              .col-md-4
+                Imię
+              .col-md-4
+                Nazwisko
+            .row
+              .col-md-4
+                = role.member_role
+              .col-md-4
+                = role.first_name
+              .col-md-4
+                = role.last_name
+  %h4.mt-5 Załączniki
