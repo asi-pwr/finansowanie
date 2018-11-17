@@ -21,7 +21,6 @@ gem 'simple_form'
 gem 'validates_timeliness'
 gem "dotenv-rails"
 
-
 group :development, :test do
   gem "pry"
   gem "pry-byebug"

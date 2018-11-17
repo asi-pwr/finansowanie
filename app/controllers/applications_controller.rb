@@ -17,6 +17,14 @@ class ApplicationsController < ApplicationController
     @application = @organization.applications.create(application_params)
     flash[:notice] = "Wniosek utworzony pomyslnie"
   end
+  
+  def show
+    @application = Application.find(params[:id])
+  end
+
+  def index
+    @applications = Application.all
+  end
 
   private
 
