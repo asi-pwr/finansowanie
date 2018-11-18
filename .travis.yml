@@ -1,0 +1,14 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.5.3
+stages:
+  - qa
+  - name: deploy
+    if: branch = master
+jobs:
+  include:
+    - stage: qa
+      script: bundle exec rubocop
+    - stage: qa
+      script: bundle exec rails spec
