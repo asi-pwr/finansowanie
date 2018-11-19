@@ -15,8 +15,8 @@ class Application < ApplicationRecord
   accepts_nested_attributes_for :users
   validates :name, presence: true
   validates :coordinator, presence: true
-  validates :amount_applied_for, presence: true,numericality: { greater_or_equal_to: 0 }
+  validates :amount_applied_for, presence: true, numericality: { greater_or_equal_to: 0 }
   validates :amount_other_sources, presence: true, numericality: { greater_or_equal_to: 0 }
-  validates_date :date, :on_or_before => lambda { Date.current   }
+  validates_date :date, on_or_before: lambda { Date.current }
   validates_with TotalSumValidator
 end

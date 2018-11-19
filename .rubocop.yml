@@ -32,3 +32,6 @@ OrderedGems:
 
 StringLiterals:
   EnforcedStyle: double_quotes
+
+Rails/BulkChangeTable:
+  Enabled: false

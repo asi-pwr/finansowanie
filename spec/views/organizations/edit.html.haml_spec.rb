@@ -8,7 +8,7 @@ RSpec.describe "organizations/edit", type: :view do
                                             name: "MyText",
                                             time_of_establishment: 1,
                                             faculty_id: 1
-    ))
+                                          ))
   end
 
   it "renders the edit organization form" do
