@@ -22,6 +22,7 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'simple_form'
 gem 'validates_timeliness'
 gem "dotenv-rails"
+gem "webpacker", "~> 3.5"
 
 group :development, :test do
   gem "pry"
