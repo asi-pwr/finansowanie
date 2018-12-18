@@ -24,6 +24,7 @@ gem 'validates_timeliness'
 gem "dotenv-rails"
 gem "webpacker", "~> 3.5"
 
+
 group :development, :test do
   gem "pry"
   gem "pry-byebug"
@@ -32,6 +33,7 @@ group :development, :test do
   gem "letter_opener"
   gem "factory_bot_rails"
   gem "rspec-rails"
+  gem "rubocop-rspec"
   gem "shoulda-matchers"
   gem "html2haml"
 end
