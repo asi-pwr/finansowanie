@@ -1,65 +1,87 @@
 %p#notice= notice
 
 %p
-  %b Organizacja wnioskująca: 
+  %b 
+    = t("applications.form.applying_organization") + ':'
   = @application.organization.name
 %p
-  %b Nazwa projektu:
+  %b 
+    = t("applications.form.project_name") + ':'
   = @application.name
 %p
-  %b Koordynator:
+  %b 
+    = t("applications.form.coordinator") + ':'
   = @application.coordinator
 %p
-  %b Kwota wnioskowana:
+  %b
+    = t("applications.form.amount_applied_for") + ':'
   = @application.amount_applied_for
 %p
-  %b Kwota z innych źródeł:
+  %b
+    = t("applications.form.amount_other_sources") + ':'
   = @application.amount_other_sources
 %p
-  %b Kwota ogółem:
+  %b 
+    = t("applications.form.amount_overall") + ':'
   = @application.amount_overall
 %br
 %p
-  %b Tematyka i opis projektu:
+  %b 
+    = t("applications.form.description") + ':'
   = @application.description
 %p
-  %b Miejsce:
+  %b 
+    = t("applications.form.location") + ':'
   = @application.location
 %p
-  %b Data:
+  %b 
+    = t("applications.form.event_date") + ':'
   = @application.date
 %p
-  %b Cel projektu:
+  %b 
+    = t("applications.form.project_subject") + ':'
   = @application.project_subject
 %p
-  %b Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania:
+  %b 
+    = t("applications.form.required_resources") + ':'
   = @application.required_resources
 %p
-  %b Wykaz realizacji wnioskowanego projektu w latach poprzednich:
+  %b 
+    = t("applications.form.past_schedule") + ':'
   = @application.past_schedule
 %p
-  %b Współpraca organizacyjna z innymi podmiotami:
+  %b 
+    = t("applications.form.collaboration") + ':'
   = @application.collaboration
 %p
-  %b Docelowa grupa odbiorców projektu:
+  %b 
+    = t("applications.form.target_group") + ':'
   = @application.target_group
 %p
-  %b Opis strategii pozyskiwania sponsorów:
+  %b 
+    = t("applications.form.sponsor_enlistment") + ':'
   = @application.sponsor_enlistment
 %p
-  %b Planowane działania promocyjne projektu:
+  %b 
+    = t("applications.form.promotion_plans") + ':'
   = @application.promotion_plans
 %br
 %p
-  %b Doświadczenie zespołu organizatorów w podobnych projektach:
+  %b 
+    = t("applications.form.experiences_heading")
 %table.table.table-hover
   %thead
     %tr
-      %th Nazwa Projektu
-      %th Pełniona funkcja
-      %th Budżet
-      %th Data wydarzenia
-      %th Imię i nazwisko członka zespołu
+      %th 
+        = t("applications.form.project_name") 
+      %th 
+        = t("applications.form.role") 
+      %th 
+        = t("applications.form.budget") 
+      %th 
+        = t("applications.form.project_date") 
+      %th 
+        = t("applications.form.member_name") 
   %tbody
   - @application.experiences.all.each do |t|
     %tr
@@ -69,13 +91,17 @@
       %td= t[:project_date]
       %td= t[:member_name]
 %p
-  %b Harmonogram realizacji projektu
+  %b 
+    = t("applications.form.schedule_items_heading")
 %table.table.table-hover
   %thead
     %tr
-      %th Pozycja 
-      %th Data rozpoczęcia
-      %th Data zakończenia
+      %th  
+        = t("applications.form.todo")
+      %th 
+        = t("applications.form.start_date")
+      %th 
+        = t("applications.form.due_date")
   %tbody
   - @application.schedule_items.all.each do |t|
     %tr
@@ -84,22 +110,27 @@
       %td= t[:due_date]
 %br
 %p
-  %b Aktualny stan zaawansowania projektu lub powiązania z innymi projektami: 
+  %b 
+    = t("applications.form.current_state_heading")
   = @application.current_state
 %p
-  %b Skład zespołu realizatorów projektu
+  %b
+    = t("applications.form.roles_heading")
 %table.table.table-hover
   %thead
     %tr
-      %th Funkcja 
-      %th Imię
-      %th Nazwisko
+      %th 
+        = t("applications.form.roles_heading")
+      %th 
+        = t("applications.form.roles_heading")
+      %th 
+        = t("applications.form.roles_heading")
   %tbody
   - @application.roles.all.each do |t|
     %tr
       %td= t[:member_role]
       %td= t[:first_name]
       %td= t[:last_name]
-= link_to 'Edit', edit_application_path(@application)
+= link_to t(:edit), edit_application_path(@application)
 
-= link_to 'Back', applications_path
+= link_to t(:back), applications_path

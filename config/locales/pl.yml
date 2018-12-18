@@ -7,6 +7,14 @@ pl:
       - :year
     month_names: [~, stycznia, lutego, marca, kwietnia, maja, czerwca, lipca, sierpnia, września, października, listopada, grudnia]
 
+  add: "Dodaj"
+  back: "Powrót"
+  delete: "Usuń"
+  edit: "Edytuj"
+  show: "Pokaż"
+
+
+
   applications:
     form:
       part_one_heading: "Część I - informacje o wnioskodawcy"
@@ -32,9 +40,7 @@ pl:
       sponsor_enlistment: "Opis strategii pozyskiwania sponsorów"
       promotion_plans: "Planowane działania promocyjne projektu"
 
-      add: "Dodaj"
-      delete: "Usuń"
-
+      
       experiences_heading: "Doświadczenie zespołu organizatorów w podobnych projektach"
       role: "Pełniona funkcja"
       budget: "Budżet"
@@ -56,4 +62,28 @@ pl:
       add_member: "Dodaj członka"
       attachments: "Załączniki"
       submit: "Aplikuj"
+
+    index:
+      all_applications: "Wszystkie podania"
+      application_name: "Nazwa podania"
+      creation_date: "Data utworzenia"
+      amount_overall: "Kwota ogółem"
+
+      confirm_delete: "Czy na pewno chcesz usunąć podanie?"
+
+  layouts:
+    header:
+      funding: "Finansowanie"
+
+      main_page: "Strona główna"
+      organizations: "Organizacje"
+      new_application: "Aplikuj o wniosek K"
+      applications: "Wnioski"
+      faculties: "Wydziały"
+
+      log_in: "Logowanie"
+      log_out: "Wyloguj"
+
+      sign_up: "Rejestracja"
+      change_password: "Zmiana hasła"
 

@@ -272,3 +272,6 @@ $RECYCLE.BIN/
 .env.development.local
 .env.test.local
 TODO.txt
+
+# rbenv
+.ruby-version

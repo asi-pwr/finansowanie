@@ -1,11 +1,15 @@
-%h1 Wszystkie podania
+%h1 
+  = t(".all_applications")
 
 %table.table.table-hover
   %thead
     %tr
-      %th Nazwa podania
-      %th Data utworzenia
-      %th Kwota ogółem
+      %th 
+        =t(".application_name")
+      %th 
+        =t(".creation_date")
+      %th 
+        =t(".amount_overall")
       %th
       %th
       %th
@@ -16,10 +20,10 @@
         %td= application.name
         %td= application.date
         %td= application.amount_overall
-        %td= link_to 'Pokaż', application
-        %td= link_to 'Edytuj', edit_application_path(application)
-        %td= link_to 'Usuń', applications_path, :method => :delete, :data => { :confirm => 'Czy na pewno chcesz usunąć podanie?' }
+        %td= link_to t(:show), application
+        %td= link_to t(:edit), edit_application_path(application)
+        %td= link_to t(:delete), applications_path, :method => :delete, :data => { :confirm => t(".confirm_delete") }
 
 %br
 
-= link_to 'New Application', new_application_path
+= link_to t(".new_application"), new_application_path
