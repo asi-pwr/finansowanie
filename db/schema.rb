@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_195344) do
+ActiveRecord::Schema.define(version: 2018_12_18_205509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2018_11_18_195344) do
     t.text "location"
     t.date "date"
     t.text "estimate"
+    t.string "aasm_state"
     t.index ["organization_id"], name: "index_applications_on_organization_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end

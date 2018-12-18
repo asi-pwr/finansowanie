@@ -1,4 +1,20 @@
 %h1.text-center Wniosek K
+-# TODO only show this container to admin
+.container
+  .row
+    .col-md-12
+      Stan wniosku: 
+      -if @application.pending?
+        Oczekujący na rozpatrzenie
+      -elsif @application.accepted?
+        Zaakceptowany
+      -elsif @application.rejected?
+        Odrzucony
+-if @application.pending?
+  .row.btn-row
+    .col-md-12
+      =button_to "Zatwierdź", application_path, params: {decision: :accept}, method: :patch, class: 'btn btn-success'
+      =button_to "Odrzuć", application_path, params: {decision: :reject}, method: :patch, class: 'btn btn-danger'
 .container
   .panel.panel-primary
     .panel-heading

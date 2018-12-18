@@ -14,8 +14,14 @@ class ApplicationsController < ApplicationController
 
   def create
     @organization = current_user.organizations.find(organization_params)
-    @application = @organization.applications.create(application_params)
-    flash[:notice] = "Wniosek utworzony pomyslnie"
+    @application = @organization.applications.new(application_params)
+    if @application.save
+      flash[:notice] = "Wniosek utworzony pomyslnie"
+      redirect_to @application
+    else 
+      flash[:alert] = "Nie utworzono wniosku"
+      render 'new'
+    end
   end
 
   def show
@@ -24,6 +30,22 @@ class ApplicationsController < ApplicationController
 
   def index
     @applications = Application.all
+  end
+
+  # TODO: restrictions for fsm state transitions in form of 
+  # user errors i.e. "Application already accepted" or "Can't accept rejected"
+  def update
+    @application = Application.find(params[:id])
+    if params[:decision] == 'accept'
+      @application.accept!
+      flash[:notice] = "Zaakceptowano wniosek"
+    elsif params[:decision] == 'reject'
+      @application.reject!
+      flash[:notice] = "Odrzucono wniosek"
+    else
+      flash[:alert] = "Nie można zmienić stanu!"
+    end
+    redirect_to @application
   end
 
   private

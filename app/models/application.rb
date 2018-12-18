@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Application < ApplicationRecord
+  include AASM
+
+  aasm do
+  end
+  include AASM
   include ActiveModel::Validations
   has_many :experiences, dependent: :destroy
   has_many :roles, dependent: :destroy
@@ -19,4 +24,19 @@ class Application < ApplicationRecord
   validates :amount_other_sources, presence: true, numericality: { greater_or_equal_to: 0 }
   validates_date :date, on_or_before: lambda { Date.current }
   validates_with TotalSumValidator
+  
+  aasm do 
+    state :pending, :initial => true
+    state :accepted, :rejected
+
+    event :accept do
+      transitions from: :pending, to: :accepted
+    end
+
+    event :reject do
+      transitions from: :pending, to: :rejected
+    end
+  end
+
+    
 end

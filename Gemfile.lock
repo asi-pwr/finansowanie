@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.0.1)
+      concurrent-ruby (~> 1.0)
     actioncable (5.2.2)
       actionpack (= 5.2.2)
       nio4r (~> 2.0)
@@ -192,6 +194,8 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.3)
     puma (3.12.0)
+    pundit (2.0.0)
+      activesupport (>= 3.0.0)
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -323,6 +327,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   bcrypt_pbkdf
   binding_of_caller
   bootstrap (~> 4.1.1)
@@ -351,6 +356,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma (~> 3.7)
+  pundit
   rails (~> 5)
   rbnacl (< 5.0)
   rbnacl-libsodium

@@ -270,13 +270,14 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/vim,ruby,macos,linux,rails,windows,rubymine,sublimetext
 
-#
+# local environment setups
 .env.*.local
 .env.local
 TODO.txt
 
 inventory.yml
 
+# possible binary file storage locations
 storage/*
 public/storage/*
 public/uploads/*

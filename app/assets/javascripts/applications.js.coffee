@@ -7,10 +7,7 @@ sum_amounts = (applied, other) ->
   b = parseFloat other
   a + b
 
-set_attributes = (el, attrs) ->
-  for key, val of attrs
-    el.setAttribute(key, val)
-
+# replaces all occurences of id in node attributes with new id
 replace_id = (node, id) ->
   attribute_id_regex = /[\[\_]\d+[\_\]]/
   attributes = node.attributes
@@ -21,11 +18,13 @@ replace_id = (node, id) ->
         res = res[0].replace(/\d+/, id)
         attr.value = attr.value.replace(attribute_id_regex, res)
 
+# recursively replaces id's on all of nodes' children
 recursively_replace_children_attributes = (node, id) ->
   replace_id(node, id)
   for child in node.childNodes
     recursively_replace_children_attributes(child, id)
 
+# creates row with changed id on all attributes that have id
 create_unique_row = (row) ->
   new_row = row.cloneNode(true)
   date = new Date()
@@ -70,9 +69,11 @@ $ ->
     btn = document.getElementById('add_experience')
     btn.parentNode.insertBefore(new_row, btn)
 
+  # remove row to which this button belongs
   $(document).on 'click', '.remove_row', ->
     this.parentNode.remove()
 
+  # clickable row - go to application view page
   $(".clickable-row").click ->
       window.location = $(this).data("href")
 
