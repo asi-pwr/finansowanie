@@ -6,8 +6,8 @@
             content:"width=device-width, initial-scale=1, shrink-to-fit=no"}
     = csrf_meta_tags
     %title Finansowanie
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
   %body
     %header
       = render 'layouts/header'
@@ -22,4 +22,3 @@
       .row
         .col-md-12
           = yield
-  = javascript_include_tag params[:controller]

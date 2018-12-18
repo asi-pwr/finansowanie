@@ -14,6 +14,7 @@ AllCops:
     - vendor/**/*
     - bin/setup
     - bin/update
+    - node_modules/**/*
 
 BlockLength:
   Exclude:
