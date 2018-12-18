@@ -278,3 +278,5 @@ TODO.txt
 inventory.yml
 
 storage/*
+public/storage/*
+public/uploads/*

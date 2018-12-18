@@ -8,17 +8,13 @@
           %th Koordynator
           %th Organizacja
           %th Data utworzenia wniosku
-          %th
-          %th
 
       %tbody
         - @applications.each do |application|
-          %tr
+          %tr{class: "clickable-row", "data-href" => application_path(application)}
             %td= application.name
             %td= application.coordinator
             - organization = Organization.find(application.organization_id)
             %td= organization.name
             %td= application.created_at.to_formatted_s(:db)
-            %td
-            %td 
 
