@@ -281,3 +281,10 @@ inventory.yml
 storage/*
 public/storage/*
 public/uploads/*
+
+# packs, yarn
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

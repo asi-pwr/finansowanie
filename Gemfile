@@ -24,17 +24,18 @@ gem 'validates_timeliness'
 gem 'dotenv-rails'
 gem 'aasm'
 gem 'pundit'
+gem 'webpacker', '~> 3.5'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'html2haml'
+  gem "rubocop-rspec"
 end
 
 group :development do
