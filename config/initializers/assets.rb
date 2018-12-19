@@ -17,4 +17,5 @@ Rails.application.config.assets.precompile += %w(
   applications.js
   cable.js
   pages.js
+  organizations.js
 )

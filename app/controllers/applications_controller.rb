@@ -29,13 +29,14 @@ class ApplicationsController < ApplicationController
   end
 
   def index
-    @applications = Application.all
+    @applications = policy_scope(Application)
   end
 
   # TODO: restrictions for fsm state transitions in form of 
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
     @application = Application.find(params[:id])
+    authorize @application
     if params[:decision] == 'accept'
       @application.accept!
       flash[:notice] = "Zaakceptowano wniosek"

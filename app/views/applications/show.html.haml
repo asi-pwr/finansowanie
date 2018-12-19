@@ -10,7 +10,7 @@
         Zaakceptowany
       -elsif @application.rejected?
         Odrzucony
--if @application.pending?
+-if @application.pending? && policy(@application).update?
   .row.btn-row
     .col-md-12
       =button_to "Zatwierdź", application_path, params: {decision: :accept}, method: :patch, class: 'btn btn-success'

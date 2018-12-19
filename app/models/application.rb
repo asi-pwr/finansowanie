@@ -2,10 +2,6 @@
 
 class Application < ApplicationRecord
   include AASM
-
-  aasm do
-  end
-  include AASM
   include ActiveModel::Validations
   has_many :experiences, dependent: :destroy
   has_many :roles, dependent: :destroy
