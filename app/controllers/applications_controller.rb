@@ -30,6 +30,7 @@ class ApplicationsController < ApplicationController
 
   def index
     @applications = policy_scope(Application)
+    @applications = @applications.order(:updated_at)
   end
 
   # TODO: restrictions for fsm state transitions in form of 

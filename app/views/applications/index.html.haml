@@ -8,6 +8,7 @@
           %th Koordynator
           %th Organizacja
           %th Data utworzenia wniosku
+          %th Stan
 
       %tbody
         - @applications.each do |application|
@@ -17,4 +18,12 @@
             - organization = Organization.find(application.organization_id)
             %td= organization.name
             %td= application.created_at.to_formatted_s(:db)
+            -if application.pending?
+              %td.bg-warning Oczekujący
+            -elsif application.accepted?
+              %td.bg-success Zaakceptowany
+            -elsif application.rejected?
+              %td.bg-danger Odrzucony
+            -else
+              %td
 
