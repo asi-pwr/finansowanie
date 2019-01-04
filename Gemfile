@@ -57,6 +57,9 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
