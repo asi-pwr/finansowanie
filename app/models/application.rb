@@ -20,9 +20,9 @@ class Application < ApplicationRecord
   validates :amount_other_sources, presence: true, numericality: { greater_or_equal_to: 0 }
   validates_date :date, on_or_before: lambda { Date.current }
   validates_with TotalSumValidator
-  
-  aasm do 
-    state :pending, :initial => true
+
+  aasm do
+    state :pending, initial: true
     state :accepted, :rejected
 
     event :accept do
@@ -33,6 +33,4 @@ class Application < ApplicationRecord
       transitions from: :pending, to: :rejected
     end
   end
-
-    
 end
