@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationPolicy < RailsApplicationPolicy
   class Scope < Scope
     def resolve
@@ -9,7 +11,7 @@ class ApplicationPolicy < RailsApplicationPolicy
         user.organizations.each do |org|
           organization_ids << org.id
         end
-        scope.where({organization_id: organization_ids})
+        scope.where(organization_id: organization_ids)
       end
     end
   end

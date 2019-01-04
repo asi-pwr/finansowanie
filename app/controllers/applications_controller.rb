@@ -18,7 +18,7 @@ class ApplicationsController < ApplicationController
     if @application.save
       flash[:notice] = "Wniosek utworzony pomyslnie"
       redirect_to @application
-    else 
+    else
       flash[:alert] = "Nie utworzono wniosku"
       render 'new'
     end
@@ -33,7 +33,7 @@ class ApplicationsController < ApplicationController
     @applications = @applications.order(:updated_at)
   end
 
-  # TODO: restrictions for fsm state transitions in form of 
+  # TODO: restrictions for fsm state transitions in form of
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
     @application = Application.find(params[:id])

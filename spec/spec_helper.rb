@@ -19,5 +19,9 @@ RSpec.configure do |config|
 
   config.order = :random
 
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome_headless
+  end
+
   Kernel.srand config.seed
 end
