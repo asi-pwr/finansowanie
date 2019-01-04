@@ -2,4 +2,4 @@
 # like app/views/layouts/application.html.erb.
 
 console.log 'Hello world from coffeescript'
-import 'application'
+import '../src/javascripts/applications'
