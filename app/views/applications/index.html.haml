@@ -1,29 +1,29 @@
-%h1 
-  = t(".all_applications")
+.container-fluid
+  %h1 Wnioski K 
+  .table-responsive
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Nazwa
+          %th Koordynator
+          %th Organizacja
+          %th Data utworzenia wniosku
+          %th Stan
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th 
-        =t(".application_name")
-      %th 
-        =t(".creation_date")
-      %th 
-        =t(".amount_overall")
-      %th
-      %th
-      %th
+      %tbody
+        - @applications.each do |application|
+          %tr{class: "clickable-row", "data-href" => application_path(application)}
+            %td= application.name
+            %td= application.coordinator
+            - organization = Organization.find(application.organization_id)
+            %td= organization.name
+            %td= application.created_at.to_formatted_s(:db)
+            -if application.pending?
+              %td.bg-warning Oczekujący
+            -elsif application.accepted?
+              %td.bg-success Zaakceptowany
+            -elsif application.rejected?
+              %td.bg-danger Odrzucony
+            -else
+              %td
 
-  %tbody
-    - @applications.each do |application|
-      %tr
-        %td= application.name
-        %td= application.date
-        %td= application.amount_overall
-        %td= link_to t(:show), application
-        %td= link_to t(:edit), edit_application_path(application)
-        %td= link_to t(:delete), applications_path, :method => :delete, :data => { :confirm => t(".confirm_delete") }
-
-%br
-
-= link_to t(".new_application"), new_application_path

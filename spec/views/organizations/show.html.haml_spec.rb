@@ -8,7 +8,7 @@ RSpec.describe "organizations/show", type: :view do
                                             name: "MyText",
                                             time_of_establishment: 2,
                                             faculty_id: 3
-    ))
+                                          ))
   end
 
   it "renders attributes in <p>" do

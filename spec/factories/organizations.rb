@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:name) do |n|
       "Organization #{n}"
     end
-    time_of_establishment "2017-06-08"
+    time_of_establishment { "2017-06-08" }
     association :faculty
   end
 end

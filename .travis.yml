@@ -1,0 +1,20 @@
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database finansowanie_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+language: ruby
+cache: bundler
+rvm:
+  - 2.5.3
+stages:
+  - qa
+  - name: deploy
+    if: branch = master
+jobs:
+  include:
+    - stage: qa
+      script: bundle exec rubocop
+    - stage: qa
+      script: bundle exec rails spec
+

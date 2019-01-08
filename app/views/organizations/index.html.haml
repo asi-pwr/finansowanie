@@ -1,25 +1,27 @@
-%h1 Wszystkie organizacje
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th Nazwa organizacji
-      %th Data utworzenia
-      %th Wydział
-      %th
-      %th
-      %th
+.container-fluid
+  %h1 Wszystkie organizacje
+  .table-responsive
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Nazwa organizacji
+          %th Data utworzenia
+          %th Wydział
+          %th
+          %th
+          %th
 
-  %tbody
-    - @organizations.each do |organization|
-      %tr
-        %td= organization.name
-        %td= organization.time_of_establishment
-        %td= organization.faculty.name
-        %td= link_to 'Pokaż', organization
-        %td= link_to 'Edytuj', edit_organization_path(organization)
-        %td= link_to 'Usuń', organization, :method => :delete, :data => { :confirm => 'Czy na pewno chcesz usunąć organizację?' }
+      %tbody
+        - @organizations.each do |organization|
+          %tr
+            %td= organization.name
+            %td= organization.time_of_establishment
+            %td= organization.faculty.name
+            %td= link_to 'Pokaż', organization
+            %td= link_to 'Edytuj', edit_organization_path(organization)
+            %td= link_to 'Usuń', organization, :method => :delete, :data => { :confirm => 'Czy na pewno chcesz usunąć organizację?' }
 
-%br
+    %br
 
 = link_to 'Nowa organizacja', new_organization_path

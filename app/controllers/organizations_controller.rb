@@ -11,8 +11,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1
   # GET /organizations/1.json
-  def show
-  end
+  def show; end
 
   # GET /organizations/new
   def new
@@ -29,7 +28,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        format.html { redirect_to @organization, notice: 'Organizacja utworzona pomyslnie' }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }

@@ -21,44 +21,40 @@ class ApplicationsController < ApplicationController
 
   def create
     @organization = current_user.organizations.find(organization_params)
-    @application = @organization.applications.create(application_params)
-
-    respond_to do |format|
-      if @organization.save
-        format.html { redirect_to @application, notice: 'Application was successfully created.' }
-        format.json { render :show, status: :created, location: @application }
-      else
-        format.html { render :new }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
+    @application = @organization.applications.new(application_params)
+    if @application.save
+      flash[:notice] = "Wniosek utworzony pomyslnie"
+      redirect_to @application
+    else
+      flash[:alert] = "Nie utworzono wniosku"
+      render 'new'
     end
   end
 
-  # GET /applications/1
-  # GET /applications/1.json
+  def show
+    @application = Application.find(params[:id])
+  end
 
-  def show; end
+  def index
+    @applications = policy_scope(Application)
+    @applications = @applications.order(:updated_at)
+  end
 
-  def edit; end
-
+  # TODO: restrictions for fsm state transitions in form of
+  # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
-    respond_to do |format|
-      if @application.update(application_params)
-        format.html { redirect_to @application, notice: 'Application was successfully updated.' }
-        format.json { render :show, status: :ok, location: @application }
-      else
-        format.html { render :edit }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
+    @application = Application.find(params[:id])
+    authorize @application
+    if params[:decision] == 'accept'
+      @application.accept!
+      flash[:notice] = "Zaakceptowano wniosek"
+    elsif params[:decision] == 'reject'
+      @application.reject!
+      flash[:notice] = "Odrzucono wniosek"
+    else
+      flash[:alert] = "Nie można zmienić stanu!"
     end
-  end
-
-  def destroy
-    @application.destroy
-    respond_to do |format|
-      format.html { redirect_to applications_url, notice: 'Application was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @application
   end
 
   private
@@ -94,7 +90,8 @@ class ApplicationsController < ApplicationController
       :collaboration,
       experiences_attributes: %i[project_name role budget project_date member_name],
       schedule_items_attributes: %i[todo start start_date due_date],
-      roles_attributes: %i[member_role first_name last_name]
+      roles_attributes: %i[member_role first_name last_name],
+      files: []
     )
   end
 end

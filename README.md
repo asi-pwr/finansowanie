@@ -1,5 +1,7 @@
 # Finansowanie
 
+[![Build Status](https://travis-ci.com/asi-pwr/finansowanie.svg?branch=master)](https://travis-ci.com/asi-pwr/finansowanie)
+
 ## Installation
 
 ### Fast mode
