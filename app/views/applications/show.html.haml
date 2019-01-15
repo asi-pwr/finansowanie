@@ -23,11 +23,11 @@
       .container
         .row
           .col-md-4
-            Organizacja Wnioskująca  
+            = t("applications.form.applying_organization")  
           .col-md-4
-            Nazwa projektu         
+            = t("applications.form.project_name")
           .col-md-4
-            Koordynator 
+            = t("applications.form.coordinator")
         .row
           .col-md-4
             -organization = Organization.find @application.organization_id
@@ -41,11 +41,11 @@
             %h4.text-left Koszty projektu
         .row
           .col-md-4
-            Kwota wnioskowana
+            = t("applications.form.amount_applied_for")
           .col-md-4
-            Kwota z innych źródeł
+            = t("applications.form.amount_other_sources")
           .col-md-4
-            Kwota ogółem
+            = t("applications.form.amount_overall")
         .row
           .col-md-4
             =@application.amount_applied_for        
@@ -60,7 +60,7 @@
       .container
         .form-row
           .col-md-8
-            Tematyka i opis projektu
+            = t("applications.form.description")
           .col-md-8
             %p= @application.description
         - if !@application.location.nil? || !@application.date.nil? 
@@ -70,10 +70,10 @@
                 .form-row
                   - if !@application.location.nil?
                     .col-md-4
-                      Miejsce
+                      = t("applications.form.location")
                   - if !@application.date.nil?
                     .col-md-4
-                      Data
+                      = t("applications.form.event_date")
                 .form-row
                   - if !@application.location.nil?
                     .col-md-4
@@ -83,51 +83,52 @@
                       = @application.date.to_s
         .form-row
           .col-md-8
-            Cel projektu
+            = t("applications.form.project_subject")
           .col-md-8
             %p= @application.project_subject
         .form-row
           .col-md-8
-            Informacja o zasobach niezbędnych do realizacji projektu (lokalowych, technicznych, kadrowych) wraz z koncepcją ich pozyskania
+            = t("applications.form.required_resources")
           .col-md-8
             %p= @application.required_resources
         .form-row
           .col-md-8
-            Wykaz realizacji wnioskowanego projektu w latach poprzednich
+            = t("applications.form.past_schedule")
           .col-md-8
             %p= @application.past_schedule
         .form-row
           .col-md-8
-            Współpraca organizacyjna z innymi podmiotami
+            = t("applications.form.collaboration")
           .col-md-8
             %p= @application.collaboration
         .form-row
           .col-md-8
-            Docelowa grupa odbiorców projektu
+            = t("applications.form.target_group")
           .col-md-8
             %p= @application.target_group
         .form-row
           .col-md-8
-            Opis strategii pozyskiwania sponsorów
+            = t("applications.form.sponsor_enlistment")
           .col-md-8
             %p= @application.sponsor_enlistment
         .form-row
           .col-md-8
-            Planowane działania promocyjne projektu
+            = t("applications.form.promotion_plans")
           .col-md-8
             %p= @application.promotion_plans
       .container
-        %h4.text-center Doświadczenie zespołu organizatorów w podobnych projektach:
+        %h4.text-center 
+          = t("applications.form.experiences_heading") + ':'
         - @application.experiences.each do |experience|
           / TODO can this div be a row? layout dillemas
           .container.experiences_row.w-100.my-4.p-3.border.border-secondary
             .row
               .col-md-4
-                Nazwa Projektu
+                = t("applications.form.project_name") 
               .col-md-4
-                Pełniona funkcja
+                = t("applications.form.role") 
               .col-md-4
-                Budżet
+                = t("applications.form.budget")
             .row
               .col-md-4
                 = experience.project_name
@@ -137,16 +138,17 @@
                 = experience.budget
             .row
               .col-md-6
-                Data wydarzenia
+                = t("applications.form.project_date") 
               .col-md-6
-                Imię i nazwisko członka zespołu
+                = t("applications.form.member_name")
             .row
               .col-md-6
                 = experience.project_date.to_s
               .col-md-6
                 = experience.member_name
       .container
-        %h4.text-center Harmonogram realizacji projektu
+        %h4.text-center 
+          = t("applications.form.schedule_items_heading")
         - @application.schedule_items.each do |schedule_item|
           .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
             .row
@@ -166,20 +168,21 @@
           .container
             .row
               .col-md-12
-                Aktualny stan zaawansowania projektu lub powiązania z innymi projektami
+                = t("applications.form.todo")
               .col-md-12
                 %p= @application.current_state
       .container
-        %h4.text-center Skład zespołu realizatorów projektu
+        %h4.text-center 
+          = t("applications.form.due_date")
         - @application.roles.each do |role|
           .container.role_row.w-100.my-4.p-3.border.border-secondary
             .row
               .col-md-4
-                Funkcja
+                = t("applications.form.member_role")
               .col-md-4
-                Imię
+                = t("applications.form.first_name")
               .col-md-4
-                Nazwisko
+                = t("applications.form.last_name")
             .row
               .col-md-4
                 = role.member_role

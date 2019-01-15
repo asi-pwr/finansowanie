@@ -63,14 +63,6 @@ ActiveRecord::Schema.define(version: 2018_12_19_110441) do
     t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
-  create_table "attachments", force: :cascade do |t|
-    t.bigint "application_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "file_data"
-    t.index ["application_id"], name: "index_attachments_on_application_id"
-  end
-
   create_table "experiences", force: :cascade do |t|
     t.string "project_name"
     t.string "role"
