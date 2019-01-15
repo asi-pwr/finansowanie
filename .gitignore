@@ -274,8 +274,10 @@ $RECYCLE.BIN/
 .env.*.local
 .env.local
 TODO.txt
-
 inventory.yml
+
+# rbenv
+.ruby-version
 
 # possible binary file storage locations
 storage/*

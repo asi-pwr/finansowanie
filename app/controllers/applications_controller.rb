@@ -2,11 +2,18 @@
 
 class ApplicationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_application, only: %i[show edit update destroy]
+
+  def index
+    @applications = Application.all
+  end
 
   def new
     @organizations = current_user.organizations
     @users = User.all
     @application = Application.new
+    @application.amount_applied_for = 0
+    @application.amount_other_sources = 0
     3.times { @application.experiences.build }
     3.times { @application.schedule_items.build }
     3.times { @application.roles.build }
@@ -51,6 +58,10 @@ class ApplicationsController < ApplicationController
   end
 
   private
+
+  def set_application
+    @application = Application.find(params[:id])
+  end
 
   def organization_params
     params.require(:application).require(:organization_id)
