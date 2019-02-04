@@ -41,4 +41,9 @@ RSpec.describe Application, type: :model do
     should validate_numericality_of(:amount_applied_for).
       is_greater_than_or_equal_to(0)
   end
+  
+  it "has a valid factory" do
+    expect(FactoryBot.build(:application)).to be_valid
+  end
+
 end
