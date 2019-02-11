@@ -6,6 +6,6 @@ class Experience < ApplicationRecord
   validates :role, presence: true
   validates :project_date, presence: true
   validates_date :project_date, on_or_before: lambda { Date.current }
-  validates :budget, presence: true, numericality: { greater_or_equal_to: 0 }
+  validates :budget, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :member_name, presence: true
 end

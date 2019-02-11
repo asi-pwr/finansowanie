@@ -17,6 +17,10 @@ pl:
   activerecord:
     errors:
       models:
+        application:
+          attributes:
+            date:
+              invalid_date: "nie jest poprawną datą"
         faculty:
           attributes:
             name:
