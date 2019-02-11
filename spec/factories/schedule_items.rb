@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :schedule_item do
     application
     todo { "MyString" }
-    start_date { "2017-06-08" }
-    due_date { "2017-06-08" }
+    start_date { 2.years.ago }
+    due_date { 2.years.ago }
   end
 end
