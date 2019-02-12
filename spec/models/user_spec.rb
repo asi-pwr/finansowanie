@@ -11,4 +11,7 @@ RSpec.describe User, type: :model do
     is_expected.to allow_value("example@example.com").for(:email)
     is_expected.not_to allow_value("example.com").for(:email)
   }
+  it "has a valid factory" do
+    expect(FactoryBot.build(:user)).to be_valid
+  end
 end
