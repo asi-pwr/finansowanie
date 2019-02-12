@@ -13,7 +13,7 @@ RSpec.describe Application, type: :model do
                         amount_applied_for: 1,
                         amount_other_sources: 1,
                         amount_overall: 3)
-    expect(application.valid?).to eq(false)
+    expect(application.nil?).to eq(false)
   end
 
   it "correct sum should get true" do
