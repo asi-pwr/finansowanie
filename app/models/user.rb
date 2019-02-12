@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :email, presence: true, uniqueness: true, case_sensitive: false,
     format: {with: URI::MailTo::EMAIL_REGEXP }
+  validates :phone_number, format: {with: /\A[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*\z/}, allow_blank: true
   validates :full_name, presence: true
   has_many :user_applications, dependent: :destroy
   has_many :user_organizations, dependent: :destroy
