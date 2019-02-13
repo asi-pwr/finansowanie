@@ -10,5 +10,4 @@ RSpec.describe ScheduleItem, type: :model do
   it "has a valid factory" do
     expect(FactoryBot.build(:schedule_item)).to be_valid
   end
-
 end
