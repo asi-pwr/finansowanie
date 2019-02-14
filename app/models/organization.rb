@@ -7,5 +7,5 @@ class Organization < ApplicationRecord
   has_many :applications, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   validates :time_of_establishment, presence: true
-  validates_date :time_of_establishment, :on_or_before => lambda { Date.today }
+  validates_date :time_of_establishment, on_or_before: lambda { Time.zone.today }
 end

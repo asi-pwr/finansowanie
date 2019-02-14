@@ -28,7 +28,7 @@ RSpec.describe Application, type: :model do
   it { is_expected.to validate_presence_of(:coordinator) }
   it { is_expected.to validate_presence_of(:amount_applied_for) }
   it { is_expected.to validate_numericality_of(:amount_applied_for).is_greater_than_or_equal_to(0) }
- 
+
   it { is_expected.to validate_presence_of(:amount_other_sources) }
   it { is_expected.to validate_numericality_of(:amount_other_sources).is_greater_than_or_equal_to(0) }
 
@@ -37,15 +37,14 @@ RSpec.describe Application, type: :model do
 
   context "when application date is before or on current date" do
     it { should allow_value(1.day.ago).for(:date) }
-    it { should allow_value(Date.today).for(:date) }
+    it { should allow_value(Time.zone.today).for(:date) }
   end
 
   context "when application date is after current date" do
-    it { should_not allow_value(1.day.from_now).for(:date)  }
+    it { should_not allow_value(1.day.from_now).for(:date) }
   end
 
   it "has a valid factory" do
     expect(FactoryBot.build(:application)).to be_valid
   end
-
 end

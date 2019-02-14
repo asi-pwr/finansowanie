@@ -8,5 +8,4 @@ RSpec.describe Faculty, type: :model do
   it "has a valid factory" do
     expect(FactoryBot.build(:faculty)).to be_valid
   end
-
 end

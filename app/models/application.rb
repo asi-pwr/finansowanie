@@ -20,9 +20,9 @@ class Application < ApplicationRecord
   validates :amount_applied_for, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :amount_other_sources, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :amount_overall, presence: true, numericality: { greater_than_or_equal_to: 1 }
-  validates_with TotalSumValidator   
+  validates_with TotalSumValidator
   validates :date, presence: true
-  validates_date :date, :on_or_before => lambda { Date.today } # TODO causes schedule_items and other factories to not pass tests
+  validates_date :date, on_or_before: lambda { Time.zone.today } # TODO causes schedule_items and other factories to not pass tests
 
   aasm do
     state :pending, initial: true
