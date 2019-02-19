@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'aasm/rspec'
+
 ENV["RAILS_ENV"] ||= 'test'
 
 Dir["./spec/support/**/*.rb"].each { |f| require f }

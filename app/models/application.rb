@@ -29,11 +29,11 @@ class Application < ApplicationRecord
     state :accepted, :rejected
 
     event :accept do
-      transitions from: :pending, to: :accepted
+      transitions from: [:pending, :rejected], to: :accepted
     end
 
     event :reject do
-      transitions from: :pending, to: :rejected
+      transitions from: [:pending, :accepted], to: :rejected
     end
   end
 end
