@@ -1,5 +1,7 @@
 services:
   - postgresql
+addons:
+  chrome: stable
 before_script:
   - psql -c 'create database finansowanie_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
