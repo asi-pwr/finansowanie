@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Experience, type: :model do
+  # tests for build int validators
   it { is_expected.to validate_presence_of(:project_name) }
   it { is_expected.to validate_presence_of(:role) }
   it { is_expected.to validate_presence_of(:project_date) }
@@ -12,6 +13,9 @@ RSpec.describe Experience, type: :model do
 
   it { is_expected.to validate_presence_of(:member_name) }
 
+  it { is_expected.to belong_to(:application) }
+
+  # tests for factory
   it "has a valid factory" do
     expect(FactoryBot.build(:experience)).to be_valid
   end
