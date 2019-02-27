@@ -6,7 +6,7 @@ default: &default
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
-  resolved_paths: ['app/webpack/src/javascripts']
+  resolved_paths: ['app/webpack/src/javascripts', 'app/webpack/src/stylesheets']
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false

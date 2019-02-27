@@ -25,6 +25,7 @@ gem 'dotenv-rails'
 gem 'aasm'
 gem 'pundit'
 gem 'webpacker', '~> 3.5'
+gem 'font-awesome-sass', '~> 5.6.1'
 
 group :development, :test do
   gem 'pry'
