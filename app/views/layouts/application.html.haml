@@ -9,14 +9,14 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'hello_coffee'
     = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
-  %body
+  %body.bg-gradient-secondary
     %header
       = render 'layouts/header'
-    .container
+    .container.bg-light.rounded.py-4
       .row
         .col-md-12
       .row
-        .col-md-4
+        .col-md-5
           - flash.each do |key, value|
             %div{class: "#{flash_class(key)}"}
               = value
