@@ -1,4 +1,7 @@
 $primary: orange;
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts'; 
 
 @import '~bootstrap/scss/bootstrap';
 @import '../src/stylesheets/pages';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+

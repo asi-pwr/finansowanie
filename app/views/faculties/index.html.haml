@@ -2,7 +2,6 @@
   = notice
 
 %h1 Wszystkie Wydziały
-%i.fas.fa-pen
 
 %table.table.table-hover
   %thead
@@ -13,9 +12,14 @@
     - @faculties.each do |faculty|
       %tr
         %td= faculty.name
-        %td= link_to 'Pokaż', faculty
-        %td= link_to 'Edytuj', edit_faculty_path(faculty)
-        %td= link_to 'Usuń', faculty, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wydział?' }
+        %td
+          %a.fas.fa-eye{:href => url_for(faculty)}
+        %td
+          -#= link_to 'Edytuj', edit_faculty_path(faculty)
+          %a.fas.fa-pen{:href => edit_faculty_path(faculty)}
+        %td 
+          = link_to 'Usuń', faculty, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wydział?' }
+        //%a.fas.fa-trash-alt{:href => url_for(faculty, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wydział?' })}
 %br
 
 = link_to 'Dodaj wydział', new_faculty_path
