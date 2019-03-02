@@ -106,6 +106,10 @@ pl:
   devise:
     failure:
       already_authenticated: "Użytkownik już zalogowany."
+      user:
+        not_found_in_database: "Niepoprawny e-mail lub hasło."
+        invalid: "Niepoprawny e-mail lub hasło."
+        unauthenticated: "Należy najpierw się zalogować."
     sessions:
       user:
         signed_in: "Zalogowano pomyślnie."
