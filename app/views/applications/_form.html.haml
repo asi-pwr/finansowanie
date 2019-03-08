@@ -20,12 +20,12 @@
             = f.input :coordinator, label: t(".coordinator")
         .row
           .col-md-12
-            %h4.text-left 
+            %h4.text-left
               = t(".project_costs")
         .row
           .col-md-4
             = f.input :amount_applied_for, input_html: { min: '1', required: true,  oninput: "this.value = Math.abs(this.value)"},
-              label: t(".amount_applied_for") 
+              label: t(".amount_applied_for")
           .col-md-4
             = f.input :amount_other_sources, input_html: { min: '0',
               required: true, oninput: "this.value = Math.abs(this.value)"},
@@ -74,14 +74,14 @@
             .col-md-12
               = f.input :promotion_plans, label: t(".promotion_plans")
           .container
-            %h4.text-center 
+            %h4.text-center
               = t(".experiences_heading")
             = f.simple_fields_for :experiences do |ex|
               / TODO can this div be a row? layout dillemas
               .container.experiences_row.w-100.my-4.p-3.border.border-secondary
                 .row
                   .col-md-4
-                    = ex.input :project_name, label: t(".project_name") 
+                    = ex.input :project_name, label: t(".project_name")
                   .col-md-4
                     = ex.input :role, label: t(".role")
                   .col-md-4
@@ -94,12 +94,12 @@
                     = ex.input :project_date, label: t(".project_date")
                   .col-md-6
                     = ex.input :member_name, label: t(".member_name")
-                %button.btn.btn-default.remove_row{type: "button"} 
+                %button.btn.btn-default.remove_row{type: "button"}
                   = t(:delete)
-            %button.btn.btn-default#add_experience{ type: "button" } 
+            %button.btn.btn-default#add_experience{ type: "button" }
               = t(:add)
           .container
-            %h4.text-center 
+            %h4.text-center
               = t(".schedule_items_heading")
             = f.simple_fields_for :schedule_items do |si|
               .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
@@ -107,7 +107,7 @@
                   .col-md-4
                     = si.input :todo, label: t(".todo"), input_html: { class: "disable_empty" }
                   .col-md-4
-                    = si.input :start_date, label: t(".start_date") 
+                    = si.input :start_date, label: t(".start_date")
                   .col-md-4
                     = si.input :due_date, label: t(".due_date") 
                 %button.btn.btn-default.remove_row{type: "button"} 
@@ -119,25 +119,25 @@
               .col-md-12
                 = f.input :current_state, label: t(".current_state_heading") 
         .container
-          %h4.text-center 
-            = t(".roles_heading") 
+          %h4.text-center
+            = t(".roles_heading")
           = f.simple_fields_for :roles do |role|
             .container.role_row.w-100.my-4.p-3.border.border-secondary
               .row.role_row
                 .col-md-4
-                  = role.input :member_role, label: t(".member_role") 
+                  = role.input :member_role, label: t(".member_role")
                 .col-md-4
                   = role.input :first_name, label: t(".first_name")
                 .col-md-4
-                  = role.input :last_name, label: t(".last_name") 
+                  = role.input :last_name, label: t(".last_name")
                 .col-md-4
-                  %button.btn.btn-default.remove_row{type: "button"} 
-                    = t(:delete)
+              %button.btn.btn-default.remove_row{type: "button"}
+                = t(:delete)
           %button.btn.btn-default#add_member{ type: "button" } 
             = t(".add_member") 
         .container
           .row
-            %h4 
+            %h4
               = t(".attachments")
             %br
           %button.btn.btn-primary.btn-block.rounded-sm{type: "submit"}
