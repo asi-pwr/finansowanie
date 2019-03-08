@@ -10,7 +10,7 @@ gem 'puma', '~> 3.7'
 gem 'haml', '>= 5.0.4'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'mini_racer'
+gem "execjs"
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
@@ -25,6 +25,7 @@ gem 'dotenv-rails'
 gem 'aasm'
 gem 'pundit'
 gem 'webpacker', '~> 3.5'
+gem 'lograge'
 
 group :development, :test do
   gem 'pry'
@@ -61,5 +62,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
-
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
