@@ -129,13 +129,13 @@
                   = role.input :first_name, label: t(".first_name")
                 .col-md-4
                   = role.input :last_name, label: t(".last_name") 
-                .col-md-4
-                  %button.btn.btn-default.remove_row{type: "button"} 
-                    = t(:delete)
+                %button.btn.btn-default.remove_row{type: "button"} 
+                  = t(:delete)
           %button.btn.btn-default#add_member{ type: "button" } 
             = t(".add_member") 
           .row
             %h4 
               = t(".attachments")
+            = f.file_field :files, multiple: true 
           %button.btn.btn-default{type: "submit"}
             = t(".submit")

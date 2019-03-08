@@ -21,7 +21,11 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @organization = current_user.organizations.find(organization_params)
+    if current_user.admin
+      @organization = Organization.find(organization_params)
+    else
+      @organization = current_user.organizations.find(organization_params)
+    end
     @application = @organization.applications.new(application_params)
     if @application.save
       flash[:notice] = "Wniosek utworzony pomyslnie"
