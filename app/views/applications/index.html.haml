@@ -3,11 +3,16 @@
   %table.table.table-hover
     %thead.table-primary
       %tr
-        %th Nazwa
-        %th Koordynator
-        %th Organizacja
-        %th Data utworzenia wniosku
-        %th Stan
+        %th.align-middle 
+          = t "applications.form.project_name"
+        %th.align-middle
+          = t "applications.form.coordinator"
+        %th.align-middle 
+          = t "applications.index.organization"
+        %th.align-middle 
+          = t "applications.index.creation_date"
+        %th.align-middle
+          = t "applications.index.state"
 
     %tbody
       - @applications.each do |application|

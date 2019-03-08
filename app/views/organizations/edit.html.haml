@@ -1,7 +1,8 @@
-%h1 Edycja organizacji
+%h1 
+  = t("organizations.edit_organization")
 
 = render 'form'
 
-= link_to 'Pokaż', @organization
+= link_to t(:show), @organization
 |
-= link_to 'Powrót', organizations_path
+= link_to t(:back), organizations_path

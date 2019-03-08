@@ -7,12 +7,12 @@
           %li= msg
 
   .field
-    = f.label :name, 'Nazwa'
+    = f.label :name, t("organizations.name")
     = f.text_field :name
   .field
-    = f.label :time_of_establishment, 'Data utworzenia'
+    = f.label :time_of_establishment, t("organizations.time_of_establishment")
     = f.date_select :time_of_establishment
   .field
     = f.collection_select(:faculty_id, Faculty.all, :id, :name)
   .actions
-    = f.submit 'Zapisz'
+    = f.submit t(:submit)
