@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# triggers turbolinks
+
+# calculates sum for verification
+
 sum_amounts = (applied, other) ->
   a = parseFloat applied
   b = parseFloat other
@@ -75,6 +79,8 @@ $ ->
 
   # clickable row - go to application view page
   $(".clickable-row").click ->
-      window.location = $(this).data("href")
+    window.location = $(this).data("href")
 
-
+  # selectable row - select an application for modification
+  $(".selectable-row").click ->
+    $(this).toggleClass 'selected-row'

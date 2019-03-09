@@ -16,7 +16,7 @@
 
     %tbody
       - @applications.each do |application|
-        %tr
+        %tr.selectable-row{:id => application.id.to_s}
           %td
             = application.name
             %a.fas.fa-eye{:href => application_path(application) }
@@ -25,26 +25,14 @@
           %td= organization.name
           %td= application.created_at.to_formatted_s(:db)
           -if application.pending?
-            %td.p-0.bg-warning.dropdown-toggle.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
+            %td.p-0.bg-warning.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
               Oczekujący
-              .dropdown-menu.p-0
-                %a.dropdown-item.bg-warning{ :href => "#" } Oczekujący
-                %a.dropdown-item.bg-success{ :href => "#" } Zaakceptowany
-                %a.dropdown-item.bg-danger{ :href => "#" } Odrzucony
           -elsif application.accepted?
-            %td.p-0.bg-success.dropdown-toggle.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
+            %td.p-0.bg-success.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
               Zaakceptowany
-              .dropdown-menu.p-0
-                %a.dropdown-item.bg-warning{ :href => "#" } Oczekujący
-                %a.dropdown-item.bg-success{ :href => "#" } Zaakceptowany
-                %a.dropdown-item.bg-danger{ :href => "#" } Odrzucony
           -elsif application.rejected?
-            %td.p-0.bg-danger.dropdown-toggle.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
+            %td.p-0.bg-danger.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
               Odrzucony
-              .dropdown-menu.p-0
-                %a.dropdown-item.bg-warning{ :href => "#" } Oczekujący
-                %a.dropdown-item.bg-success{ :href => "#" } Zaakceptowany
-                %a.dropdown-item.bg-danger{ :href => "#" } Odrzucony
           -else
             %td
 
