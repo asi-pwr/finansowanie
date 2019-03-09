@@ -3,6 +3,8 @@
 class ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_application, only: %i[show update]
+  after_action :verify_policy_scoped 
+  after_action :veryfy_authorized, only: :update
 
   def index
     @applications = policy_scope(Application)
@@ -10,22 +12,19 @@ class ApplicationsController < ApplicationController
   end
 
   def new
-    @organizations = current_user.organizations
+    @organization = policy_scope(Organization)
     @users = User.all
     @application = Application.new
     @application.amount_applied_for = 0
     @application.amount_other_sources = 0
+    @application.amount_overall = 0
     3.times { @application.experiences.build }
     3.times { @application.schedule_items.build }
     3.times { @application.roles.build }
   end
 
   def create
-    if current_user.admin
-      @organization = Organization.find(organization_params)
-    else
-      @organization = current_user.organizations.find(organization_params)
-    end
+    @organization = policy_scope(Organization).find(organization_params)
     @application = @organization.applications.new(application_params)
     if @application.save
       flash[:notice] = "Wniosek utworzony pomyslnie"
@@ -37,13 +36,13 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @application = Application.find(params[:id])
+    @application = policy_scope(Application).find(params[:id])
   end
 
   # TODO: restrictions for fsm state transitions in form of
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
-    @application = Application.find(params[:id])
+    @application = policy_scope(Application).find(params[:id])
     authorize @application
     if params[:decision] == 'accept'
       @application.accept!

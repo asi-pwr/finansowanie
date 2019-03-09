@@ -1,26 +1,22 @@
-class OrganizationPolicy < ApplicationPolicy
+class FacutliesPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.admin?
         scope.all
-      else 
-        user.organizations
+      else
+        user.faculties
       end
     end
   end
-
+  
   def index?
-    user.admin?
-  end
-
-  def update?
     user.admin?
   end
 
   def show?
     user.admin?
   end
-
+  
   def edit?
     user.admin?
   end
@@ -36,5 +32,4 @@ class OrganizationPolicy < ApplicationPolicy
   def destroy?
     user.admin?
   end
-
 end
