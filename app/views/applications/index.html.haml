@@ -14,9 +14,9 @@
         %th.align-middle
           = t "applications.index.state"
 
-    %tbody
+    %tbody#selectable
       - @applications.each do |application|
-        %tr.selectable-row{:id => application.id.to_s}
+        %tr{:id => application.id.to_s}
           %td
             = application.name
             %a.fas.fa-eye{:href => application_path(application) }

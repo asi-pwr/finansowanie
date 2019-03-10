@@ -9,9 +9,11 @@
     "coffeescript": "1.12.7",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
     "popper.js": "^1.14.6",
     "rails-ujs": "^5.2.2",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "webpack-jquery-ui": "^2.0.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",

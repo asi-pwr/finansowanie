@@ -82,5 +82,4 @@ $ ->
     window.location = $(this).data("href")
 
   # selectable row - select an application for modification
-  $(".selectable-row").click ->
-    $(this).toggleClass 'selected-row'
+  $("#selectable").selectable()
