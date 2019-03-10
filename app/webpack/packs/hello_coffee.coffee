@@ -2,4 +2,5 @@
 # like app/views/layouts/application.html.erb.
 
 console.log 'Hello world from coffeescript'
+import "jquery-ui/ui/widgets/selectable"
 import '../src/javascripts/applications'
