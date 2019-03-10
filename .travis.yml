@@ -1,8 +1,14 @@
 services:
   - postgresql
+addons:
+  chrome: stable
+  apt:
+    packages:
+      - chromium-chromedriver
 before_script:
   - psql -c 'create database finansowanie_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
+  - RAILS_ENV=test bundle exec rails db:migrate
 language: ruby
 cache: bundler
 rvm:
@@ -16,5 +22,4 @@ jobs:
     - stage: qa
       script: bundle exec rubocop
     - stage: qa
-      script: bundle exec rails spec
-
+      script: RAILS_ENV=test bundle exec rails spec

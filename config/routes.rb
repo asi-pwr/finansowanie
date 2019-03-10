@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :applications
   root 'pages#home'
   get "/", to: "pages#home"
-# Add basic UI for viewing applications
+  # Add basic UI for viewing applications
   devise_for :users
   resources :faculties
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

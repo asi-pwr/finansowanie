@@ -12,7 +12,9 @@ window.$ = $;
 import "jquery-ui/ui/widgets/datepicker";
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
-import 'bootstrap/dist/js/bootstrap';
 
 Rails.start();
 Turbolinks.start();
+
+import 'bootstrap/dist/js/bootstrap';
+import '../src/javascripts/applications'

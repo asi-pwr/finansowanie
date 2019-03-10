@@ -2,10 +2,11 @@
 
 class ApplicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_application, only: %i[show edit update destroy]
+  before_action :set_application, only: %i[show update]
 
   def index
-    @applications = Application.all
+    @applications = policy_scope(Application)
+    @applications = @applications.order(:updated_at)
   end
 
   def new
@@ -33,11 +34,6 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
-  end
-
-  def index
-    @applications = policy_scope(Application)
-    @applications = @applications.order(:updated_at)
   end
 
   # TODO: restrictions for fsm state transitions in form of
