@@ -8,12 +8,12 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     @organizations = policy_scope(Organization)
-    authorize Organization 
+    authorize Organization
   end
 
   # GET /organizations/1
   # GET /organizations/1.json
-  def show 
+  def show
     @organization = policy_scope(Organization).find(params[:id])
     authorize @organization
   end

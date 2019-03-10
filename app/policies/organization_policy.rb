@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class OrganizationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.admin?
         scope.all
-      else 
+      else
         user.organizations
       end
     end
@@ -24,7 +26,7 @@ class OrganizationPolicy < ApplicationPolicy
   def edit?
     user.admin?
   end
-  
+
   def create?
     user.admin?
   end
@@ -36,5 +38,4 @@ class OrganizationPolicy < ApplicationPolicy
   def destroy?
     user.admin?
   end
-
 end

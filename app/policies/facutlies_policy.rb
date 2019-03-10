@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FacutliesPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
@@ -8,7 +10,7 @@ class FacutliesPolicy < ApplicationPolicy
       end
     end
   end
-  
+
   def index?
     user.admin?
   end
@@ -16,11 +18,11 @@ class FacutliesPolicy < ApplicationPolicy
   def show?
     user.admin?
   end
-  
+
   def edit?
     user.admin?
   end
-  
+
   def create?
     user.admin?
   end
