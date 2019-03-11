@@ -10,6 +10,14 @@ body {
   background-color: #99f;
 }
 
-.selected-row {
+.ui-selecting {
+  @extend .table-warning
+}
+
+.ui-selected{
+  @extend .table-danger
+}
+
+.ui-unselecting {
   @extend .table-warning
 }
