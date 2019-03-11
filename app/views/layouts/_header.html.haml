@@ -1,26 +1,24 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
+%nav.navbar.navbar-expand-sm.navbar-light.bg-primary.mb-sm-5
   .container-fluid
-    .navbar-header
-      .navbar-brand 
+    .navbar-header.mx-auto
+      .navbar-brand.mx-auto
         = t(".funding")
-    %ul.navbar-nav
-      %li.nav-item
+    %ul.navbar-nav.mx-auto
+      %li.nav-item.mx-auto
         = link_to t(".main_page"), root_path, class: "nav-link"
-      %li.nav-item
-        = link_to t(".organizations"), organizations_path, class: "nav-link"
-      %li.nav-item
-        = link_to t(".new_application"), new_application_path, class: "nav-link"
-      %li.nav-item
-        = link_to t(".applications"), applications_path, class: "nav-link"
-      %li.nav-item
-        = link_to t(".faculties"), faculties_path, class: "nav-link"
       -if current_user
-        %li.nav-item
+        %li.nav-item.mx-auto
+          = link_to t(".organizations"), organizations_path, class: "nav-link"
+        %li.nav-item.mx-auto
+          = link_to t(".new_application"), new_application_path, class: "nav-link"
+        %li.nav-item.mx-auto
+          = link_to t(".applications"), applications_path, class: "nav-link"
+        %li.nav-item.mx-auto
+          = link_to t(".faculties"), faculties_path, class: "nav-link"
+        %li.nav-item.mx-auto
           = link_to t(".log_out"), destroy_user_session_path, method: :delete, class: "nav-link"
       -else
-        %li.nav-item
+        %li.nav-item.mx-auto
           = link_to t(".log_in"), new_user_session_path, class: "nav-link"
-        %li.nav-item
+        %li.nav-item.mx-auto
           = link_to t(".sign_up"), new_user_registration_path, class: "nav-link"
-        %li.nav-item
-          = link_to t(".change_password"), new_user_password_path, class: "nav-link"

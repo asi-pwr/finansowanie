@@ -1,27 +1,26 @@
+%p#notice
+  =notice
 
-.container-fluid
-  %h1 Wszystkie organizacje
-  .table-responsive
-    %table.table.table-hover
-      %thead
+%h1.text-center Wszystkie organizacje
+.table-responsive
+  %table.table.table-hover.table-striped
+    %thead.table-primary
+      %tr
+        %th.align-middle Nazwa organizacji
+        %th.align-middle Data utworzenia
+        %th.align-middle Wydział
+        %th
+  
+    %tbody
+      - @organizations.each do |organization|
         %tr
-          %th Nazwa organizacji
-          %th Data utworzenia
-          %th Wydział
-          %th
-          %th
-          %th
+          %td= organization.name
+          %td= organization.time_of_establishment
+          %td= organization.faculty.name
+          %td.text-right
+            %a.fas.fa-eye{:href => organization_path(organization)}="&nbsp;".html_safe
+            %a.fas.fa-pen{:href => edit_organization_path(organization)}="&nbsp;".html_safe
+            %a.fas.fa-trash-alt{ :href => organization_path(organization), :rel => 'nofollow', "data-method" => 'delete', "data-confirm" =>  'Czy na pewno chcesz usunąć organizację?' }
 
-      %tbody
-        - @organizations.each do |organization|
-          %tr
-            %td= organization.name
-            %td= organization.time_of_establishment
-            %td= organization.faculty.name
-            %td= link_to 'Pokaż', organization
-            %td= link_to 'Edytuj', edit_organization_path(organization)
-            %td= link_to 'Usuń', organization, :method => :delete, :data => { :confirm => 'Czy na pewno chcesz usunąć organizację?' }
-
-    %br
-
-= link_to 'Nowa organizacja', new_organization_path
+%a.btn.btn-primary.btn-block.rounded-sm{ :href => new_organization_path }
+  Nowa organizacja

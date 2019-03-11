@@ -10,7 +10,7 @@ RSpec.describe Organization, type: :model do
 
   # tests for associations
   it { is_expected.to belong_to(:faculty) }
-  
+
   it { is_expected.to have_many(:users) }
   it { is_expected.to have_many(:applications) }
 

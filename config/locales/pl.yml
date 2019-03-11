@@ -12,7 +12,10 @@ pl:
   delete: "Usuń"
   edit: "Edytuj"
   show: "Pokaż"
+  submit: "Zapisz"
 
+  email: "E-mail"
+  password: "Hasło"
 
   activerecord:
     errors:
@@ -24,7 +27,12 @@ pl:
         faculty:
           attributes:
             name:
-              taken: "już zajęte"
+              blank: "nie może być pusta"
+              taken: "już zajęta"
+        organization:
+          attributes:
+            name:
+              blank: "nie może być pusta"
       messages:
         record_invalid: "Niepoprawny rekord: %{errors}"
 
@@ -77,12 +85,31 @@ pl:
       submit: "Aplikuj"
 
     index:
-      all_applications: "Wszystkie podania"
-      application_name: "Nazwa podania"
+      all_applications: "Wszystkie wnioski"
+      organization: "Organizacja"
       creation_date: "Data utworzenia"
-      amount_overall: "Kwota ogółem"
+      state: "Stan"
 
       confirm_delete: "Czy na pewno chcesz usunąć podanie?"
+
+  faculties:
+    faculty_name: "Nazwa wydziału"
+
+    editing_faculty: "Edycja wydziału"
+
+    successfully_created: "Organizacja utworzona pomyślnie."
+    successfully_destroyed: "Organizacja usunięta pomyślnie."
+    successfully_updated: "Organizacja edytowana pomyślnie."
+
+  organizations:
+    name: "Nazwa"
+    time_of_establishment: "Data utworzenia"
+
+    edit_organization: "Edycja organizacji"
+
+    successfully_created: "Organizacja utworzona pomyślnie."
+    successfully_destroyed: "Organizacja usunięta pomyślnie."
+    successfully_updated: "Organizacja edytowana pomyślnie."
 
   layouts:
     header:
@@ -100,3 +127,34 @@ pl:
       sign_up: "Rejestracja"
       change_password: "Zmiana hasła"
 
+  devise:
+    failure:
+      already_authenticated: "Użytkownik już zalogowany."
+      user:
+        not_found_in_database: "Niepoprawny e-mail lub hasło."
+        invalid: "Niepoprawny e-mail lub hasło."
+        unauthenticated: "Należy najpierw się zalogować."
+
+    passwords:
+      new:
+        send_reset_instructions: "Wyślij instrukcje przywracania hasła"
+
+    registrations:
+      new:
+        password_confirmation: "Powtórz hasło"
+        full_name: "Imię i nazwisko"
+        sign_up: "Załóż konto"
+
+    sessions:
+      new:
+        remember_me: "Nie wylogowuj mnie"
+        log_in: "Zaloguj"
+
+    shared:
+      links:
+        sign_up: "Rejestracja"
+        password_recovery: "Zapomniałeś hasła?"
+
+      user:
+        signed_in: "Zalogowano pomyślnie."
+        signed_out: "Wylogowano pomyślnie."
