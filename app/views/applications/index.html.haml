@@ -1,29 +1,50 @@
-.container-fluid
-  %h1 Wnioski K 
-  .table-responsive
-    %table.table.table-hover
-      %thead
-        %tr
-          %th Nazwa
-          %th Koordynator
-          %th Organizacja
-          %th Data utworzenia wniosku
-          %th Stan
+%h1.text-center Wnioski K 
+.table-responsive.table.table-hover.table-striped
+  %table.table.table-hover
+    %thead.table-primary
+      %tr
+        %th.align-middle 
+          = t "applications.form.project_name"
+        %th.align-middle
+          = t "applications.form.coordinator"
+        %th.align-middle 
+          = t "applications.index.organization"
+        %th.align-middle 
+          = t "applications.index.creation_date"
+        %th.align-middle
+          = t "applications.index.state"
 
-      %tbody
-        - @applications.each do |application|
-          %tr{class: "clickable-row", "data-href" => application_path(application)}
-            %td= application.name
-            %td= application.coordinator
-            - organization = Organization.find(application.organization_id)
-            %td= organization.name
-            %td= application.created_at.to_formatted_s(:db)
-            -if application.pending?
-              %td.bg-warning Oczekujący
-            -elsif application.accepted?
-              %td.bg-success Zaakceptowany
-            -elsif application.rejected?
-              %td.bg-danger Odrzucony
-            -else
-              %td
+    %tbody#selectable
+      - @applications.each do |application|
+        %tr{:id => application.id.to_s}
+          %td
+            = application.name
+            %a.fas.fa-eye{:href => application_path(application) }
+          %td= application.coordinator
+          - organization = Organization.find(application.organization_id)
+          %td= organization.name
+          %td= application.created_at.to_formatted_s(:db)
+          -if application.pending?
+            %td.p-0.bg-warning.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
+              Oczekujący
+          -elsif application.accepted?
+            %td.p-0.bg-success.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
+              Zaakceptowany
+          -elsif application.rejected?
+            %td.p-0.bg-danger.align-middle.text-center{ :id => "applicationDropdown" + application.id.to_s, "data-toggle" => "dropdown" } 
+              Odrzucony
+          -else
+            %td
+.btn-group
+  %button.btn.btn-secondary.btn-lg.rounded-sm
+    Wybierz akcję...
+  %button.btn.btn-primary.btn-lg.dropdown-toggle.dropdown-toggle-split{ "data-toggle" => "dropdown"}
+  .dropdown-menu
+    .dropdown-item Zaakceptuj
+    .dropdown-item Odrzuć
+    .dropdown-item Oczekuj
+    .dropdown-item Usuń
+
+
+
 

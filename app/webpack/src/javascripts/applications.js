@@ -105,4 +105,15 @@ $(function() {
   });
 });
 
-
+  // selectable row - select rows of applications to submit
+  $(function(){
+    $('#selectable').selectable({
+      filter:'tr',
+      selected: function(event, ui){
+        console.log(event);
+        console.log(ui);
+        var s=$(this).find('.ui-selected');
+        console.log(s);
+      }
+    })
+  });
