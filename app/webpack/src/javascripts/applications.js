@@ -117,3 +117,12 @@ $(function() {
       }
     })
   });
+
+  // select action
+  
+  $(function(){
+    $('#accept').click(function(){
+      $('#actionName').html("Akceptuj");
+    }
+    );
+  });
