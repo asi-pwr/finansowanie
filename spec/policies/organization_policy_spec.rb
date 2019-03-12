@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe OrganizationPolicy, type: :policy do
-  subject { described_class }
+  # Class under test
+  let(:subject) { described_class.new(user, Organization.first) }
 
   let!(:faculty) { FactoryBot.create(:faculty) }
   let!(:organizations) do
@@ -34,6 +35,10 @@ RSpec.describe OrganizationPolicy, type: :policy do
         end
       end
     end
+    
+    it "should permit all actions to admins" do
+      expect(subject).to permit_actions(%i[index update show edit create destroy])
+    end
   end
 
   context "user is not an admin" do
@@ -58,12 +63,16 @@ RSpec.describe OrganizationPolicy, type: :policy do
       it "should not resolve to organizations other than users'" do
         user_orgs = user.organizations
         Organization.all.each do |org|
-          if !user_orgs.include? org do
+          if !user_orgs.include? org 
             expect(scope).not_to include org
-          end
           end
         end
       end
+    end
+    
+
+    it "should not allow any actions to a non admin" do
+      expect(subject).to forbid_actions(%i[index update show edit create destroy])
     end
   end
 end
