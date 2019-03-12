@@ -37,7 +37,7 @@ class OrganizationsController < ApplicationController
     authorize @organization
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to @organization, notice: 'Organizacja utworzona pomyslnie' }
+        format.html { redirect_to @organization, notice: t('.successfully_created') }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class OrganizationsController < ApplicationController
     authorize @organization
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
+        format.html { redirect_to @organization, notice: t('.successfully_updated') }
         format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class OrganizationsController < ApplicationController
     authorize @organization
     @organization.destroy
     respond_to do |format|
-      format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
+      format.html { redirect_to organizations_url, notice: t('.successfully_destroyed') }
       format.json { head :no_content }
     end
   end
