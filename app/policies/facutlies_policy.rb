@@ -6,7 +6,7 @@ class FacutliesPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        user.faculties
+        [] << Faculty.find(user.faculty_id)
       end
     end
   end
