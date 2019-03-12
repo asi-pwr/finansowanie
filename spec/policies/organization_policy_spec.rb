@@ -35,7 +35,7 @@ RSpec.describe OrganizationPolicy, type: :policy do
         end
       end
     end
-    
+
     it "should permit all actions to admins" do
       expect(subject).to permit_actions(%i[index update show edit create destroy])
     end
@@ -63,13 +63,12 @@ RSpec.describe OrganizationPolicy, type: :policy do
       it "should not resolve to organizations other than users'" do
         user_orgs = user.organizations
         Organization.all.each do |org|
-          if !user_orgs.include? org 
+          if !user_orgs.include? org
             expect(scope).not_to include org
           end
         end
       end
     end
-    
 
     it "should not allow any actions to a non admin" do
       expect(subject).to forbid_actions(%i[index update show edit create destroy])

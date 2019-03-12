@@ -9,7 +9,7 @@ RSpec.describe FacutliesPolicy, type: :policy do
   context "for admin user" do
     let(:user_faculty) { faculties.first }
     let(:user) { build(:user, faculty_id: user_faculty.id, admin: true) }
-    
+
     permissions ".scope" do
       it "should resolve to all faculties" do
         expect(described_class::Scope.new(user, Faculty).resolve).to include(faculties.first)
@@ -17,7 +17,8 @@ RSpec.describe FacutliesPolicy, type: :policy do
     end
 
     it "should permit all actions" do
-      expect(described_class.new(user, user_faculty)).to permit_actions(%w(index show edit create update destroy))
+      expect(described_class.new(user, user_faculty)).
+        to permit_actions(%w(index show edit create update destroy))
     end
   end
 
@@ -40,8 +41,8 @@ RSpec.describe FacutliesPolicy, type: :policy do
     end
 
     it "should forbid all actions" do
-      expect(described_class.new(user, user_faculty)).to forbid_actions(%w(index show edit create update destroy))
+      expect(described_class.new(user, user_faculty)).
+        to forbid_actions(%w(index show edit create update destroy))
     end
   end
-
 end

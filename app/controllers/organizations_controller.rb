@@ -65,12 +65,10 @@ class OrganizationsController < ApplicationController
   # DELETE /organizations/1.json
   def destroy
     authorize @organization
-    if current_user.admin?
-      @organization.destroy
-      respond_to do |format|
-        format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+    @organization.destroy
+    respond_to do |format|
+      format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
