@@ -6,7 +6,12 @@ class ApplicationPolicy < RailsApplicationPolicy
       if user.admin?
         scope.all
       else
-        user.applications
+        # get applications from organizations that user belongs to
+        organization_ids = []
+        user.organizations.each do |org|
+          organization_ids << org.id
+        end
+        scope.where(organization_id: organization_ids)
       end
     end
   end
