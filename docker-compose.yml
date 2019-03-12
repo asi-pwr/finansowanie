@@ -3,8 +3,29 @@ services:
   db:
     env_file: .env
     image: postgres:11.2-alpine
+  gems:
+    image: busybox
+    volumes:
+      - gems:/gems
+  node_modules:
+    image: busybox
+    volumes:
+      - node_modules:/node_modules
   app:
     build: .
     env_file: .env
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+      - gems
+    volumes:
+      - .:/app
+      - gems:/gems
+      - node_modules:/node_modules
     ports:
       - "3000:3000"
+
+volumes:
+  gems:
+  node_modules:

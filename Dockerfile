@@ -1,13 +1,20 @@
 FROM ruby:2.5.3-alpine
 
-RUN apk update && apk add build-base nodejs postgresql-dev tzdata
+RUN apk add --update --no-cache \
+      build-base \
+      nodejs \
+      tzdata \
+      libxml2-dev \
+      libxslt-dev \
+      postgresql-dev \
+      yarn
+RUN bundle config build.nokogiri --use-system-libraries
 
 RUN mkdir /app
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
-RUN bundle install --binstubs --without test --without development
+EXPOSE 3000
 
-COPY . .
+ENV BUNDLE_PATH /gems
 
-CMD puma -C config/puma.rb
+CMD ["bin/rails", "s", "-b", "0.0.0.0"]
