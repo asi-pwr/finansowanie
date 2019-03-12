@@ -8,7 +8,7 @@ gem 'rails', '~> 5'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'haml', '>= 5.0.4'
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 gem 'uglifier', '>= 1.3.0'
 gem "execjs"
 gem 'coffee-rails', '~> 4.2'
