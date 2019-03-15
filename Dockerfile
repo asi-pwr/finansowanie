@@ -7,7 +7,9 @@ RUN apk add --update --no-cache \
       libxml2-dev \
       libxslt-dev \
       postgresql-dev \
-      yarn
+      yarn \
+      chromium \
+      chromium-chromedriver
 RUN bundle config build.nokogiri --use-system-libraries
 
 RUN mkdir /app
