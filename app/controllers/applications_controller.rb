@@ -4,6 +4,8 @@ class ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_application, only: %i[show update]
 
+  wrap_parameters include: [:selections, :decision, :organization_id], format: [:json, :xml, :url_encoded_form, :multipart_form]
+
   def index
     @applications = policy_scope(Application)
     @applications = @applications.order(:updated_at)
@@ -39,7 +41,7 @@ class ApplicationsController < ApplicationController
   # TODO: restrictions for fsm state transitions in form of
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
-    @application = Application.find(params[:id])
+    @application = Application.find(params[:selections])
     authorize @application
     if params[:decision] == 'accept'
       @application.accept!
