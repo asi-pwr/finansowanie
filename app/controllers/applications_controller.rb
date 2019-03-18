@@ -2,7 +2,7 @@
 
 class ApplicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_application, only: %i[show update]
+  before_action :set_application, only: %i[show]
 
   wrap_parameters include: [:selections, :decision, :organization_id], format: [:json, :xml, :url_encoded_form, :multipart_form]
 
@@ -41,23 +41,29 @@ class ApplicationsController < ApplicationController
   # TODO: restrictions for fsm state transitions in form of
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
-    @application = Application.find(params[:selections])
-    authorize @application
-    if params[:decision] == 'accept'
-      @application.accept!
-      flash[:notice] = "Zaakceptowano wniosek"
-    elsif params[:decision] == 'reject'
-      @application.reject!
-      flash[:notice] = "Odrzucono wniosek"
-    else
-      flash[:alert] = "Nie można zmienić stanu!"
-    end
-    redirect_to @application
+    redirect_to applications_path
   end
 
   def bulk_action
     # You can access bulk_action_params[:application_ids] here
     # You also need to add this action to config/routes.rb
+    
+    @application = Application.find(params[:selections])
+    authorize @application
+    if params[:decision] == 'accept'
+      @application.each do |app|
+        app.accept!
+      end
+      flash[:notice] = "Zaakceptowano wniosek"
+    elsif params[:decision] == 'reject'
+      @application.each do |app|
+        app.reject!
+      end
+      flash[:notice] = "Odrzucono wniosek"
+    else
+      flash[:alert] = "Nie można zmienić stanu!"
+    end
+    redirect_to @application
   end
 
   private

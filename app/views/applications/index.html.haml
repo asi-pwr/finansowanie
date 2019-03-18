@@ -37,11 +37,7 @@
             %td
 
   .btn-group
-    =button_to("Wybierz akcję...", 
-      { method: :patch},
-      { params: {:decision => "", :selections => "", :organization_id => 1 }, 
-        :class => "button btn btn-primary btn-lg rounded-sm", :id => "actionName", :disabled => true } )
-        =#TODO app should not submit a whole dummy application just to change the state of a few exisiting ones
+    =button_to "Wybierz akcję...", bulk_action_applications_path, method: :patch, id: "actionName", class: "button btn btn-primary btn-lg rounded-sm", disabled: true, params: {:decision => "", :selections => "" }
     %button.btn.btn-primary.btn-lg.dropdown-toggle.dropdown-toggle-split{ "data-toggle" => "dropdown"}
     .dropdown-menu
       .dropdown-item#accept Zaakceptuj

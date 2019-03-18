@@ -3,6 +3,11 @@
 Rails.application.routes.draw do
   resources :organizations
   resources :applications
+  resources :applications do
+    collection do
+      patch 'bulk_action'
+    end
+  end
   root 'pages#home'
   get "/", to: "pages#home"
   # Add basic UI for viewing applications
