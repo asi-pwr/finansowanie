@@ -2,7 +2,9 @@
 
 class ApplicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_application, only: %i[show]
+  before_action :set_application, only: %i[show update]
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   wrap_parameters include: [:selections, :decision, :organization_id], format: [:json, :xml, :url_encoded_form, :multipart_form]
 
@@ -51,14 +53,10 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:selections])
     authorize @application
     if params[:decision] == 'accept'
-      @application.each do |app|
-        app.accept!
-      end
+      @application.accept!
       flash[:notice] = "Zaakceptowano wniosek"
     elsif params[:decision] == 'reject'
-      @application.each do |app|
-        app.reject!
-      end
+      @application.reject!
       flash[:notice] = "Odrzucono wniosek"
     else
       flash[:alert] = "Nie można zmienić stanu!"
@@ -103,4 +101,10 @@ class ApplicationsController < ApplicationController
       files: []
     )
   end
+
+  def user_not_authorized
+    flash[:alert] = "Nie posiadasz uprawnień do wykonania tej operacji."
+    redirect_to @application
+  end
+
 end
