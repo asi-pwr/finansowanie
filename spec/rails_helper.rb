@@ -23,6 +23,10 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.before(:each, type: :system) do
+    driven_by :selenium, using: :chrome, options: { args: ["headless", "disable-gpu", "no-sandbox"] }
+  end
 end
 
 Shoulda::Matchers.configure do |config|

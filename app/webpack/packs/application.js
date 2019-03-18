@@ -9,8 +9,6 @@
 const $ = require('jquery');
 window.jQuery = $;
 window.$ = $;
-import "jquery-ui/ui/widgets/datepicker";
-import "jquery-ui/ui/widgets/selectable";
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 
@@ -18,4 +16,3 @@ Rails.start();
 Turbolinks.start();
 
 import 'bootstrap/dist/js/bootstrap';
-import '../src/javascripts/applications'
