@@ -55,14 +55,19 @@ class ApplicationsController < ApplicationController
     redirect_to @application
   end
 
+  def bulk_action
+    # You can access bulk_action_params[:application_ids] here
+    # You also need to add this action to config/routes.rb
+  end
+
   private
 
   def set_application
     @application = Application.find(params[:id])
   end
 
-  def organization_params
-    params.require(:application).require(:organization_id)
+  def bulk_action_params
+    params.require(:application).permit(application_ids: [])
   end
 
   def application_params
