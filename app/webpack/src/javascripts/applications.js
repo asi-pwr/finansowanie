@@ -112,6 +112,7 @@ $(function() {
   $(function(){
     $('#selectable').selectable({
       filter:'tr',
+      cancel: 'a',
       selected: function(event, ui){
         console.log(event);
         console.log(ui);
