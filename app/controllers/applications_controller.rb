@@ -50,18 +50,26 @@ class ApplicationsController < ApplicationController
     # You can access bulk_action_params[:application_ids] here
     # You also need to add this action to config/routes.rb
     
-    @application = Application.find(params[:selections])
-    authorize @application
-    if params[:decision] == 'accept'
-      @application.accept!
-      flash[:notice] = "Zaakceptowano wniosek"
-    elsif params[:decision] == 'reject'
-      @application.reject!
-      flash[:notice] = "Odrzucono wniosek"
-    else
-      flash[:alert] = "Nie można zmienić stanu!"
+    @applications = Application.find(params[:selections].split(','))
+    @applications.each do |app|
+      authorize app
+      if params[:decision] == 'accept'
+        app.accept!
+        flash[:notice] = "Zaakceptowano wniosek"
+      elsif params[:decision] == 'reject'
+        app.reject!
+        flash[:notice] = "Odrzucono wniosek"
+      elsif params[:decision] == 'pend'
+        app.pending!
+        flash[:notice] = "Przywrócono status oczekujący"
+      elsif params[:decision] == 'delete'
+        app.destroy!
+        flash[:notice] = "Usunięto wniosek"
+      else
+        flash[:alert] = "Nie można zmienić stanu!"
+      end
     end
-    redirect_to @application
+    redirect_to applications_path
   end
 
   private
