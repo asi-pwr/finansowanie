@@ -6,4 +6,3 @@ json.state_change do
   json.selections
   json.action
 end
-

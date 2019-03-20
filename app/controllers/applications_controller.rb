@@ -6,7 +6,7 @@ class ApplicationsController < ApplicationController
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  wrap_parameters include: [:selections, :decision, :organization_id], format: [:json, :xml, :url_encoded_form, :multipart_form]
+  wrap_parameters include: %i[selections decision organization_id], format: %i[json xml url_encoded_form multipart_form]
 
   def index
     @applications = policy_scope(Application)
@@ -49,7 +49,7 @@ class ApplicationsController < ApplicationController
   def bulk_action
     # You can access bulk_action_params[:application_ids] here
     # You also need to add this action to config/routes.rb
-    
+
     @applications = Application.find(params[:selections].split(','))
     @applications.each do |app|
       authorize app
@@ -114,5 +114,4 @@ class ApplicationsController < ApplicationController
     flash[:alert] = "Nie posiadasz uprawnień do wykonania tej operacji."
     redirect_to @application
   end
-
 end

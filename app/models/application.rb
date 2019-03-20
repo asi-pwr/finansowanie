@@ -39,6 +39,5 @@ class Application < ApplicationRecord
     event :pending do
       transitions from: %i[pending accepted rejected], to: :pending
     end
-
   end
 end
