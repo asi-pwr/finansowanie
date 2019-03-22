@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationsController < ApplicationController
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError do |exception|
+    flash[:alert] = "You are not authorized to perform this action"
+    redirect_to request.referrer || root_path
+  end
   before_action :authenticate_user!
   before_action :set_application, only: %i[show update]
   after_action :verify_policy_scoped

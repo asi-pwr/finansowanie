@@ -5,12 +5,10 @@ class FacutliesPolicy < ApplicationPolicy
     def resolve
       if user.nil?
         []
+      elsif user.admin?
+        scope.all
       else
-        if user.admin?
-          scope.all
-        else
-          [] << Faculty.find(user.faculty_id)
-        end
+        [] << Faculty.find(user.faculty_id)
       end
     end
   end

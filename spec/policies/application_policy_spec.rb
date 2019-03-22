@@ -39,7 +39,7 @@ RSpec.describe ApplicationPolicy do
       end
       it "should not resolve to applications that do not belong to user's organizations" do
         # check every application of every organization
-        # if user does not belong to an organization 
+        # if user does not belong to an organization
         # his scope should not include it's applications
         Organization.all.each do |org|
           Application.where(organization_id: org.id).each do |app|
