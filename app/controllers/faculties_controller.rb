@@ -2,9 +2,9 @@
 
 class FacultiesController < ApplicationController
   include Pundit
-  rescue_from Pundit::NotAuthorizedError do |exception|
+  rescue_from Pundit::NotAuthorizedError do
     flash[:alert] = "You are not authorized to perform this action"
-    redirect_to request.referrer || root_path
+    redirect_to request.referer || root_path
   end
   before_action :set_faculty, only: %i[show edit update destroy]
 
