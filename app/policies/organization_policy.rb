@@ -3,35 +3,63 @@
 class OrganizationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
+      if !user.nil?
+        if user.admin?
+          scope.all
+        else
+          user.organizations
+        end
       else
-        user.organizations
+        []
       end
     end
   end
 
   def index?
-    user.admin?
+    if !user.nil?
+      user.admin?
+    else
+      false
+    end
   end
 
   def update?
-    user.admin?
+    if !user.nil?
+      user.admin?
+    else
+      false
+    end
   end
 
   def show?
-    user.admin?
+    if !user.nil?
+      user.admin?
+    else
+      false
+    end
   end
 
   def edit?
-    user.admin?
+    if !user.nil?
+      user.admin?
+    else
+      false
+    end
   end
 
   def create?
-    user.admin?
+    if !user.nil?
+      user.admin?
+    else
+      false
+    end
   end
 
   def destroy?
-    user.admin?
+    if !user.nil?
+      user.admin?
+    else
+      false
+    end
   end
 end
