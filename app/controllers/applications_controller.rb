@@ -6,6 +6,7 @@ class ApplicationsController < ApplicationController
     flash[:alert] = "You are not authorized to perform this action"
     redirect_to request.referer || root_path
   end
+
   before_action :authenticate_user!
   before_action :set_application, only: %i[show update]
   after_action :verify_policy_scoped
