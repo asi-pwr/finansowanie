@@ -25,7 +25,7 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @organization = current_user.organizations.find(organization_params)
+    @organization = current_user.organizations.find(application_params[:organization_id])
     @application = @organization.applications.new(application_params)
     if @application.save
       flash[:notice] = "Wniosek utworzony pomyslnie"
@@ -59,9 +59,9 @@ class ApplicationsController < ApplicationController
       elsif params[:decision] == 'reject'
         app.reject!
         flash[:notice] = "Odrzucono wniosek"
-      elsif params[:decision] == 'pend'
-        app.pending!
-        flash[:notice] = "Przywrócono status oczekujący"
+      # elsif params[:decision] == 'pend'
+      #   app.pending!
+      #   flash[:notice] = "Przywrócono status oczekujący"
       elsif params[:decision] == 'delete'
         app.destroy!
         flash[:notice] = "Usunięto wniosek"

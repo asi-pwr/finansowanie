@@ -36,8 +36,8 @@ class Application < ApplicationRecord
       transitions from: %i[pending rejected accepted], to: :rejected
     end
 
-    event :pending do
-      transitions from: %i[pending accepted rejected], to: :pending
-    end
+    # event :pending do
+    #   transitions from: %i[pending accepted rejected], to: :pending
+    # end
   end
 end
