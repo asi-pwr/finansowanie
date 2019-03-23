@@ -6,8 +6,8 @@ RSpec.describe ApplicationPolicy do
   before(:all) {
     organization1 = create(:organization)
     organization2 = create(:organization)
-    2.times { create(:application, organization: organization1) }
-    2.times { create(:application, organization: organization2) }
+    create_list(:application, 2,  organization: organization1)
+    create_list(:application, 2,  organization: organization2)
   }
   subject(:described_class) { ApplicationPolicy.new(user, application) }
 

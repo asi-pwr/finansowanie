@@ -2,9 +2,9 @@
 
 class ApplicationsController < ApplicationController
   include Pundit
-  rescue_from Pundit::NotAuthorizedError do |exception|
+  rescue_from Pundit::NotAuthorizedError do |_exception|
     flash[:alert] = "You are not authorized to perform this action"
-    redirect_to request.referrer || root_path
+    redirect_to request.referer || root_path
   end
   before_action :authenticate_user!
   before_action :set_application, only: %i[show update]

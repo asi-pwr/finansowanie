@@ -15,7 +15,7 @@ RSpec.describe "Organizations", type: :request do
       get organizations_path
       expect(response).to have_http_status(302)
     end
-    # if user is an admin, he/she should get 
+    # if user is an admin, he/she should get
     # page with "OK response code"
     it "expect to respond with ok code if admin" do
       user.update(admin: true)

@@ -7,12 +7,7 @@ RSpec.describe OrganizationPolicy, type: :policy do
   let(:subject) { described_class.new(user, Organization.first) }
 
   let!(:faculty) { FactoryBot.create(:faculty) }
-  let!(:organizations) do
-    4.times do
-      FactoryBot.create(:organization)
-    end
-  end
-
+  before(:all) { create_list(:organization, 4) }
   context "user is admin" do
     let(:user) {
       FactoryBot.build(:user, admin: true,
