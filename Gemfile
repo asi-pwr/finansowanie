@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.6.1'
+ruby '2.6.2'
 
 gem 'rails', '~> 5'
 gem 'pg', '~> 0.18'
@@ -60,4 +60,6 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'pundit-matchers', '~> 1.6.0'
 end
