@@ -60,4 +60,6 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'pundit-matchers', '~> 1.6.0'
 end

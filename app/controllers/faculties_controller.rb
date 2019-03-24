@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class FacultiesController < ApplicationController
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError do |_exception|
+    flash[:alert] = "You are not authorized to perform this action"
+    redirect_to request.referer || root_path
+  end
   before_action :set_faculty, only: %i[show edit update destroy]
 
   # GET /faculties

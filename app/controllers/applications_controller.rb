@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
 class ApplicationsController < ApplicationController
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError do |_exception|
+    flash[:alert] = "You are not authorized to perform this action"
+    redirect_to request.referer || root_path
+  end
   before_action :authenticate_user!
   before_action :set_application, only: %i[show update]
+  after_action :verify_policy_scoped
+  after_action :veryfy_authorized, only: :update
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -14,18 +21,19 @@ class ApplicationsController < ApplicationController
   end
 
   def new
-    @organizations = current_user.organizations
+    @organization = policy_scope(Organization)
     @users = User.all
     @application = Application.new
     @application.amount_applied_for = 0
     @application.amount_other_sources = 0
+    @application.amount_overall = 0
     3.times { @application.experiences.build }
     3.times { @application.schedule_items.build }
     3.times { @application.roles.build }
   end
 
   def create
-    @organization = current_user.organizations.find(application_params[:organization_id])
+    @organization = policy_scope(Organization).find(organization_params)
     @application = @organization.applications.new(application_params)
     if @application.save
       flash[:notice] = "Wniosek utworzony pomyslnie"
@@ -37,37 +45,22 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @application = Application.find(params[:id])
+    @application = policy_scope(Application).find(params[:id])
   end
 
   # TODO: restrictions for fsm state transitions in form of
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
-    redirect_to applications_path
-  end
-
-  def bulk_action
-    # You can access bulk_action_params[:application_ids] here
-    # You also need to add this action to config/routes.rb
-
-    @applications = Application.find(params[:selections].split(','))
-    @applications.each do |app|
-      authorize app
-      if params[:decision] == 'accept'
-        app.accept!
-        flash[:notice] = "Zaakceptowano wniosek"
-      elsif params[:decision] == 'reject'
-        app.reject!
-        flash[:notice] = "Odrzucono wniosek"
-      # elsif params[:decision] == 'pend'
-      #   app.pending!
-      #   flash[:notice] = "Przywrócono status oczekujący"
-      elsif params[:decision] == 'delete'
-        app.destroy!
-        flash[:notice] = "Usunięto wniosek"
-      else
-        flash[:alert] = "Nie można zmienić stanu!"
-      end
+    @application = policy_scope(Application).find(params[:id])
+    authorize @application
+    if params[:decision] == 'accept'
+      @application.accept!
+      flash[:notice] = "Zaakceptowano wniosek"
+    elsif params[:decision] == 'reject'
+      @application.reject!
+      flash[:notice] = "Odrzucono wniosek"
+    else
+      flash[:alert] = "Nie można zmienić stanu!"
     end
     redirect_to applications_path
   end
