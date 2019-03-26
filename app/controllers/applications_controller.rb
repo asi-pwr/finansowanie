@@ -11,6 +11,10 @@ class ApplicationsController < ApplicationController
   after_action :verify_policy_scoped
   after_action :veryfy_authorized, only: :update
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  wrap_parameters include: %i[selections decision organization_id], format: %i[json xml url_encoded_form multipart_form]
+
   def index
     @applications = policy_scope(Application)
     @applications = @applications.order(:updated_at)
@@ -58,7 +62,7 @@ class ApplicationsController < ApplicationController
     else
       flash[:alert] = "Nie można zmienić stanu!"
     end
-    redirect_to @application
+    redirect_to applications_path
   end
 
   private
@@ -67,8 +71,8 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
   end
 
-  def organization_params
-    params.require(:application).require(:organization_id)
+  def bulk_action_params
+    params.require(:application).permit(application_ids: [])
   end
 
   def application_params
@@ -97,5 +101,10 @@ class ApplicationsController < ApplicationController
       roles_attributes: %i[member_role first_name last_name],
       files: []
     )
+  end
+
+  def user_not_authorized
+    flash[:alert] = "Nie posiadasz uprawnień do wykonania tej operacji."
+    redirect_to @application
   end
 end

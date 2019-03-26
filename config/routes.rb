@@ -2,6 +2,11 @@
 
 Rails.application.routes.draw do
   resources :organizations
+  resources :applications do
+    collection do
+      patch 'bulk_action'
+    end
+  end
   resources :applications
   root 'pages#home'
   get "/", to: "pages#home"

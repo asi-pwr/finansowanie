@@ -12,12 +12,13 @@ cache:
   yarn: true
 
 addons:
-  chrome: stable
   apt:
     packages:
+      - google-chrome-stable
       - chromium-chromedriver
 
 before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - psql -c 'create database finansowanie_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - bin/yarn install
