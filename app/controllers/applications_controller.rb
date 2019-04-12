@@ -33,7 +33,7 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @organization = policy_scope(Organization).find(organization_params)
+    @organization = policy_scope(Organization).find(application_params[:organization_id])
     @application = @organization.applications.new(application_params)
     if @application.save
       flash[:notice] = t('.created_successfully')
@@ -68,6 +68,20 @@ class ApplicationsController < ApplicationController
   def bulk_action
     # You can access bulk_action_params[:application_ids] here
     # You also need to add this action to config/routes.rb
+    @application = policy_scope(Application).find(params[:selections].split(','))
+    @application.each do |app|
+      authorize app
+      if params[:decision] == 'accept'
+        app.accept!
+        flash[:notice] = t('.accepted') 
+      elsif params[:decision] == 'reject'
+        app.reject!
+        flash[:notice] = t('.rejected') 
+      else
+        flash[:alert] = t('.cant_change_state') 
+      end
+    end
+    redirect_to applications_path
   end
 
   private

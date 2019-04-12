@@ -16,6 +16,8 @@ pl:
 
   email: "E-mail"
   password: "Hasło"
+  
+  error: "błąd"
 
   activerecord:
     errors:
@@ -47,6 +49,7 @@ pl:
       messages:
         record_invalid: "Niepoprawny rekord: %{errors}"
 
+  application: "Wniosek"
   applications:
     form:
       part_one_heading: "Część I - informacje o wnioskodawcy"

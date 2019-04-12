@@ -26,6 +26,7 @@ gem 'aasm'
 gem 'pundit'
 gem 'webpacker', '~> 3.5'
 gem 'lograge'
+gem 'rails-i18n', '~>5.1'
 
 group :development, :test do
   gem 'pry'
