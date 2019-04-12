@@ -35,16 +35,12 @@
               Odrzucony
           -else
             %td
-.btn-group
-  %button.btn.btn-secondary.btn-lg.rounded-sm
-    Wybierz akcję...
-  %button.btn.btn-primary.btn-lg.dropdown-toggle.dropdown-toggle-split{ "data-toggle" => "dropdown"}
-  .dropdown-menu
-    .dropdown-item Zaakceptuj
-    .dropdown-item Odrzuć
-    .dropdown-item Oczekuj
-    .dropdown-item Usuń
 
-
-
-
+  .btn-group
+    =button_to "Wybierz akcję...", bulk_action_applications_path, method: :patch, id: "actionName", class: "button btn btn-primary btn-lg rounded-sm", disabled: true, params: {:decision => "", :selections => "" }
+    %button.btn.btn-primary.btn-lg.dropdown-toggle.dropdown-toggle-split{ "data-toggle" => "dropdown"}
+    .dropdown-menu
+      .dropdown-item#accept Zaakceptuj
+      .dropdown-item#reject Odrzuć
+      -#.dropdown-item#pend Oczekuj
+      .dropdown-item#delete Usuń
