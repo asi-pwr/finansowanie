@@ -55,12 +55,12 @@ class ApplicationsController < ApplicationController
     authorize @application
     if params[:decision] == 'accept'
       @application.accept!
-      flash[:notice] = t('.accepted') 
+      flash[:notice] = t('.accepted')
     elsif params[:decision] == 'reject'
       @application.reject!
-      flash[:notice] = t('.rejected') 
+      flash[:notice] = t('.rejected')
     else
-      flash[:alert] = t('.cant_change_state') 
+      flash[:alert] = t('.cant_change_state')
     end
     redirect_to applications_path
   end
@@ -73,12 +73,12 @@ class ApplicationsController < ApplicationController
       authorize app
       if params[:decision] == 'accept'
         app.accept!
-        flash[:notice] = t('.accepted') 
+        flash[:notice] = t('.accepted')
       elsif params[:decision] == 'reject'
         app.reject!
-        flash[:notice] = t('.rejected') 
+        flash[:notice] = t('.rejected')
       else
-        flash[:alert] = t('.cant_change_state') 
+        flash[:alert] = t('.cant_change_state')
       end
     end
     redirect_to applications_path
