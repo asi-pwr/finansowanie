@@ -13,7 +13,7 @@
       .panel-body
         .row
           .col-md-4
-            = f.association :organization, label: t(".applying_organization")
+            = f.input :organization, collection: @organization
           .col-md-4
             = f.input :name, label: t(".project_name")
           .col-md-4
