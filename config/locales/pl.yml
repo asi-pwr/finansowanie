@@ -27,12 +27,23 @@ pl:
         faculty:
           attributes:
             name:
-              blank: "nie może być pusta"
-              taken: "już zajęta"
+              blank: "Pole nie może być puste"
+              taken: "Nazwa już zajęta"
         organization:
           attributes:
             name:
-              blank: "nie może być pusta"
+              blank: "Pole nie może być puste"
+        user:
+          attributes:
+            email:
+              blank: "Pole nie może być puste"
+              invalid: "Podany e-mail jest niepoprawny"
+            full_name:
+              blank: "Pole nie może być puste"
+            password:
+              blank: "Pole nie może być puste"
+              confirmation: "Podane hasła muszą się zgadzać"
+              too_short: "Podane hasło jest za krótkie"
       messages:
         record_invalid: "Niepoprawny rekord: %{errors}"
 
