@@ -33,7 +33,7 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @organization = policy_scope(Organization).find(organization_params)
+    @organization = policy_scope(Organization).find(application_params[:organization_id])
     @application = @organization.applications.new(application_params)
     if @application.save
       flash[:notice] = "Wniosek utworzony pomyslnie"
