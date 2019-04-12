@@ -102,25 +102,29 @@ pl:
       state: "Stan"
 
       confirm_delete: "Czy na pewno chcesz usunąć podanie?"
+    accepted: "Zaakceptowano wniosek."
+    rejected: "Odrzucono wniosek."
+    cant_change_state: "Nie można zmienić stanu!"
+    created_successfully: "Wniosek utworzony pomyślnie."
+    not_created: "Nie utworzono wniosku."
+    user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
 
   faculties:
     faculty_name: "Nazwa wydziału"
-
     editing_faculty: "Edycja wydziału"
-
     successfully_created: "Organizacja utworzona pomyślnie."
     successfully_destroyed: "Organizacja usunięta pomyślnie."
     successfully_updated: "Organizacja edytowana pomyślnie."
+    user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
 
   organizations:
     name: "Nazwa"
     time_of_establishment: "Data utworzenia"
-
     edit_organization: "Edycja organizacji"
-
     successfully_created: "Organizacja utworzona pomyślnie."
     successfully_destroyed: "Organizacja usunięta pomyślnie."
     successfully_updated: "Organizacja edytowana pomyślnie."
+    user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
 
   layouts:
     header:
@@ -160,6 +164,8 @@ pl:
       new:
         remember_me: "Nie wylogowuj mnie"
         log_in: "Zaloguj"
+      user:
+        signed_in: "Zalogowano pomyślnie."
 
     shared:
       links:
@@ -169,3 +175,4 @@ pl:
       user:
         signed_in: "Zalogowano pomyślnie."
         signed_out: "Wylogowano pomyślnie."
+

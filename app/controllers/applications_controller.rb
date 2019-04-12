@@ -3,7 +3,7 @@
 class ApplicationsController < ApplicationController
   include Pundit
   rescue_from Pundit::NotAuthorizedError do |_exception|
-    flash[:alert] = "You are not authorized to perform this action"
+    flash[:alert] = t("pundit.errors.user_not_authorized")
     redirect_to request.referer || root_path
   end
   before_action :authenticate_user!
@@ -36,10 +36,10 @@ class ApplicationsController < ApplicationController
     @organization = policy_scope(Organization).find(organization_params)
     @application = @organization.applications.new(application_params)
     if @application.save
-      flash[:notice] = "Wniosek utworzony pomyslnie"
+      flash[:notice] = t('.created_successfully')
       redirect_to @application
     else
-      flash[:alert] = "Nie utworzono wniosku"
+      flash[:alert] = t('.not_created')
       render 'new'
     end
   end
@@ -55,12 +55,12 @@ class ApplicationsController < ApplicationController
     authorize @application
     if params[:decision] == 'accept'
       @application.accept!
-      flash[:notice] = "Zaakceptowano wniosek"
+      flash[:notice] = t('.accepted') 
     elsif params[:decision] == 'reject'
       @application.reject!
-      flash[:notice] = "Odrzucono wniosek"
+      flash[:notice] = t('.rejected') 
     else
-      flash[:alert] = "Nie można zmienić stanu!"
+      flash[:alert] = t('.cant_change_state') 
     end
     redirect_to applications_path
   end
@@ -109,7 +109,7 @@ class ApplicationsController < ApplicationController
   end
 
   def user_not_authorized
-    flash[:alert] = "Nie posiadasz uprawnień do wykonania tej operacji."
+    flash[:alert] = t('.user_not_authorized')
     redirect_to @application
   end
 end
