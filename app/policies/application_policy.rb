@@ -19,4 +19,8 @@ class ApplicationPolicy < RailsApplicationPolicy
   def update?
     user.admin?
   end
+
+  def bulk_action?
+    user.admin?
+  end
 end
