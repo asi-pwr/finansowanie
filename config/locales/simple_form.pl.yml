@@ -1,4 +1,7 @@
 pl:
+  errors:
+    messages:
+      header: "%{attribute} zawiera błędy: %{count}"
   simple_form:
     "yes": 'Tak'
     "no": 'Nie'

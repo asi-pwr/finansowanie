@@ -1,24 +1,26 @@
-%h1.text-center Wniosek K
+%h1.text-center 
+  = t('application.new.k_application')
 -# TODO only show this container to admin
 .container
   .row
     .col-md-12
-      Stan wniosku: 
+      = t('.application_state') + ':'
       -if @application.pending?
-        Oczekujący na rozpatrzenie
+        = t('.pending')
       -elsif @application.accepted?
-        Zaakceptowany
+        = t('.accepted')
       -elsif @application.rejected?
-        Odrzucony
+        = t('.rejected')
 -if @application.pending? && policy(@application).update?
   .row.btn-row
     .col-md-12
-      =button_to "Zatwierdź", application_path, params: {decision: :accept}, method: :patch, class: 'btn btn-success'
-      =button_to "Odrzuć", application_path, params: {decision: :reject}, method: :patch, class: 'btn btn-danger'
+      =button_to t('.accept'), application_path, params: {decision: :accept}, method: :patch, class: 'btn btn-success'
+      =button_to t('.reject'), application_path, params: {decision: :reject}, method: :patch, class: 'btn btn-danger'
 .container
   .panel.panel-primary
     .panel-heading
-      %h2 Część I - informacje o wnioskodawcy
+      %h2
+        = t('applications.form.part_one_heading')
     .panel-body
       .container
         .row
@@ -32,13 +34,14 @@
           .col-md-4
             -organization = Organization.find @application.organization_id
             =organization.name
-        .row
           .col-md-4
             =@application.name
           .col-md-4
+            =@application.coordinator
         .row
           .col-md-12
-            %h4.text-left Koszty projektu
+            %h4.text-left 
+              = t('applications.form.project_costs')
         .row
           .col-md-4
             = t("applications.form.amount_applied_for")
@@ -55,7 +58,8 @@
             =@application.amount_overall
   .panel.panel-primary
     .panel-heading
-      %h2 Część II - informacje o projekcie
+      %h2
+        = t('applications.form.part_two_heading')
     .panel-body
       .container
         .form-row
@@ -153,11 +157,11 @@
           .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
             .row
               .col-md-4
-                Pozycja
+                = t("applications.form.todo")
               .col-md-4
-                Data rozpoczęcia
+                = t("applications.form.start_date")
               .col-md-4
-                Data zakończenia
+                = t("applications.form.due_date")
             .row
               .col-md-4
                 = schedule_item.todo
@@ -190,7 +194,8 @@
                 = role.first_name
               .col-md-4
                 = role.last_name
-  %h4.mt-5 Załączniki
+  %h4.mt-5 
+    = t('applications.form.attachments')
   - i = 0
   - @application.files.each do |file|
     %a{href: rails_blob_path(file, disposition: "attachment")}=file.filename
