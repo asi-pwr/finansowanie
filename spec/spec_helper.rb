@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'aasm/rspec'
+require 'capybara/rails'
 
 ENV["RAILS_ENV"] ||= 'test'
 
