@@ -1,12 +1,14 @@
 %p#notice
   = notice
 
-%h1.text-center Wszystkie Wydziały
+%h1.text-center 
+  = t('.all_faculties')
 .table-responsive
   %table.table.table-hover.table-striped
     %thead.table-primary
       %tr
-        %th Nazwa wydziału
+        %th 
+          = t('.faculty_name')
         %th 
   
     %tbody
@@ -16,6 +18,6 @@
           %td.text-right
             %a.fas.fa-eye{:href => faculty_path(faculty)}="&nbsp;".html_safe
             %a.fas.fa-pen{:href => edit_faculty_path(faculty)}="&nbsp;".html_safe
-            %a.fas.fa-trash-alt{ :href => faculty_path(faculty), :rel => 'nofollow', "data-method" => 'delete', "data-confirm" =>  'Czy na pewno chcesz usunąć wydział?' }
+            %a.fas.fa-trash-alt{ :href => faculty_path(faculty), :rel => 'nofollow', "data-method" => 'delete', "data-confirm" =>  t('.delete_confirm') }
 %a.btn.btn-primary.btn-block.rounded-sm{ :href => new_faculty_path }
-  Dodaj wydział
+  = t('.add_faculty')

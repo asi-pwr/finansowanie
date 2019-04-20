@@ -1,14 +1,14 @@
 = form_with(model: faculty, local: true) do |form|
   - if faculty.errors.any?
     .error_explanation
-      %h2= "#{pluralize(@faculty.errors.count, "error")} prohibited this faculty from being saved:"
+      %h2= t("errors.template.header", count: @faculty.errors.count, model: t('faculty'))
       %ul
       - @faculty.errors.full_messages.each do |message|
-        %li= message
+        %li.ml-3= message
 
   .field
-    = form.label :name, t("faculties.faculty_name")
+    = form.label :name, t("faculties.index.faculty_name")
     = form.text_field :name, id: :faculty_name
 
   .actions
-    = form.submit "Zapisz"
+    = form.submit t('submit')

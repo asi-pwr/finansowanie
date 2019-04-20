@@ -1,5 +1,5 @@
-%h1 Nowy wydział
-
+%h1
+  = t('.new_faculty')
 = render 'form', faculty: @faculty
 
-= link_to 'Powrót', faculties_path
+= link_to t('back'), faculties_path

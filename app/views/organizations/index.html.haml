@@ -1,14 +1,18 @@
 %p#notice
   =notice
 
-%h1.text-center Wszystkie organizacje
+%h1.text-center
+  = t('.all_organizations')
 .table-responsive
   %table.table.table-hover.table-striped
     %thead.table-primary
       %tr
-        %th.align-middle Nazwa organizacji
-        %th.align-middle Data utworzenia
-        %th.align-middle Wydział
+        %th.align-middle
+          = t("organizations.organization_name")
+        %th.align-middle
+          = t("organizations.time_of_establishment")
+        %th.align-middle
+          = t("faculty")
         %th
   
     %tbody
@@ -20,7 +24,7 @@
           %td.text-right
             %a.fas.fa-eye{:href => organization_path(organization)}="&nbsp;".html_safe
             %a.fas.fa-pen{:href => edit_organization_path(organization)}="&nbsp;".html_safe
-            %a.fas.fa-trash-alt{ :href => organization_path(organization), :rel => 'nofollow', "data-method" => 'delete', "data-confirm" =>  'Czy na pewno chcesz usunąć organizację?' }
+            %a.fas.fa-trash-alt{ :href => organization_path(organization), :rel => 'nofollow', "data-method" => 'delete', "data-confirm" => t('.delete_confirm') }
 
 %a.btn.btn-primary.btn-block.rounded-sm{ :href => new_organization_path }
-  Nowa organizacja
+  =t('.new_organization')

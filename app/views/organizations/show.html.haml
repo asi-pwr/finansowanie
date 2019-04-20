@@ -1,13 +1,16 @@
 %p
-  %b Nazwa organizacji:
+  %b
+    = t("organizations.organization_name") + ':'
   = @organization.name
 %p
-  %b Data utworzenia:
+  %b
+    = t("organizations.time_of_establishment") + ':'
   = @organization.time_of_establishment
 %p
-  %b Wydział:
-  = @organization.faculty.name
+  %b
+    = t("faculty") + ':'
+  =@organization.faculty.name
 
-= link_to 'Edytuj', edit_organization_path(@organization)
+= link_to t("edit"), edit_organization_path(@organization)
 \|
-= link_to 'Powrót', organizations_path
+= link_to t("back"), organizations_path
