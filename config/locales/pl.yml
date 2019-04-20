@@ -122,6 +122,7 @@ pl:
       k_application: "Wniosek K"
 
     show:
+      k_application: "Wniosek K"
       application_state: "Stan wniosku"
 
       accepted: "Zaakceptowany"
@@ -188,6 +189,8 @@ pl:
         password_confirmation: "Powtórz hasło"
         full_name: "Imię i nazwisko"
         sign_up: "Załóż konto"
+      user:
+        signed_up: "Konto zostało założone pomyślnie."
 
     sessions:
       new:
@@ -195,6 +198,7 @@ pl:
         log_in: "Zaloguj"
       user:
         signed_in: "Zalogowano pomyślnie."
+        signed_out: "Wylogowano pomyślnie."
 
     shared:
       links:

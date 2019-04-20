@@ -7,13 +7,13 @@
       %li.nav-item.mx-auto
         = link_to t(".main_page"), root_path, class: "nav-link"
       - if !current_user.nil? && current_user.admin?
-        %li.nav-item
+        %li.nav-item.mx-auto
           = link_to t(".organizations"), organizations_path, class: "nav-link"
-        %li.nav-item
+        %li.nav-item.mx-auto
           = link_to t(".new_application"), new_application_path, class: "nav-link"
-        %li.nav-item
+        %li.nav-item.mx-auto
           = link_to t(".applications"), applications_path, class: "nav-link"
-        %li.nav-item
+        %li.nav-item.mx-auto
           = link_to t(".faculties"), faculties_path, class: "nav-link"
         %li.nav-item.mx-auto
           = link_to t(".log_out"), destroy_user_session_path, method: :delete, class: "nav-link"

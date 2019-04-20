@@ -9,7 +9,7 @@ class ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_application, only: %i[show update]
   after_action :verify_policy_scoped
-  after_action :veryfy_authorized, only: :update
+  after_action :verify_authorized, only: :update
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
