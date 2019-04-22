@@ -190,7 +190,8 @@
                 = role.first_name
               .col-md-4
                 = role.last_name
-  %h4.mt-5 Załączniki
+  %h4.mt-5#attachments_div 
+    =t('.attachments')
   - i = 0
   - @application.files.each do |file|
     %a{href: rails_blob_path(file, disposition: "attachment")}=file.filename

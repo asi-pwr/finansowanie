@@ -105,6 +105,7 @@
               .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
                 .row
                   .col-md-4
+                    // TODO - whatever is todo??? 
                     = si.input :todo, label: t(".todo"), input_html: { class: "disable_empty" }
                   .col-md-4
                     = si.input :start_date, label: t(".start_date")
@@ -141,5 +142,5 @@
                 = t(".attachments")
               = f.file_field :files, multiple: true 
               %br
-            %button.btn.btn-primary.btn-block.rounded-sm{type: "submit"}
+            %button.btn.btn-primary.btn-block.rounded-sm#submit_application{type: "submit"}
               = t(".submit")
