@@ -1,7 +1,7 @@
 = simple_form_for @application do |f|
   - if @application.errors.any?
-    #error_explanation
-      %h2= t('errors.messages.header', attribute: t('application'), count: @application.errors.count)
+    #error_explanation.alert.alert-danger.pt-3.pb-2
+      %h2= t('errors.template.header', model: t('application'), count: @application.errors.count)
       %ul
         - @application.errors.full_messages.each do |msg|
           %li= msg

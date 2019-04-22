@@ -1,10 +1,10 @@
 = form_for @organization do |f|
   - if @organization.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
+    .error_explanation
+      %h2= t("errors.template.header", count: @organization.errors.count, model: t('organization'))
       %ul
         - @organization.errors.full_messages.each do |msg|
-          %li= msg
+          %li.ml-3= msg
 
   .field
     = f.label :name, t("organizations.name")
