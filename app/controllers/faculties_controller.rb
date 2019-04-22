@@ -8,7 +8,7 @@ class FacultiesController < ApplicationController
   end
   before_action :set_faculty, only: %i[show edit update destroy]
   after_action :verify_authorized
-  j
+
   # GET /faculties
   # GET /faculties.json
   def index
