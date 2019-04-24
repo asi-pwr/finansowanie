@@ -64,5 +64,4 @@ group :test do
   gem 'chromedriver-helper'
   gem 'pundit-matchers', '~> 1.6.0'
   gem 'should_not'
-  gem 'should_clean'
 end
