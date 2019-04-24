@@ -44,39 +44,39 @@ RSpec.describe Application, type: :model do
   end
 
   # tests for associations
-  it "should belong to organization" do
+  it "belongs to organization" do
     is_expected.to belong_to :organization
   end
 
-  it "should have many roles" do
+  it "has many roles" do
     is_expected.to have_many :roles
   end
-  it "should have many experiences" do
+  it "has many experiences" do
     is_expected.to have_many :experiences
   end
-  it "should have many users" do
+  it "has many users" do
     is_expected.to have_many :users
   end
-  it "should have many schedule items" do
+  it "has many schedule items" do
     is_expected.to have_many :schedule_items
   end
 
   # tests for nested attributes
-  it "should accept nested attributes for roles" do
+  it "accepts nested attributes for roles" do
     is_expected.to accept_nested_attributes_for(:roles)
   end
-  it "should accept nested attributes for experiences" do
+  it "accepts nested attributes for experiences" do
     is_expected.to accept_nested_attributes_for(:experiences)
   end
-  it "should accept nested attributes for schedule items" do
+  it "accepts nested attributes for schedule items" do
     is_expected.to accept_nested_attributes_for(:schedule_items)
   end
-  it "should accept nested attributes for roles" do
+  it "accepts nested attributes for roles" do
     is_expected.to accept_nested_attributes_for(:users)
   end
 
   # tests for aasm - changing states
-  it "should start as pending" do
+  it "starts as pending" do
     application = build(:application)
     expect(application.pending?).to eq(true)
   end

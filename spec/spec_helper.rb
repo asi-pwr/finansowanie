@@ -2,6 +2,7 @@
 
 require 'aasm/rspec'
 require 'capybara/rails'
+require 'should_not/rspec'
 
 ENV["RAILS_ENV"] ||= 'test'
 

@@ -35,8 +35,7 @@ feature "Interacting with applications", type: :system do
     page.save_screenshot('log_in_clicked.png')
   end
 
-  scenario "Creating an application" do
-    login
+  def fill_in_application_form
     visit new_application_path
     page.save_screenshot('empty_application.png')
     select '1', from: "application_organization_id"
@@ -56,9 +55,9 @@ feature "Interacting with applications", type: :system do
     fill_in 'application_target_group', with: 'The player'
     fill_in 'application_sponsor_enlistment', with: 'Decent strategy'
     fill_in 'application_promotion_plans', with: 'Big plans'
+
     # remove all fields
     all('button.remove_row').each(&:click)
-
     # and add one each
     find('#add_experience').click
     find('#add_schedule_item').click
@@ -76,13 +75,18 @@ feature "Interacting with applications", type: :system do
     fill_in with: "Important_role", id: /.*role.*member_role/
     fill_in with: "Ornstein", id: /.*role.*first_name/
     fill_in with: "Smough", id: /.*role.*last_name/
-    # TODO - add attachments
-    attach_file 'application_files', [file_path_to('ugandan_knuckles.png'), file_path_to('lorem_ipsum.txt')]
 
+    attach_file 'application_files', [file_path_to('ugandan_knuckles.png'), file_path_to('lorem_ipsum.txt')]
+  end
+
+  scenario "Creating an application" do
+    login
+    fill_in_application_form
     page.save_screenshot('filled_application.png')
     click_button "submit_application"
-    scroll_to page.find_by(id: 'attachments_div')
-
-    page.save_screenshot('submitted_application.png')
+    page.save_screenshot('system_spec_application_submitted_links.png')
+    scroll_to page.find_by_id('attachments_div')
+    expect(page).to have_text I18n.translate('applications.created_successfully')
+    page.save_screenshot('system_spec_application_submitted_links.png')
   end
 end

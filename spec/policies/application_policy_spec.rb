@@ -18,7 +18,7 @@ RSpec.describe ApplicationPolicy do
 
       # if user is an admin, his scope should resolve to all aplications
       # regardless of what organization he belongs to
-      it "should resolve to all applications" do
+      it "resolves to all applications" do
         Application.all.each do |app|
           expect(admin_scope).to include(app)
         end
@@ -27,7 +27,7 @@ RSpec.describe ApplicationPolicy do
     context "for non admin users" do
       let(:user) { build(:user, organizations: [Organization.first]) }
       let(:user_scope) { ApplicationPolicy::Scope.new(user, Application.all).resolve }
-      it "should resolve to user's organizations' applications" do
+      it "resolves to user's organizations' applications" do
         # check every application of user's organization
         # user's scope should resolve to every application of
         # every organization he belongs to
@@ -37,7 +37,7 @@ RSpec.describe ApplicationPolicy do
           end
         end
       end
-      it "should not resolve to applications that do not belong to user's organizations" do
+      it "does not resolve to applications that do not belong to user's organizations" do
         # check every application of every organization
         # if user does not belong to an organization
         # his scope should not include it's applications
@@ -58,7 +58,7 @@ RSpec.describe ApplicationPolicy do
       let(:user) { build(:user, admin: true, organizations: [Organization.first]) }
       let(:application) { Application.find_by(organization_id: Organization.first) }
 
-      it "should be allowed" do
+      it "is allowed" do
         expect(described_class).to permit_action(:update)
       end
     end
@@ -67,7 +67,7 @@ RSpec.describe ApplicationPolicy do
       let(:user) { build(:user, organizations: [Organization.first]) }
       let(:application) { Application.find_by(organization_id: Organization.first) }
 
-      it "should be forbidden" do
+      it "is forbidden" do
         expect(described_class).to forbid_action(:update)
       end
     end

@@ -24,14 +24,14 @@ RSpec.describe OrganizationPolicy, type: :policy do
     end
 
     permissions ".scope" do
-      it "should resolve to all organizations" do
+      it "resolves to all organizations" do
         Organization.all.each do |org|
           expect(scope).to include org
         end
       end
     end
 
-    it "should permit all actions to admins" do
+    it "permits all actions to admins" do
       expect(subject).to permit_actions(%i[index update show edit create destroy])
     end
   end
@@ -48,14 +48,14 @@ RSpec.describe OrganizationPolicy, type: :policy do
 
     permissions ".scope" do
       let(:scope) { OrganizationPolicy::Scope.new(user, Organization.all).resolve }
-      it "should resolve to user's organizations" do
+      it "resolves to user's organizations" do
         user_orgs = user.organizations
         user_orgs.each do |org|
           expect(scope).to include org
         end
       end
 
-      it "should not resolve to organizations other than users'" do
+      it "does not resolve to organizations other than users'" do
         user_orgs = user.organizations
         Organization.all.each do |org|
           if !user_orgs.include? org
@@ -65,7 +65,7 @@ RSpec.describe OrganizationPolicy, type: :policy do
       end
     end
 
-    it "should not allow any actions to a non admin" do
+    it "does not allow any actions to a non admin" do
       expect(subject).to forbid_actions(%i[index update show edit create destroy])
     end
   end
