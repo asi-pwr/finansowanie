@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FacutliesPolicy, type: :policy do
+RSpec.describe FacultyPolicy, type: :policy do
   subject { described_class }
   let(:faculties) { create_list(:faculty, 4) }
 

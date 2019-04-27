@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FacutliesPolicy < ApplicationPolicy
+class FacultyPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.nil?
