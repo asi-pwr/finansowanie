@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature "Interacting with applications", type: :system do
   def organization_name
-    "Organization 1"
+    "Testowa organizacja"
   end
 
   def user_email
@@ -27,11 +27,11 @@ feature "Interacting with applications", type: :system do
 
   scenario "Creating an application" do
     login
-    fill_in_application_form
+    fill_in_application_form(organization_name: organization_name)
     page.save_screenshot('filled_application.png')
     click_button "submit_application"
     page.save_screenshot('system_spec_application_submitted_links.png')
-    scroll_to page.find_by(id: 'attachments_div')
+    scroll_to page.find_by_id('attachments') # rubocop:disable Rails/DynamicFindBy
     expect(page).to have_text I18n.translate('applications.created_successfully')
     page.save_screenshot('system_spec_application_submitted_links.png')
   end

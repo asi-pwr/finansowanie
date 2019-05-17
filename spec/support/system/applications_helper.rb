@@ -10,10 +10,10 @@ def login
   page.save_screenshot('log_in_clicked.png')
 end
 
-def fill_in_application_form
+def fill_in_application_form(organization_name: nil)
   visit new_application_path
   page.save_screenshot('empty_application.png')
-  select '1', from: "application_organization_id"
+  select organization_name, from: "application_organization_id"
   fill_in "application_name", with: "Sample application"
   fill_in "application_coordinator", with: "Smoug Ornstein"
 
