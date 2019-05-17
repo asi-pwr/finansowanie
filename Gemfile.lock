@@ -304,6 +304,7 @@ GEM
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
     sexp_processor (4.12.0)
+    should_not (1.1.0)
     shoulda-matchers (4.0.1)
       activesupport (>= 4.2.0)
     simple_form (4.1.0)
@@ -403,6 +404,7 @@ DEPENDENCIES
   rubocop-rspec
   sassc-rails
   selenium-webdriver
+  should_not
   shoulda-matchers
   simple_form
   spring

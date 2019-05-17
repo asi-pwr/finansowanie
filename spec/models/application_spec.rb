@@ -6,12 +6,12 @@ RSpec.describe Application, type: :model do
   let!(:organization) { build :organization }
 
   # testing sum validator
-  it "incorrect sum should get false" do
+  it "incorrect sum is invalid" do
     application = build(:application, amount_applied_for: 1, amount_other_sources: 1, amount_overall: 3)
     expect(application.valid?).to eq(false)
   end
 
-  it "correct sum should get true" do
+  it "correct sum is valid" do
     application = build(:application)
     expect(application.valid?).to eq(true)
   end
@@ -30,12 +30,12 @@ RSpec.describe Application, type: :model do
 
   # tests for date
   context "when application date is before or on current date" do
-    it { should allow_value(1.day.ago).for(:date) }
-    it { should allow_value(Time.zone.today).for(:date) }
+    it { is_expected.to allow_value(1.day.ago).for(:date) }
+    it { is_expected.to allow_value(Time.zone.today).for(:date) }
   end
 
   context "when application date is after current date" do
-    it { should_not allow_value(1.day.from_now).for(:date) }
+    it { is_expected.not_to allow_value(1.day.from_now).for(:date) }
   end
 
   # tests for factory validity
@@ -44,39 +44,39 @@ RSpec.describe Application, type: :model do
   end
 
   # tests for associations
-  it "should belong to organization" do
+  it "belongs to organization" do
     is_expected.to belong_to :organization
   end
 
-  it "should have many roles" do
+  it "has many roles" do
     is_expected.to have_many :roles
   end
-  it "should have many experiences" do
+  it "has many experiences" do
     is_expected.to have_many :experiences
   end
-  it "should have many users" do
+  it "has many users" do
     is_expected.to have_many :users
   end
-  it "should have many schedule items" do
+  it "has many schedule items" do
     is_expected.to have_many :schedule_items
   end
 
   # tests for nested attributes
-  it "should accept nested attributes for roles" do
+  it "accepts nested attributes for roles" do
     is_expected.to accept_nested_attributes_for(:roles)
   end
-  it "should accept nested attributes for experiences" do
+  it "accepts nested attributes for experiences" do
     is_expected.to accept_nested_attributes_for(:experiences)
   end
-  it "should accept nested attributes for schedule items" do
+  it "accepts nested attributes for schedule items" do
     is_expected.to accept_nested_attributes_for(:schedule_items)
   end
-  it "should accept nested attributes for roles" do
+  it "accepts nested attributes for roles" do
     is_expected.to accept_nested_attributes_for(:users)
   end
 
   # tests for aasm - changing states
-  it "should start as pending" do
+  it "starts as pending" do
     application = build(:application)
     expect(application.pending?).to eq(true)
   end
