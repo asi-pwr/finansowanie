@@ -1,198 +1,233 @@
-%h1.text-center Wniosek K
--# TODO only show this container to admin
-.container
-  .row
-    .col-md-12
-      Stan wniosku: 
+%h1.text-center
+  = t('.k_application')
+-if policy(@application).update?
+  .container.alert.alert-secondary
+    .row
+      .col-md-11.my-auto.text-center.text-md-left
+        = t('.application_state') + ':'
+        -if @application.pending?
+          = t('.pending')
+        -elsif @application.accepted?
+          = t('.accepted')
+        -elsif @application.rejected?
+          = t('.rejected')
       -if @application.pending?
-        Oczekujący na rozpatrzenie
-      -elsif @application.accepted?
-        Zaakceptowany
-      -elsif @application.rejected?
-        Odrzucony
--if @application.pending? && policy(@application).update?
-  .row.btn-row
-    .col-md-12
-      =button_to "Zatwierdź", application_path, params: {decision: :accept}, method: :patch, class: 'btn btn-success'
-      =button_to "Odrzuć", application_path, params: {decision: :reject}, method: :patch, class: 'btn btn-danger'
+        .col-md-1.text-center
+          .btn-group.float-md-right
+            =button_to t('.accept'), application_path, params: {decision: :accept}, method: :patch, class: 'btn btn-success'
+            =button_to t('.reject'), application_path, params: {decision: :reject}, method: :patch, class: 'btn btn-danger'
 .container
   .panel.panel-primary
     .panel-heading
-      %h2 Część I - informacje o wnioskodawcy
+      %h2.text-center
+        = t('applications.form.part_one_heading')
     .panel-body
       .container
-        .row
-          .col-md-4
-            = t("applications.form.applying_organization")  
-          .col-md-4
-            = t("applications.form.project_name")
-          .col-md-4
-            = t("applications.form.coordinator")
-        .row
-          .col-md-4
-            -organization = Organization.find @application.organization_id
-            =organization.name
-        .row
-          .col-md-4
-            =@application.name
-          .col-md-4
+        .card-group.mb-2
+          .card
+            %h5.card-header
+              = t("applications.form.applying_organization") 
+            .card-body
+              %p.card-text
+                -organization = Organization.find @application.organization_id
+                =organization.name
+          .card
+            %h5.card-header
+              = t("applications.form.project_name")
+            .card-body
+              %p.card-text
+                =@application.name
+          .card
+            %h5.card-header
+              = t("applications.form.coordinator")
+            .card-body
+              %p.card-text
+                =@application.coordinator
         .row
           .col-md-12
-            %h4.text-left Koszty projektu
-        .row
-          .col-md-4
-            = t("applications.form.amount_applied_for")
-          .col-md-4
-            = t("applications.form.amount_other_sources")
-          .col-md-4
-            = t("applications.form.amount_overall")
-        .row
-          .col-md-4
-            =@application.amount_applied_for        
-          .col-md-4
-            =@application.amount_other_sources
-          .col-md-4
-            =@application.amount_overall
+            %h4.text-left 
+              = t('applications.form.project_costs')
+        .card-group.align-items-md-end.mb-3
+          .card
+            %h5.card-header
+              = t("applications.form.amount_applied_for") 
+            .card-body
+              %p.card-text
+                =@application.amount_applied_for
+          .card
+            %h5.card-header
+              = t("applications.form.amount_other_sources")
+            .card-body
+              %p.card-text
+                =@application.amount_other_sources
+          .card
+            %h5.card-header
+              = t("applications.form.amount_overall")
+            .card-body
+              %p.card-text
+                =@application.amount_overall
   .panel.panel-primary
     .panel-heading
-      %h2 Część II - informacje o projekcie
+      %h2.text-center
+        = t('applications.form.part_two_heading')
     .panel-body
       .container
         .form-row
-          .col-md-8
-            = t("applications.form.description")
-          .col-md-8
-            %p= @application.description
+          .col-md-12
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.description")
+              .card-body
+                %p.card-text
+                  =@application.description
         - if !@application.location.nil? || !@application.date.nil? 
-          .form-row
-            .col-md-12
-              .container.p-0
-                .form-row
-                  - if !@application.location.nil?
-                    .col-md-4
-                      = t("applications.form.location")
-                  - if !@application.date.nil?
-                    .col-md-4
-                      = t("applications.form.event_date")
-                .form-row
-                  - if !@application.location.nil?
-                    .col-md-4
-                      = @application.location
-                  - if !@application.date.nil?
-                    .col-md-4
-                      = @application.date.to_s
+          .card-group.mb-3.form-row.px-1
+            - if !@application.location.nil?
+              .card.col-md-8.px-0
+                %h5.card-header
+                  = t("applications.form.location")
+                .card-body
+                  %p.card-text
+                    = @application.location
+            - if !@application.date.nil?
+              .card.col-md-4.px-0
+                %h5.card-header
+                  = t("applications.form.event_date")
+                .card-body
+                  %p.card-text
+                    = @application.date.to_s
         .form-row
-          .col-md-8
-            = t("applications.form.project_subject")
-          .col-md-8
-            %p= @application.project_subject
-        .form-row
-          .col-md-8
-            = t("applications.form.required_resources")
-          .col-md-8
-            %p= @application.required_resources
-        .form-row
-          .col-md-8
-            = t("applications.form.past_schedule")
-          .col-md-8
-            %p= @application.past_schedule
-        .form-row
-          .col-md-8
-            = t("applications.form.collaboration")
-          .col-md-8
-            %p= @application.collaboration
-        .form-row
-          .col-md-8
-            = t("applications.form.target_group")
-          .col-md-8
-            %p= @application.target_group
-        .form-row
-          .col-md-8
-            = t("applications.form.sponsor_enlistment")
-          .col-md-8
-            %p= @application.sponsor_enlistment
-        .form-row
-          .col-md-8
-            = t("applications.form.promotion_plans")
-          .col-md-8
-            %p= @application.promotion_plans
+          .col-md-12
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.project_subject")
+              .card-body
+                %p.card-text
+                  =@application.project_subject
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.required_resources")
+              .card-body
+                %p.card-text
+                  =@application.required_resources
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.past_schedule")
+              .card-body
+                %p.card-text
+                  =@application.past_schedule
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.collaboration")
+              .card-body
+                %p.card-text
+                  =@application.collaboration
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.target_group")
+              .card-body
+                %p.card-text
+                  =@application.target_group
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.sponsor_enlistment")
+              .card-body
+                %p.card-text
+                  =@application.sponsor_enlistment
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.promotion_plans")
+              .card-body
+                %p.card-text
+                  =@application.promotion_plans
+
       .container
         %h4.text-center 
           = t("applications.form.experiences_heading") + ':'
-        - @application.experiences.each do |experience|
-          / TODO can this div be a row? layout dillemas
-          .container.experiences_row.w-100.my-4.p-3.border.border-secondary
-            .row
-              .col-md-4
+        %table.table.table-hover.table-striped.mb-3
+          %thead.table-primary
+            %tr
+              %th
                 = t("applications.form.project_name") 
-              .col-md-4
+              %th
                 = t("applications.form.role") 
-              .col-md-4
-                = t("applications.form.budget")
-            .row
-              .col-md-4
-                = experience.project_name
-              .col-md-4
-                = experience.role
-              .col-md-4
-                = experience.budget
-            .row
-              .col-md-6
+              %th
+                = t("applications.form.budget") 
+              %th
                 = t("applications.form.project_date") 
-              .col-md-6
-                = t("applications.form.member_name")
-            .row
-              .col-md-6
-                = experience.project_date.to_s
-              .col-md-6
-                = experience.member_name
+              %th
+                = t("applications.form.member_name") 
+          %tbody
+            - @application.experiences.each do |experience|
+              %tr
+                %td
+                  = experience.project_name
+                %td
+                  = experience.role
+                %td
+                  = experience.budget
+                %td
+                  = experience.project_date.to_s
+                %td
+                  = experience.member_name
+
       .container
         %h4.text-center 
           = t("applications.form.schedule_items_heading")
-        - @application.schedule_items.each do |schedule_item|
-          .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
-            .row
-              .col-md-4
-                Pozycja
-              .col-md-4
-                Data rozpoczęcia
-              .col-md-4
-                Data zakończenia
-            .row
-              .col-md-4
-                = schedule_item.todo
-              .col-md-4
-                = schedule_item.start_date.to_s
-              .col-md-4
-                = schedule_item.due_date.to_s
-          .container
-            .row
-              .col-md-12
-                = t("applications.form.todo")
-              .col-md-12
-                %p= @application.current_state
+        %table.table.table-hover.table-striped
+          %thead.table-primary
+            %tr
+              %th
+                = t("applications.form.todo") 
+              %th
+                = t("applications.form.start_date") 
+              %th
+                = t("applications.form.due_date") 
+          %tbody
+            - @application.schedule_items.each do |si|
+              %tr
+                %td
+                  = si.todo
+                %td
+                  = si.start_date.to_s
+                %td
+                  = si.due_date.to_s
+      .container
+        .form-row
+          .col-md-12
+            .card.mb-3
+              %h5.card-header
+                = t("applications.form.current_state_heading")
+              .card-body
+                %p.card-text
+                  =@application.current_state
+
       .container
         %h4.text-center 
-          = t("applications.form.due_date")
-        - @application.roles.each do |role|
-          .container.role_row.w-100.my-4.p-3.border.border-secondary
-            .row
-              .col-md-4
-                = t("applications.form.member_role")
-              .col-md-4
-                = t("applications.form.first_name")
-              .col-md-4
-                = t("applications.form.last_name")
-            .row
-              .col-md-4
-                = role.member_role
-              .col-md-4
-                = role.first_name
-              .col-md-4
-                = role.last_name
-  %h4.mt-5#attachments_div 
-    =t('.attachments')
-  - i = 0
-  - @application.files.each do |file|
-    %a{href: rails_blob_path(file, disposition: "attachment")}=file.filename
-    %br
+          = t("applications.form.roles_heading")
+        %table.table.table-hover.table-striped
+          %thead.table-primary
+            %tr
+              %th
+                = t("applications.form.todo") 
+              %th
+                = t("applications.form.start_date") 
+              %th
+                = t("applications.form.due_date") 
+          %tbody
+            - @application.roles.each do |role|
+              %tr
+                %td
+                  = role.member_role
+                %td
+                  = role.first_name
+                %td
+                  = role.last_name
+
+  .panel.panel-primary
+    .panel-heading
+      %h2.text-center 
+        = t('applications.form.attachments')
+    .panel-body
+      - @application.files.each do |file|
+        %a{href: rails_blob_path(file, disposition: "attachment")}=file.filename

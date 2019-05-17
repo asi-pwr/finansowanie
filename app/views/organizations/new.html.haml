@@ -1,5 +1,5 @@
-%h1 Nowa organizacja
-
+%h1
+  = t('organizations.index.new_organization')
 = render 'form'
 
-= link_to 'Powrót', organizations_path
+= link_to t('back'), organizations_path

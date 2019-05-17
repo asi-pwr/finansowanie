@@ -2,9 +2,10 @@
   = notice
 
 %p
-  %strong Nazwa wydziału: 
+  %strong 
+    = t('faculties.index.faculty_name') + ':'
   = @faculty.name
 
-= link_to 'Edytuj', edit_faculty_path(@faculty) 
+= link_to t('submit'), edit_faculty_path(@faculty) 
 |
-= link_to 'Powrót', faculties_path
+= link_to t('back'), faculties_path

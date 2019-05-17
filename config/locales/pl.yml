@@ -17,7 +17,9 @@ pl:
   email: "E-mail"
   password: "Hasło"
   
-  error: "błąd"
+  application: "Wniosek"
+  faculty: "Wydział"
+  organization: "Organizacja"
 
   activerecord:
     errors:
@@ -26,24 +28,30 @@ pl:
           attributes:
             date:
               invalid_date: "nie jest poprawną datą"
+              on_or_after: "musi być być datą dzisiejszą lub późniejszą"
+              on_or_before: "musi być być datą dzisiejszą lub wcześniejszą"
         faculty:
           attributes:
             name:
-              blank: "Pole nie może być puste"
+              blank: "nie może być puste"
               taken: "Nazwa już zajęta"
         organization:
           attributes:
+            time_of_establishment:
+              invalid_date: "nie jest poprawną datą"
+              on_or_after: "musi być być datą dzisiejszą lub późniejszą"
+              on_or_before: "musi być być datą dzisiejszą lub wcześniejszą"
             name:
-              blank: "Pole nie może być puste"
+              blank: "nie może być puste"
         user:
           attributes:
             email:
-              blank: "Pole nie może być puste"
+              blank: "nie może być puste"
               invalid: "Podany e-mail jest niepoprawny"
             full_name:
-              blank: "Pole nie może być puste"
+              blank: "nie może być puste"
             password:
-              blank: "Pole nie może być puste"
+              blank: "nie może być puste"
               confirmation: "Podane hasła muszą się zgadzać"
               too_short: "Podane hasło jest za krótkie"
       messages:
@@ -99,12 +107,37 @@ pl:
       submit: "Aplikuj"
 
     index:
+      k_applications: "Wnioski K"
+
       all_applications: "Wszystkie wnioski"
       organization: "Organizacja"
       creation_date: "Data utworzenia"
       state: "Stan"
 
+      accepted: "Zaakceptowany"
+      pending: "Oczekujący"
+      rejected: "Odrzucony"
+
+      select_action: "Wybierz akcję..."
+      accept: "Zaakceptuj"
+      delete: "Usuń"
+      reject: "Odrzuć"
+
       confirm_delete: "Czy na pewno chcesz usunąć podanie?"
+    new:
+      k_application: "Wniosek K"
+
+    show:
+      k_application: "Wniosek K"
+      application_state: "Stan wniosku"
+
+      accepted: "Zaakceptowany"
+      pending: "Oczekujący na rozpatrzenie"
+      rejected: "Odrzucony"
+      
+      accept: "Zatwierdź"
+      reject: "Odrzuć"
+
     accepted: "Zaakceptowano wniosek."
     rejected: "Odrzucono wniosek."
     cant_change_state: "Nie można zmienić stanu!"
@@ -113,21 +146,33 @@ pl:
     user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
 
   faculties:
-    faculty_name: "Nazwa wydziału"
     editing_faculty: "Edycja wydziału"
-    successfully_created: "Organizacja utworzona pomyślnie."
-    successfully_destroyed: "Organizacja usunięta pomyślnie."
-    successfully_updated: "Organizacja edytowana pomyślnie."
+    successfully_created: "Wydział  utworzony pomyślnie."
+    successfully_destroyed: "Wydział usunięty pomyślnie."
+    successfully_updated: "Wydział edytowany pomyślnie."
     user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
+    index: 
+      faculty_name: "Nazwa wydziału"
+      all_faculties: "Wszystkie wydziały"
+      delete_confirm: "Czy na pewno chcesz usunąć wydział?"
+      add_faculty: "Dodaj wydział"
+
+    new:
+      new_faculty: "Nowy wydział"
 
   organizations:
     name: "Nazwa"
+    organization_name: "Nazwa organizacji"
     time_of_establishment: "Data utworzenia"
     edit_organization: "Edycja organizacji"
     successfully_created: "Organizacja utworzona pomyślnie."
     successfully_destroyed: "Organizacja usunięta pomyślnie."
     successfully_updated: "Organizacja edytowana pomyślnie."
     user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
+    index:
+      all_organizations: "Wszystkie organizacje"
+      delete_confirm: "Czy na pewno chcesz usunąć organizację?"
+      new_organization: "Nowa organizacja"
 
   layouts:
     header:
@@ -162,6 +207,8 @@ pl:
         password_confirmation: "Powtórz hasło"
         full_name: "Imię i nazwisko"
         sign_up: "Załóż konto"
+      user:
+        signed_up: "Konto zostało założone pomyślnie."
 
     sessions:
       new:
@@ -169,6 +216,7 @@ pl:
         log_in: "Zaloguj"
       user:
         signed_in: "Zalogowano pomyślnie."
+        signed_out: "Wylogowano pomyślnie."
 
     shared:
       links:
