@@ -15,11 +15,11 @@ RSpec.describe OrganizationPolicy, type: :policy do
     }
     let(:scope) { OrganizationPolicy::Scope.new(user, Organization.all).resolve }
 
-    it "user should be an admin" do
+    it "expect user is an admin" do
       expect(user.admin?).to be true
     end
 
-    it "user should be in one organization" do
+    it "user is in one organization" do
       expect(user.organizations.size).to eq 1
     end
 
@@ -42,7 +42,7 @@ RSpec.describe OrganizationPolicy, type: :policy do
                        organizations: [Organization.first,
                                        Organization.second])
     }
-    it "user should not be an admin" do
+    it "user is not an admin" do
       expect(user.admin?).to be_falsey
     end
 
