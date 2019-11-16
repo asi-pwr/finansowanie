@@ -2,7 +2,7 @@
 
 class AddApplicationColumns < ActiveRecord::Migration[5.1]
   def change
-    change_table(:applications) do |t|
+    change_table(:applications, bulk: true) do |t|
       t.integer :amount_applied_for
       t.integer :amount_other_sources
       t.integer :amount_overall

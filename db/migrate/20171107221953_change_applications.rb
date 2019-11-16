@@ -2,7 +2,7 @@
 
 class ChangeApplications < ActiveRecord::Migration[5.1]
   def up
-    change_table :applications do |t|
+    change_table :applications, bulk: true do |t|
       t.references :organizations, foreign_key: true
       t.remove :planned_date_and_location
       t.text :location
@@ -18,7 +18,7 @@ class ChangeApplications < ActiveRecord::Migration[5.1]
   end
 
   def down
-    change_table :applications do |t|
+    change_table :applications, bulk: true do |t|
       t.string :planned_date_and_location
       t.remove :location
       t.remove :date

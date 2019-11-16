@@ -2,7 +2,7 @@
 
 class ChangeUsers < ActiveRecord::Migration[5.1]
   def up
-    change_table :users do |t|
+    change_table :users, bulk: true do |t|
       t.remove :has_training
       t.references :faculty, foreign_key: true
       t.string :phone_number
@@ -10,7 +10,7 @@ class ChangeUsers < ActiveRecord::Migration[5.1]
   end
 
   def down
-    change_table :users do |t|
+    change_table :users, bulk: true do |t|
       t.boolean :has_training, null: false, default: false
       t.remove :phone_number
     end

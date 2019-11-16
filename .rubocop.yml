@@ -1,8 +1,8 @@
+require :
+  - rubocop-rails
+
 inherit_from:
   - http://relaxed.ruby.style/rubocop.yml
-
-Rails:
-  Enabled: true
 
 AllCops:
   DisplayCopNames: true
@@ -40,6 +40,3 @@ Style/BlockDelimiters:
 
 Layout/DotPosition:
   EnforcedStyle: leading
-
-Rails/BulkChangeTable:
-  Enabled: false
