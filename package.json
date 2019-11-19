@@ -16,7 +16,7 @@
     "turbolinks": "^5.2.0",
     "webpack-jquery-ui": "^2.0.1",
     "lodash": "^4.17.13",
-    "js-yaml": "^3.13.1",
+    "js-yaml": "3.13.1",
     "set-value": "^2.0.1",
     "mem": "^4.0.0",
     "webpack-dev-server": "^3.1.11"
