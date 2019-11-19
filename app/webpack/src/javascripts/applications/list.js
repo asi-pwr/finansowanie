@@ -23,7 +23,7 @@ $(document).ready( () => {
     });
 
     // select action
-    
+
     $(function(){
       $('#accept').click(function(){
         $('#actionName').attr("value", "Zaakceptuj");
