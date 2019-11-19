@@ -14,7 +14,10 @@
     "popper.js": "^1.14.6",
     "rails-ujs": "^5.2.2",
     "turbolinks": "^5.2.0",
-    "webpack-jquery-ui": "^2.0.1"
+    "webpack-jquery-ui": "^2.0.1",
+    "lodash": "^4.17.13",
+    "js-yaml": "^3.13.1",
+    "set-value": "^2.0.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
