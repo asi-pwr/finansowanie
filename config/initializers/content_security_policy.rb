@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.config.content_security_policy do |p|
   p.default_src :self, :https
   p.font_src    :self, :https, :data
