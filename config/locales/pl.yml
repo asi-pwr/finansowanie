@@ -1,6 +1,6 @@
 pl:
   hello: "Witaj świecie"
-  date: 
+  date:
     order:
       - :day
       - :month
@@ -16,7 +16,7 @@ pl:
 
   email: "E-mail"
   password: "Hasło"
-  
+
   application: "Wniosek"
   faculty: "Wydział"
   organization: "Organizacja"
@@ -83,7 +83,7 @@ pl:
       sponsor_enlistment: "Opis strategii pozyskiwania sponsorów"
       promotion_plans: "Planowane działania promocyjne projektu"
 
-      
+
       experiences_heading: "Doświadczenie zespołu organizatorów w podobnych projektach"
       role: "Pełniona funkcja"
       budget: "Budżet"
@@ -104,6 +104,7 @@ pl:
 
       add_member: "Dodaj członka"
       attachments: "Załączniki"
+      attachments_info: "Przytrzymaj Ctrl aby wybrać wiele plików"
       submit: "Aplikuj"
 
     index:
@@ -134,7 +135,7 @@ pl:
       accepted: "Zaakceptowany"
       pending: "Oczekujący na rozpatrzenie"
       rejected: "Odrzucony"
-      
+
       accept: "Zatwierdź"
       reject: "Odrzuć"
 
@@ -151,7 +152,7 @@ pl:
     successfully_destroyed: "Wydział usunięty pomyślnie."
     successfully_updated: "Wydział edytowany pomyślnie."
     user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
-    index: 
+    index:
       faculty_name: "Nazwa wydziału"
       all_faculties: "Wszystkie wydziały"
       delete_confirm: "Czy na pewno chcesz usunąć wydział?"
@@ -226,4 +227,3 @@ pl:
       user:
         signed_in: "Zalogowano pomyślnie."
         signed_out: "Wylogowano pomyślnie."
-
