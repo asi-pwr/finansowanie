@@ -33,15 +33,21 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @organization = policy_scope(Organization).find(application_params[:organization_id])
-    @application = @organization.applications.new(application_params)
+    @organization = policy_scope(Organization)
+    @application = @organization.find(application_params[:organization_id]).applications.new(application_params)
     if @application.save
-      flash[:notice] = t('.created_successfully')
+      flash[:notice] = t('applications.form.created_successfully')
       redirect_to @application
     else
       flash[:alert] = t('.not_created')
       render 'new'
     end
+  end
+
+  def edit
+    @organization = policy_scope(Organization)
+    @users = User.all
+    @application = policy_scope(Application).find(params[:id])
   end
 
   def show
@@ -52,8 +58,15 @@ class ApplicationsController < ApplicationController
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
     @application = policy_scope(Application).find(params[:id])
+    policy_scope(Application).update(@application.id ,application_params)
     authorize @application
-    if params[:decision] == 'accept'
+    if params[:application][:decision] == 'update'
+      if @application.save
+        flash[:notice] =  t('.successfully_updated')
+      else
+        flash[:alert] = t('.not_created')
+      end
+    elsif params[:decision] == 'accept'
       @application.accept!
       flash[:notice] = t('.accepted')
     elsif params[:decision] == 'reject'

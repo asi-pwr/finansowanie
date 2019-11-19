@@ -21,6 +21,7 @@
           %td
             = application.name
             %a.fas.fa-eye{:href => application_path(application) }
+            %a.fas.fa-pen{:href => edit_application_path(application) }
           %td= application.coordinator
           - organization = Organization.find(application.organization_id)
           %td= organization.name
