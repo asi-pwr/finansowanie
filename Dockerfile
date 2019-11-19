@@ -9,6 +9,7 @@ RUN apk add --update --no-cache \
       postgresql-dev \
       yarn \
       git \
+      less \
       chromium \
       chromium-chromedriver
 RUN bundle config build.nokogiri --use-system-libraries

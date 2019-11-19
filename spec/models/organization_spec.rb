@@ -16,12 +16,12 @@ RSpec.describe Organization, type: :model do
 
   # tests for date
   context "when founding date is before or on current date" do
-    it { should allow_value(Time.zone.today).for(:time_of_establishment) }
-    it { should allow_value(1.day.ago).for(:time_of_establishment) }
+    it { is_expected.to allow_value(Time.zone.today).for(:time_of_establishment) }
+    it { is_expected.to allow_value(1.day.ago).for(:time_of_establishment) }
   end
 
   context "when founding date after current date" do
-    it { should_not allow_value(1.day.from_now).for(:time_of_establishment) }
+    it { is_expected.not_to allow_value(1.day.from_now).for(:time_of_establishment) }
   end
 
   # tests for factory

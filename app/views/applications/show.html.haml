@@ -223,16 +223,10 @@
                   = role.first_name
                 %td
                   = role.last_name
-
-  .panel.panel-primary
+  .panel.panel-primary#attachments
     .panel-heading
       %h2.text-center 
         = t('applications.form.attachments')
     .panel-body
-      - i = 0 # what does this do?
-      .row
-        .col-md-8
-          %ul.list-group
-          - @application.files.each do |file|
-            %li.list-group-item.list-group-item-primary
-              = link_to file.filename, rails_blob_path(file, disposition: "attachment")
+      - @application.files.each do |file|
+        %a{href: rails_blob_path(file, disposition: "attachment")}=file.filename

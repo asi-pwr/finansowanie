@@ -13,7 +13,7 @@
       .panel-body
         .row
           .col-md-4
-            = f.association :organization, label: t(".applying_organization")
+            = f.input :organization_id, collection: @organization
           .col-md-4
             = f.input :name, label: t(".project_name")
           .col-md-4
@@ -141,5 +141,5 @@
                 = t(".attachments")
               = f.file_field :files, multiple: true 
               %br
-            %button.btn.btn-primary.btn-block.rounded-sm{type: "submit"}
+            %button.btn.btn-primary.btn-block.rounded-sm#submit_application{type: "submit"}
               = t(".submit")

@@ -7,30 +7,37 @@ class FacultiesController < ApplicationController
     redirect_to request.referer || root_path
   end
   before_action :set_faculty, only: %i[show edit update destroy]
+  after_action :verify_authorized
 
   # GET /faculties
   # GET /faculties.json
   def index
     @faculties = Faculty.all
+    authorize Faculty
   end
 
   # GET /faculties/1
   # GET /faculties/1.json
-  def show; end
+  def show
+    authorize Faculty
+  end
 
   # GET /faculties/new
   def new
     @faculty = Faculty.new
+    authorize @faculty
   end
 
   # GET /faculties/1/edit
-  def edit; end
+  def edit
+    authorize Faculty
+  end
 
   # POST /faculties
   # POST /faculties.json
   def create
     @faculty = Faculty.new(faculty_params)
-
+    authorize @faculty
     respond_to do |format|
       if @faculty.save
         format.html { redirect_to @faculty, notice: t('.successfully_created') }
@@ -54,6 +61,7 @@ class FacultiesController < ApplicationController
         format.json { render json: @faculty.errors, status: :unprocessable_entity }
       end
     end
+    authorize @faculty
   end
 
   # DELETE /faculties/1
@@ -64,6 +72,7 @@ class FacultiesController < ApplicationController
       format.html { redirect_to faculties_url, notice: t('.successfully_destroyed') }
       format.json { head :no_content }
     end
+    authorize @faculty
   end
 
   private
