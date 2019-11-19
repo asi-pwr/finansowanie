@@ -58,6 +58,11 @@ class ApplicationsController < ApplicationController
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
     @application = policy_scope(Application).find(params[:id])
+
+    @application.schedule_items.clear
+    @application.experiences.clear
+    @application.roles.clear
+
     policy_scope(Application).update(@application.id ,application_params)
     authorize @application
     if params[:application][:decision] == 'update'
