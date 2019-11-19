@@ -1,5 +1,7 @@
-%h1.text-center 
-  =t('.k_application')
+= javascript_pack_tag 'applications/edit', 'data-turbolinks-track': 'reload'
+
+%h1.text-center
+  = t('.k_application')
 
 = render 'form', decision: 'new'
 

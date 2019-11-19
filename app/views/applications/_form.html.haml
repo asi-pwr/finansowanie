@@ -139,8 +139,9 @@
             .row
               %h4
                 = t(".attachments")
-              = f.file_field :files, multiple: true 
+              = f.file_field :files, multiple: true
               %br
+            = t(".attachments_info")
             -if decision == 'update'
               = f.hidden_field :decision, :value => 'update'
               %button.btn.btn-primary.btn-block.rounded-sm#submit_application{type: "submit"}
