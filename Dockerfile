@@ -21,4 +21,4 @@ EXPOSE 3000
 
 ENV BUNDLE_PATH /gems
 
-CMD ["bin/rails", "s", "-b", "0.0.0.0"]
+CMD rm -f tmp/pids/server.pid && bin/rails s -b 0.0.0.0

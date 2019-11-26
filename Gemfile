@@ -24,7 +24,7 @@ gem 'validates_timeliness'
 gem 'dotenv-rails'
 gem 'aasm'
 gem 'pundit'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.2'
 gem 'lograge'
 gem 'rails-i18n', '~>5.1'
 
