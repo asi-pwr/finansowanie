@@ -63,11 +63,11 @@ class ApplicationsController < ApplicationController
     @application.experiences.clear
     @application.roles.clear
 
-    policy_scope(Application).update(@application.id ,application_params)
+    policy_scope(Application).update(@application.id, application_params)
     authorize @application
     if params[:application][:decision] == 'update'
       if @application.save
-        flash[:notice] =  t('.successfully_updated')
+        flash[:notice] = t('.successfully_updated')
       else
         flash[:alert] = t('.not_created')
       end
