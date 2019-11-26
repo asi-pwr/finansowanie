@@ -36,7 +36,7 @@ class ApplicationsController < ApplicationController
     @organization = policy_scope(Organization).find(application_params[:organization_id])
     @application = @organization.applications.new(application_params)
     if @application.save
-      flash[:notice] = t('applications.form.created_successfully')
+      flash[:notice] = t('.created_successfully')
       redirect_to @application
     else
       flash[:alert] = t('.not_created')
