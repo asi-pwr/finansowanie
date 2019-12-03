@@ -10,3 +10,14 @@
 1. `git clone https://github.com/asi-pwr/finansowanie.git && cd finansowanie`.
 2. `docker-compose build && bin/setup`.
 3. The application should be accessible under `http://localhost:3000`.
+
+### Sample user
+
+Login: `user@example.com`
+Password: `password`
+
+## Development
+
+## Stop and start scripts
+
+Use `bin/start` and `bin/stop` respectively.
