@@ -18,6 +18,20 @@ Password: `password`
 
 ## Development
 
-## Stop and start scripts
+### Running things inside the container
+
+Run the following:
+
+`docker-compose run --rm <thing you want to run>`
+
+For example:
+
+`docker-compose run --rm bin/rails g model SuperModel name:string`
+
+### Stop and start scripts
 
 Use `bin/start` and `bin/stop` respectively.
+
+### Problems with permissions?
+
+`sudo chmod $USER:$USER -R .` in the project directory.
