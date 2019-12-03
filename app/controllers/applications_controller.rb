@@ -44,6 +44,12 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def edit
+    @organization = policy_scope(Organization)
+    @users = User.all
+    @application = policy_scope(Application).find(params[:id])
+  end
+
   def show
     @application = policy_scope(Application).find(params[:id])
   end
@@ -52,8 +58,20 @@ class ApplicationsController < ApplicationController
   # user errors i.e. "Application already accepted" or "Can't accept rejected"
   def update
     @application = policy_scope(Application).find(params[:id])
+
+    @application.schedule_items.clear
+    @application.experiences.clear
+    @application.roles.clear
+
+    policy_scope(Application).update(@application.id, application_params)
     authorize @application
-    if params[:decision] == 'accept'
+    if params[:application][:decision] == 'update'
+      if @application.save
+        flash[:notice] = t('.successfully_updated')
+      else
+        flash[:alert] = t('.not_created')
+      end
+    elsif params[:decision] == 'accept'
       @application.accept!
       flash[:notice] = t('.accepted')
     elsif params[:decision] == 'reject'

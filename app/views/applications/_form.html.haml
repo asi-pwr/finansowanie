@@ -142,5 +142,10 @@
               = f.file_field :files, multiple: true
               %br
             = t(".attachments_info")
-            %button.btn.btn-primary.btn-block.rounded-sm#submit_application{type: "submit"}
-              = t(".submit")
+            -if decision == 'update'
+              = f.hidden_field :decision, :value => 'update'
+              %button.btn.btn-primary.btn-block.rounded-sm#submit_application{type: "submit"}
+                = t(".save_changes")
+            -elsif decision == 'new'
+              %button.btn.btn-primary.btn-block.rounded-sm#submit_application{type: "submit"}
+                = t(".submit")

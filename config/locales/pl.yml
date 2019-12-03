@@ -106,6 +106,7 @@ pl:
       attachments: "Załączniki"
       attachments_info: "Przytrzymaj Ctrl aby wybrać wiele plików"
       submit: "Aplikuj"
+      save_changes: "Zapisz zmiany"
 
     index:
       k_applications: "Wnioski K"
@@ -143,6 +144,7 @@ pl:
     rejected: "Odrzucono wniosek."
     cant_change_state: "Nie można zmienić stanu!"
     created_successfully: "Wniosek utworzony pomyślnie."
+    successfully_updated: "Wniosek edytowany pomyślnie."
     not_created: "Nie utworzono wniosku."
     user_not_authorized: "Nie posiadasz uprawnień do wykonania tej operacji."
 
