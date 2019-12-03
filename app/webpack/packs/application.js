@@ -16,3 +16,5 @@ Rails.start();
 Turbolinks.start();
 
 import 'bootstrap/dist/js/bootstrap';
+
+import "controllers"
