@@ -4,8 +4,8 @@
       .col-md-4
         = f.input :todo , label: t(".todo"), input_html: { class: "disable_empty" }
       .col-md-4
-        = f.input :start_date, label: t(".start_date")
+        = f.input :start_date, label: t('.start_date')
       .col-md-4
         = f.input :due_date, label: t(".due_date")
-        %small= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" }
+    %small= link_to "Remove", "#", class: "btn btn-primary", data: { action: "click->nested-form#remove_association" }
     = f.hidden_field :_destroy
