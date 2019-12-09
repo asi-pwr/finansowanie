@@ -73,6 +73,9 @@
           .form-row
             .col-md-12
               = f.input :promotion_plans, label: t(".promotion_plans")
+          .form-row
+            .col-md-12
+              = f.input :current_state, label: t(".current_state_heading")
           .container
             %h4.text-center
               = t(".experiences_heading")
@@ -101,23 +104,19 @@
           .container
             %h4.text-center
               = t(".schedule_items_heading")
-              = f.simple_fields_for :schedule_items do |si|
-            .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
-              .row
-                .col-md-4
-                  = si.input :todo, label: t(".todo"), input_html: { class: "disable_empty" }
-                .col-md-4
-                  = si.input :start_date, label: t(".start_date")
-                .col-md-4
-                  = si.input :due_date, label: t(".due_date")
-              %button.btn.btn-primary.remove_row{type: "button"}
-                = t(:delete)
-          %button.btn.btn-primary#add_schedule_item{ type: "button" }
-            = t(:add)
-
-          .form-row
-            .col-md-12
-              = f.input :current_state, label: t(".current_state_heading")
+            = f.simple_fields_for :schedule_items do |si|
+              .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
+                .row
+                  .col-md-4
+                    = si.input :todo, label: t(".todo"), input_html: { class: "disable_empty" }
+                  .col-md-4
+                    = si.input :start_date, label: t(".start_date")
+                  .col-md-4
+                    = si.input :due_date, label: t(".due_date")
+                %button.btn.btn-primary.remove_row{type: "button"}
+                  = t(:delete)
+            %button.btn.btn-primary#add_schedule_item{ type: "button" }
+              = t(:add)
           .container
             %h4.text-center
               = t(".roles_heading")
