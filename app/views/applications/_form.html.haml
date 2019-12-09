@@ -98,6 +98,8 @@
                   = t(:delete)
             %button.btn.btn-primary#add_experience{ type: "button" }
               = t(:add)
+
+          ////////////////////////////////////////////////////////////////
           .container
             %h4.text-center
               = t(".schedule_items_heading")
@@ -118,6 +120,25 @@
             .form-row
               .col-md-12
                 = f.input :current_state, label: t(".current_state_heading")
+          ///////////////////////////////////////////////////////////////////
+        
+
+
+        .container
+          %h4.text-center
+          = t(".schedule_items_heading")
+          %div{"data-controller" => 'nested-form'}
+            %template{"data-target" => 'nested-form.template'}
+              = f.fields_for :schedule_items, ScheduleItem.new, child_index: 'NEW_RECORD' do |si|
+                = render "schedule_fields", f: si
+
+            = f.fields_for :schedule_items do |si|
+              = render "schedule_fields", f: si
+            .mb-3{"data-target" => "nested-form.links"}
+              = link_to "Add Schedule", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association" }
+
+
+          ////////////////////////////////////////////////////////////////////
           .container
             %h4.text-center
               = t(".roles_heading")
