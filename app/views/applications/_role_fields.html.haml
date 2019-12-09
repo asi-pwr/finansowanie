@@ -1,11 +1,12 @@
 = content_tag :div, class: "nested-fields", data: { new_record: f.object.new_record? } do
-  .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
-    .row
+  .container.role_row.w-100.my-4.p-3.border.border-secondary
+    .row.role_row
       .col-md-4
-        = f.input :todo , label: t(".todo"), input_html: { class: "disable_empty" }
+        = f.input :member_role, label: t(".member_role")
       .col-md-4
-        = f.input :start_date, label: t('.start_date')
+        = f.input :first_name, label: t(".first_name")
       .col-md-4
-        = f.input :due_date, label: t(".due_date")
+        = f.input :last_name, label: t(".last_name")
+        .col-md-4
     %small= link_to t(:delete), "#", class: "btn btn-primary", data: { action: "click->nested-form#remove_association" }
     = f.hidden_field :_destroy
