@@ -98,21 +98,26 @@
                   = t(:delete)
             %button.btn.btn-primary#add_experience{ type: "button" }
               = t(:add)
-
-
-
           .container
             %h4.text-center
               = t(".schedule_items_heading")
-            %div{"data-controller" => 'nested-form'}
-              %template{"data-target" => 'nested-form.template'}
-                = f.fields_for :schedule_items, ScheduleItem.new, child_index: 'NEW_RECORD' do |si|
-                  = render "schedule_fields", f: si
+              = f.simple_fields_for :schedule_items do |si|
+            .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
+              .row
+                .col-md-4
+                  = si.input :todo, label: t(".todo"), input_html: { class: "disable_empty" }
+                .col-md-4
+                  = si.input :start_date, label: t(".start_date")
+                .col-md-4
+                  = si.input :due_date, label: t(".due_date")
+              %button.btn.btn-primary.remove_row{type: "button"}
+                = t(:delete)
+          %button.btn.btn-primary#add_schedule_item{ type: "button" }
+            = t(:add)
 
-              = f.fields_for :schedule_items do |si|
-                = render "schedule_fields", f: si
-              .mb-3{"data-target" => "nested-form.links"}
-                = link_to "Add Schedule", "#", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
+          .form-row
+            .col-md-12
+              = f.input :current_state, label: t(".current_state_heading")
           .container
             %h4.text-center
               = t(".roles_heading")
