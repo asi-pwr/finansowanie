@@ -59,6 +59,26 @@ pl:
 
   application: "Wniosek"
   applications:
+
+    experiences_fields:
+      role: "Pełniona funkcja"
+      budget: "Budżet"
+      project_date: "Data wydarzenia"
+      member_name: "Imię i nazwisko członka zespołu"
+      remove_experience_item: "Usuń"
+
+    schedule_fields:
+      todo: "Pozycja"
+      start_date: "Data rozpoczęcia"
+      due_date: "Data zakończenia"
+      remove_schedule_item: "Usuń pozycję"
+
+    role_fields:
+      member_role: "Funkcja"
+      first_name: "Imię"
+      last_name: "Nazwisko"
+      remove_role_item: "Usuń członka"
+
     form:
       part_one_heading: "Część I - informacje o wnioskodawcy"
       applying_organization: "Organizacja wnioskująca"
@@ -85,22 +105,16 @@ pl:
 
 
       experiences_heading: "Doświadczenie zespołu organizatorów w podobnych projektach"
-      role: "Pełniona funkcja"
-      budget: "Budżet"
-      project_date: "Data wydarzenia"
-      member_name: "Imię i nazwisko członka zespołu"
+      add_experience_item: "Dodaj doświadczenie"
 
       schedule_items_heading: "Harmonogram realizacji projektu"
-      todo: "Pozycja"
-      start_date: "Data rozpoczęcia"
-      due_date: "Data zakończenia"
+      add_schedule_item: "Dodaj pozycję"
 
       current_state_heading: "Aktualny stan zaawansowania projektu lub powiązania z innymi projektami"
 
       roles_heading: "Skład zespołu realizatorów projektu"
-      member_role: "Funkcja"
-      first_name: "Imię"
-      last_name: "Nazwisko"
+      add_role_item: "Dodaj członka"
+
 
       add_member: "Dodaj członka"
       attachments: "Załączniki"
