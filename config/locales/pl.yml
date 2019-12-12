@@ -61,6 +61,7 @@ pl:
   applications:
 
     experiences_fields:
+      project_name: "Projekt"
       role: "Pełniona funkcja"
       budget: "Budżet"
       project_date: "Data wydarzenia"
