@@ -30,7 +30,6 @@ class ApplicationsController < ApplicationController
     3.times { @application.experiences.build }
     3.times { @application.schedule_items.build }
     3.times { @application.roles.build }
-    
   end
 
   def create
