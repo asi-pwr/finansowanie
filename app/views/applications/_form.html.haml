@@ -79,61 +79,39 @@
           .container
             %h4.text-center
               = t(".experiences_heading")
-            = f.simple_fields_for :experiences do |ex|
-              / TODO can this div be a row? layout dillemas
-              .container.experiences_row.w-100.my-4.p-3.border.border-secondary
-                .row
-                  .col-md-4
-                    = ex.input :project_name, label: t(".project_name")
-                  .col-md-4
-                    = ex.input :role, label: t(".role")
-                  .col-md-4
-                    = ex.input :budget, input_html: { min: '0',
-                      required: true,  oninput: "this.value = Math.abs(this.value)",
-                      placeholder: 0},
-                      label: t(".budget")
-                .row
-                  .col-md-6
-                    = ex.input :project_date, label: t(".project_date")
-                  .col-md-6
-                    = ex.input :member_name, label: t(".member_name")
-                %button.btn.btn-primary.remove_row{type: "button"}
-                  = t(:delete)
-            %button.btn.btn-primary#add_experience{ type: "button" }
-              = t(:add)
+            %div{"data-controller" => 'nested-form'}
+              %template{"data-target" => 'nested-form.template'}
+                = f.fields_for :experiences, Experience.new, child_index: 'NEW_RECORD_EXPERIENCE' do |ex|
+                  = render "experiences_fields", f: ex
+
+              = f.fields_for :experiences do |ex|
+                = render "experiences_fields", f: ex
+              .mb-3{"data-target" => "nested-form.links"}
+                = link_to t('.add_experience_item'), "#", id: "add_experience", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
           .container
             %h4.text-center
               = t(".schedule_items_heading")
-            = f.simple_fields_for :schedule_items do |si|
-              .container.schedule_items_row.w-100.my-4.p-3.border.border-secondary
-                .row
-                  .col-md-4
-                    = si.input :todo, label: t(".todo"), input_html: { class: "disable_empty" }
-                  .col-md-4
-                    = si.input :start_date, label: t(".start_date")
-                  .col-md-4
-                    = si.input :due_date, label: t(".due_date")
-                %button.btn.btn-primary.remove_row{type: "button"}
-                  = t(:delete)
-            %button.btn.btn-primary#add_schedule_item{ type: "button" }
-              = t(:add)
+            %div{"data-controller" => 'nested-form'}
+              %template{"data-target" => 'nested-form.template'}
+                = f.fields_for :schedule_items, ScheduleItem.new, child_index: 'NEW_RECORD_SCHEDULE' do |si|
+                  = render "schedule_fields", f: si
+
+              = f.fields_for :schedule_items do |si|
+                = render "schedule_fields", f: si
+              .mb-3{"data-target" => "nested-form.links"}
+                = link_to t('.add_schedule_item'), "#", id: "add_schedule_item", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
           .container
             %h4.text-center
               = t(".roles_heading")
-            = f.simple_fields_for :roles do |role|
-              .container.role_row.w-100.my-4.p-3.border.border-secondary
-                .row.role_row
-                  .col-md-4
-                    = role.input :member_role, label: t(".member_role")
-                  .col-md-4
-                    = role.input :first_name, label: t(".first_name")
-                  .col-md-4
-                    = role.input :last_name, label: t(".last_name")
-                  .col-md-4
-                %button.btn.btn-primary.remove_row{type: "button"}
-                  = t(:delete)
-            %button.btn.btn-primary#add_member{ type: "button" }
-              = t(".add_member")
+            %div{"data-controller" => 'nested-form'}
+              %template{"data-target" => 'nested-form.template'}
+                = f.fields_for :roles, Role.new, child_index: 'NEW_RECORD_ROLE' do |role|
+                  = render "role_fields", f: role
+
+              = f.fields_for :roles do |role|
+                = render "role_fields", f: role
+              .mb-3{"data-target" => "nested-form.links"}
+                = link_to t('.add_role_item'), "#", id: "add_member", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
           .container
             .row
               %h4
