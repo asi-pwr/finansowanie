@@ -87,7 +87,7 @@
               = f.fields_for :experiences do |ex|
                 = render "experiences_fields", f: ex
               .mb-3{"data-target" => "nested-form.links"}
-                = link_to t('.add_experience_item'), "#", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
+                = link_to t('.add_experience_item'), "#", id: "add_experience", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
           .container
             %h4.text-center
               = t(".schedule_items_heading")
@@ -99,7 +99,7 @@
               = f.fields_for :schedule_items do |si|
                 = render "schedule_fields", f: si
               .mb-3{"data-target" => "nested-form.links"}
-                = link_to t('.add_schedule_item'), "#", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
+                = link_to t('.add_schedule_item'), "#", id: "add_schedule_item", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
           .container
             %h4.text-center
               = t(".roles_heading")
@@ -111,7 +111,7 @@
               = f.fields_for :roles do |role|
                 = render "role_fields", f: role
               .mb-3{"data-target" => "nested-form.links"}
-                = link_to t('.add_role_item'), "#", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
+                = link_to t('.add_role_item'), "#", id: "add_member", class: "btn btn-primary", data: { action: "click->nested-form#add_association" }
           .container
             .row
               %h4
