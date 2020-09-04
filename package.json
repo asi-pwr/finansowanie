@@ -13,7 +13,7 @@
     "js-yaml": "3.13.1",
     "lodash": "^4.17.13",
     "mem": "^4.0.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "popper.js": "^1.14.6",
     "rails-ujs": "^5.2.2",
     "set-value": "^2.0.1",
